@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percabangan & Perulangan | Minggu 1 | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="pengenalan-php.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-indigo-600 to-purple-600">
+    <div class="max-w-4xl mx-auto">
+      <div class="week-badge week-1 mb-4">Minggu 1 - Materi 3</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Percabangan & Perulangan</h1>
+      <p class="text-white/90">Membuat keputusan dan mengulang tugas</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Tujuan -->
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+        <ul class="space-y-2 text-slate-600">
+          <li>• Menggunakan if-else untuk membuat keputusan</li>
+          <li>• Menggunakan switch untuk pilihan ganda</li>
+          <li>• Menggunakan for, while, foreach untuk perulangan</li>
+        </ul>
+      </div>
+      
+      <!-- PERCABANGAN -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔀 Percabangan (If-Else)</h2>
+      
+      <div class="alert alert-info mb-6">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Bayangkan begini:</strong>
+          <span class="text-indigo-700">Percabangan seperti <em>persimpangan jalan</em>. Kalau nilaimu >= 75, kamu lulus. Kalau tidak, kamu remedial.</span>
+        </div>
+      </div>
+      
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">if-else.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+$nilai = 80;
+
+if ($nilai >= 75) {
+    echo "Selamat, kamu LULUS! 🎉";
+} else {
+    echo "Maaf, kamu harus REMEDIAL 😢";
+}
+
+// Dengan elseif untuk banyak kondisi
+$nilai = 85;
+
+if ($nilai >= 90) {
+    echo "Grade: A";
+} elseif ($nilai >= 80) {
+    echo "Grade: B";
+} elseif ($nilai >= 70) {
+    echo "Grade: C";
+} else {
+    echo "Grade: D";
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- Operator Perbandingan -->
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Operator Perbandingan</h3>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-100">
+            <tr>
+              <th class="px-4 py-2">Operator</th>
+              <th class="px-4 py-2">Arti</th>
+              <th class="px-4 py-2">Contoh</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr><td class="px-4 py-2 font-mono">==</td><td class="px-4 py-2">Sama dengan</td><td class="px-4 py-2">$a == $b</td></tr>
+            <tr><td class="px-4 py-2 font-mono">!=</td><td class="px-4 py-2">Tidak sama</td><td class="px-4 py-2">$a != $b</td></tr>
+            <tr><td class="px-4 py-2 font-mono">&gt;</td><td class="px-4 py-2">Lebih besar</td><td class="px-4 py-2">$a > $b</td></tr>
+            <tr><td class="px-4 py-2 font-mono">&lt;</td><td class="px-4 py-2">Lebih kecil</td><td class="px-4 py-2">$a < $b</td></tr>
+            <tr><td class="px-4 py-2 font-mono">&gt;=</td><td class="px-4 py-2">Lebih besar sama dengan</td><td class="px-4 py-2">$a >= $b</td></tr>
+            <tr><td class="px-4 py-2 font-mono">&lt;=</td><td class="px-4 py-2">Lebih kecil sama dengan</td><td class="px-4 py-2">$a <= $b</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- PERULANGAN -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔄 Perulangan (Loop)</h2>
+      
+      <div class="alert alert-info mb-6">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Bayangkan begini:</strong>
+          <span class="text-indigo-700">Perulangan seperti <em>mesin fotokopi</em>. Kamu tentukan berapa kali mau difotokopi, mesin akan mengulang tugas itu.</span>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">For Loop</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">for-loop.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Menampilkan angka 1 sampai 5
+for ($i = 1; $i <= 5; $i++) {
+    echo "Angka ke-$i &lt;br&gt;";
+}
+
+// Output:
+// Angka ke-1
+// Angka ke-2
+// Angka ke-3
+// Angka ke-4
+// Angka ke-5
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">While Loop</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">while-loop.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+$i = 1;
+while ($i <= 3) {
+    echo "Hitungan: $i &lt;br&gt;";
+    $i++;  // Jangan lupa tambah nilai!
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Foreach (untuk Array)</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">foreach.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+$buah = ["Apel", "Mangga", "Jeruk"];
+
+foreach ($buah as $item) {
+    echo "Buah: $item &lt;br&gt;";
+}
+
+// Output:
+// Buah: Apel
+// Buah: Mangga
+// Buah: Jeruk
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <div class="alert alert-tip mb-8">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <strong class="text-emerald-800">Tips:</strong>
+          <span class="text-emerald-700">Gunakan <code>for</code> kalau tahu jumlah perulangan. Gunakan <code>while</code> kalau perulangan bergantung kondisi. Gunakan <code>foreach</code> untuk array.</span>
+        </div>
+      </div>
+      
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat program yang menentukan grade nilai (A, B, C, D, E)</li>
+          <li>Tampilkan tabel perkalian 1-10 menggunakan for loop</li>
+          <li>Buat array nama teman sekelas, tampilkan dengan foreach</li>
+        </ol>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t">
+        <a href="variabel-tipe-data.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Variabel & Tipe Data
+        </a>
+        <a href="fungsi.html" class="btn-primary">
+          Materi Selanjutnya
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

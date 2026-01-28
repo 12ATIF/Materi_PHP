@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengenalan PHP | Minggu 1 | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="pengenalan-php.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-indigo-600 to-purple-600">
+    <div class="max-w-4xl mx-auto">
+      <div class="week-badge week-1 mb-4">Minggu 1 - Materi 1</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Pengenalan PHP</h1>
+      <p class="text-white/90">Mengenal PHP, cara kerja, dan membuat program pertama</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Tujuan -->
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+        <ul class="space-y-2 text-slate-600">
+          <li>• Memahami apa itu PHP dan kegunaannya</li>
+          <li>• Mengetahui cara kerja PHP di web server</li>
+          <li>• Membuat dan menjalankan program PHP pertama</li>
+        </ul>
+      </div>
+      
+      <!-- Penjelasan -->
+      <div class="prose max-w-none mb-8">
+        <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu PHP?</h2>
+        
+        <p class="text-slate-600 mb-4">
+          <strong>PHP</strong> adalah bahasa pemrograman yang digunakan untuk membuat website yang <em>dinamis</em>. 
+          Dinamis artinya halaman web bisa berubah-ubah sesuai data atau kondisi tertentu.
+        </p>
+        
+        <div class="alert alert-info mb-6">
+          <span class="text-2xl">💡</span>
+          <div>
+            <strong class="text-indigo-800">Bayangkan begini:</strong>
+            <span class="text-indigo-700">Instagram bisa menampilkan foto yang berbeda untuk setiap user karena menggunakan bahasa seperti PHP. Kalau hanya HTML, semua orang akan melihat halaman yang sama!</span>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold text-slate-800 mb-3">Bagaimana PHP Bekerja?</h3>
+        
+        <div class="bg-slate-100 rounded-xl p-6 mb-6">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-3xl mb-2">🌐</div>
+              <div class="font-medium">Browser</div>
+              <div class="text-xs text-slate-500">User buka website</div>
+            </div>
+            <div class="text-2xl text-slate-400">→</div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-3xl mb-2">🖥️</div>
+              <div class="font-medium">Web Server</div>
+              <div class="text-xs text-slate-500">Menjalankan PHP</div>
+            </div>
+            <div class="text-2xl text-slate-400">→</div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-3xl mb-2">📄</div>
+              <div class="font-medium">HTML</div>
+              <div class="text-xs text-slate-500">Dikirim ke browser</div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold text-slate-800 mb-3">Install PHP dengan Laragon</h3>
+        <p class="text-slate-600 mb-4">
+          Untuk menjalankan PHP, kamu butuh web server. Cara paling mudah adalah pakai <strong>Laragon</strong> (Windows) atau XAMPP.
+        </p>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600 mb-6">
+          <li>Download Laragon dari <code class="bg-slate-100 px-2 py-1 rounded">laragon.org</code></li>
+          <li>Install dan jalankan Laragon</li>
+          <li>Klik "Start All" untuk menyalakan Apache & MySQL</li>
+          <li>Buka folder <code class="bg-slate-100 px-2 py-1 rounded">C:\laragon\www</code> untuk menyimpan file PHP</li>
+        </ol>
+      </div>
+      
+      <!-- Contoh Kode -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">💻 Program PHP Pertama</h2>
+      
+      <p class="text-slate-600 mb-4">
+        Buat file baru bernama <code class="bg-slate-100 px-2 py-1 rounded">halo.php</code> di folder <code class="bg-slate-100 px-2 py-1 rounded">C:\laragon\www</code>
+      </p>
+      
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">halo.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Ini adalah komentar, tidak akan dijalankan
+
+// Menampilkan teks ke layar
+echo "Halo, saya sedang belajar PHP!";
+
+// Bisa juga pakai tanda kutip tunggal
+echo 'Selamat datang di dunia PHP';
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <p class="text-slate-600 mb-4">
+        Buka browser dan ketik: <code class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded">localhost/halo.php</code>
+      </p>
+      
+      <div class="alert alert-tip mb-8">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <strong class="text-emerald-800">Tips:</strong>
+          <span class="text-emerald-700">Semua kode PHP harus ditulis di dalam tag <code>&lt;?php ... ?&gt;</code>. Perintah <code>echo</code> digunakan untuk menampilkan teks.</span>
+        </div>
+      </div>
+      
+      <!-- PHP + HTML -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔗 Menggabungkan PHP dengan HTML</h2>
+      
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">gabungan.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Belajar PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Selamat Datang!&lt;/h1&gt;
+    
+    &lt;?php
+    $nama = "Siswa SMK";
+    echo "&lt;p&gt;Halo, $nama!&lt;/p&gt;";
+    echo "&lt;p&gt;Sekarang tanggal: " . date("d/m/Y") . "&lt;/p&gt;";
+    ?&gt;
+    
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <p class="text-slate-600 mb-4">Coba buat file PHP yang menampilkan:</p>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Nama lengkapmu</li>
+          <li>Jurusan di SMK</li>
+          <li>Tanggal hari ini (pakai <code class="bg-slate-100 px-1 rounded">date()</code>)</li>
+        </ol>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t">
+        <a href="../../silabus.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Kembali ke Silabus
+        </a>
+        <a href="variabel-tipe-data.html" class="btn-primary">
+          Materi Selanjutnya
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

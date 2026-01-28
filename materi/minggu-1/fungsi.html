@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fungsi PHP | Minggu 1 | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="pengenalan-php.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-indigo-600 to-purple-600">
+    <div class="max-w-4xl mx-auto">
+      <div class="week-badge week-1 mb-4">Minggu 1 - Materi 4</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Fungsi PHP</h1>
+      <p class="text-white/90">Membuat kode yang rapi dan bisa dipakai ulang</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Tujuan -->
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+        <ul class="space-y-2 text-slate-600">
+          <li>• Memahami apa itu fungsi dan kegunaannya</li>
+          <li>• Membuat fungsi sendiri (user-defined function)</li>
+          <li>• Menggunakan parameter dan return value</li>
+        </ul>
+      </div>
+      
+      <!-- Penjelasan -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu Fungsi?</h2>
+      
+      <div class="alert alert-info mb-6">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Bayangkan begini:</strong>
+          <span class="text-indigo-700">Fungsi seperti <em>mesin khusus</em>. Kamu masukkan bahan (parameter), mesin akan memproses, lalu keluar hasil (return).</span>
+        </div>
+      </div>
+      
+      <p class="text-slate-600 mb-6">Fungsi adalah blok kode yang bisa dipanggil berkali-kali. Dengan fungsi, kode jadi lebih rapi dan tidak perlu ditulis ulang.</p>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi Sederhana</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">fungsi.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Membuat fungsi
+function sapa() {
+    echo "Halo, selamat datang!";
+}
+
+// Memanggil fungsi
+sapa();  // Output: Halo, selamat datang!
+sapa();  // Bisa dipanggil berkali-kali
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi dengan Parameter</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">parameter.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Fungsi dengan 1 parameter
+function sapa($nama) {
+    echo "Halo, $nama!";
+}
+
+sapa("Budi");   // Output: Halo, Budi!
+sapa("Ani");    // Output: Halo, Ani!
+
+// Fungsi dengan banyak parameter
+function perkenalan($nama, $umur, $kelas) {
+    echo "Nama: $nama, Umur: $umur, Kelas: $kelas";
+}
+
+perkenalan("Budi", 16, "X RPL 1");
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi dengan Return</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">return.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Fungsi yang mengembalikan nilai
+function tambah($a, $b) {
+    return $a + $b;
+}
+
+$hasil = tambah(5, 3);
+echo "Hasil: $hasil";  // Output: Hasil: 8
+
+// Fungsi hitung luas persegi
+function luasPersegi($sisi) {
+    return $sisi * $sisi;
+}
+
+$luas = luasPersegi(4);
+echo "Luas: $luas";  // Output: Luas: 16
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <div class="alert alert-tip mb-6">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <strong class="text-emerald-800">Tips:</strong>
+          <span class="text-emerald-700"><code>echo</code> langsung menampilkan ke layar. <code>return</code> mengembalikan nilai yang bisa disimpan ke variabel.</span>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi Bawaan PHP</h3>
+      <p class="text-slate-600 mb-4">PHP punya banyak fungsi bawaan yang bisa langsung dipakai:</p>
+      
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">built-in.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// String functions
+echo strlen("Hello");        // 5 (panjang string)
+echo strtoupper("hello");    // HELLO
+echo strtolower("HELLO");    // hello
+
+// Math functions
+echo abs(-5);     // 5 (nilai absolut)
+echo round(3.7);  // 4 (pembulatan)
+echo rand(1, 10); // Angka random 1-10
+
+// Date functions
+echo date("d/m/Y");  // Tanggal hari ini
+echo date("H:i:s");  // Jam sekarang
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat fungsi <code>hitungLuasSegitiga($alas, $tinggi)</code></li>
+          <li>Buat fungsi <code>cekGenap($angka)</code> yang return true/false</li>
+          <li>Buat fungsi <code>hitungUmur($tahunLahir)</code></li>
+        </ol>
+      </div>
+      
+      <!-- Selesai Minggu 1 -->
+      <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white text-center mb-8">
+        <span class="text-4xl mb-4 block">🎉</span>
+        <h2 class="text-2xl font-bold mb-2">Selamat!</h2>
+        <p class="text-white/90 mb-4">Kamu sudah menyelesaikan semua materi Minggu 1. Lanjut ke Minggu 2 untuk belajar Form & Database!</p>
+        <a href="../minggu-2/form-html-php.html" class="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-xl font-bold">
+          Lanjut Minggu 2
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t">
+        <a href="percabangan-perulangan.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Percabangan & Perulangan
+        </a>
+        <a href="../minggu-2/form-html-php.html" class="btn-primary">
+          Minggu 2: Form & PHP
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

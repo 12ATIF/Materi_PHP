@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form HTML & PHP | Minggu 2 | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="form-html-php.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-emerald-500 to-teal-600">
+    <div class="max-w-4xl mx-auto">
+      <div class="week-badge week-2 mb-4">Minggu 2 - Materi 5</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Form HTML & PHP</h1>
+      <p class="text-white/90">Menerima input dari pengguna dengan form</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Tujuan -->
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+        <ul class="space-y-2 text-slate-600">
+          <li>• Membuat form HTML untuk input data</li>
+          <li>• Memahami perbedaan method GET dan POST</li>
+          <li>• Mengakses data form dengan PHP</li>
+        </ul>
+      </div>
+      
+      <!-- Penjelasan -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu Form?</h2>
+      
+      <div class="alert alert-info mb-6">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Bayangkan begini:</strong>
+          <span class="text-indigo-700">Form seperti <em>formulir pendaftaran</em>. User mengisi data, klik tombol submit, lalu data dikirim ke server untuk diproses.</span>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Form HTML Dasar</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">form.html</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;form action="proses.php" method="POST"&gt;
+    &lt;label&gt;Nama:&lt;/label&gt;
+    &lt;input type="text" name="nama"&gt;
+    
+    &lt;label&gt;Email:&lt;/label&gt;
+    &lt;input type="email" name="email"&gt;
+    
+    &lt;label&gt;Pesan:&lt;/label&gt;
+    &lt;textarea name="pesan"&gt;&lt;/textarea&gt;
+    
+    &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- GET vs POST -->
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Perbedaan GET dan POST</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4">
+          <h4 class="font-bold text-indigo-600 mb-2">GET</h4>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Data muncul di URL</li>
+            <li>• Cocok untuk pencarian</li>
+            <li>• Ada batasan panjang data</li>
+            <li>• Tidak aman untuk password</li>
+          </ul>
+        </div>
+        <div class="card p-4">
+          <h4 class="font-bold text-emerald-600 mb-2">POST</h4>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Data tersembunyi di body</li>
+            <li>• Cocok untuk form login</li>
+            <li>• Tidak ada batasan data</li>
+            <li>• Lebih aman untuk password</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Mengakses Data Form di PHP</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">proses.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Mengakses data dari form POST
+$nama = $_POST['nama'];
+$email = $_POST['email'];
+$pesan = $_POST['pesan'];
+
+echo "Halo, $nama!";
+echo "Email kamu: $email";
+echo "Pesan: $pesan";
+
+// Untuk method GET, gunakan $_GET
+// $cari = $_GET['keyword'];
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <div class="alert alert-warning mb-6">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">Penting:</strong>
+          <span class="text-amber-700">Atribut <code>name</code> pada input HTML harus sama dengan key di <code>$_POST</code> atau <code>$_GET</code>.</span>
+        </div>
+      </div>
+      
+      <!-- Contoh Lengkap -->
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Contoh Form Lengkap</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">daftar.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// Cek apakah form sudah disubmit
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $kelas = $_POST['kelas'];
+    
+    echo "&lt;h2&gt;Data Berhasil Diterima!&lt;/h2&gt;";
+    echo "&lt;p&gt;Nama: $nama&lt;/p&gt;";
+    echo "&lt;p&gt;Kelas: $kelas&lt;/p&gt;";
+}
+?&gt;
+
+&lt;form method="POST"&gt;
+    &lt;input type="text" name="nama" placeholder="Nama" required&gt;
+    &lt;select name="kelas"&gt;
+        &lt;option value="X RPL 1"&gt;X RPL 1&lt;/option&gt;
+        &lt;option value="X RPL 2"&gt;X RPL 2&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button type="submit"&gt;Daftar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-emerald-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat form pendaftaran dengan nama, email, dan jurusan</li>
+          <li>Tampilkan semua data yang diinput</li>
+          <li>Tambahkan radio button untuk jenis kelamin</li>
+        </ol>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t">
+        <a href="../minggu-1/fungsi.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Fungsi PHP
+        </a>
+        <a href="validasi-data.html" class="btn-primary">
+          Materi Selanjutnya
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

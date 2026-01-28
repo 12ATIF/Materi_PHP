@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validasi Data | Minggu 2 | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="form-html-php.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-emerald-500 to-teal-600">
+    <div class="max-w-4xl mx-auto">
+      <div class="week-badge week-2 mb-4">Minggu 2 - Materi 6</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Validasi Data</h1>
+      <p class="text-white/90">Memastikan data yang masuk itu benar dan aman</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Tujuan -->
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+        <ul class="space-y-2 text-slate-600">
+          <li>• Memahami pentingnya validasi data</li>
+          <li>• Menggunakan fungsi validasi PHP</li>
+          <li>• Mencegah serangan XSS dan SQL Injection</li>
+        </ul>
+      </div>
+      
+      <!-- Penjelasan -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Kenapa Perlu Validasi?</h2>
+      
+      <div class="alert alert-warning mb-6">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">Penting!</strong>
+          <span class="text-amber-700">Jangan pernah percaya data dari user! Orang jahat bisa mengirim kode berbahaya melalui form.</span>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Validasi Dasar</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">validasi.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = trim($_POST['nama']);
+    $email = trim($_POST['email']);
+    $umur = $_POST['umur'];
+    
+    // Cek apakah kosong
+    if (empty($nama)) {
+        $errors[] = "Nama wajib diisi!";
+    }
+    
+    // Validasi email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Format email tidak valid!";
+    }
+    
+    // Validasi angka
+    if (!is_numeric($umur) || $umur < 1) {
+        $errors[] = "Umur harus berupa angka positif!";
+    }
+    
+    // Jika tidak ada error
+    if (empty($errors)) {
+        echo "Data valid! Siap diproses.";
+    }
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Membersihkan Data (Sanitasi)</h3>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">sanitasi.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+// htmlspecialchars - mencegah XSS
+$nama = htmlspecialchars($_POST['nama']);
+
+// Menghapus spasi berlebih
+$nama = trim($nama);
+
+// Filter email
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+// Filter angka saja
+$umur = filter_var($_POST['umur'], FILTER_SANITIZE_NUMBER_INT);
+
+// Contoh penggunaan lengkap
+function bersihkan($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+$nama = bersihkan($_POST['nama']);
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <div class="alert alert-tip mb-6">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <strong class="text-emerald-800">Tips:</strong>
+          <span class="text-emerald-700"><code>htmlspecialchars()</code> mengubah karakter berbahaya seperti <code>&lt;</code> dan <code>&gt;</code> menjadi aman ditampilkan.</span>
+        </div>
+      </div>
+      
+      <!-- Fungsi Validasi -->
+      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi Validasi Berguna</h3>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-100">
+            <tr>
+              <th class="px-4 py-2">Fungsi</th>
+              <th class="px-4 py-2">Kegunaan</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr><td class="px-4 py-2 font-mono text-indigo-600">empty()</td><td class="px-4 py-2">Cek apakah kosong</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-indigo-600">isset()</td><td class="px-4 py-2">Cek apakah variabel ada</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-indigo-600">is_numeric()</td><td class="px-4 py-2">Cek apakah angka</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-indigo-600">strlen()</td><td class="px-4 py-2">Cek panjang string</td></tr>
+            <tr><td class="px-4 py-2 font-mono text-indigo-600">filter_var()</td><td class="px-4 py-2">Validasi/filter data</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-emerald-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat form registrasi dengan validasi nama (min 3 karakter)</li>
+          <li>Validasi email dengan format yang benar</li>
+          <li>Validasi password (min 6 karakter)</li>
+          <li>Tampilkan pesan error jika validasi gagal</li>
+        </ol>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t">
+        <a href="form-html-php.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Form HTML & PHP
+        </a>
+        <a href="database-mysql.html" class="btn-primary">
+          Materi Selanjutnya
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD PHP | Minggu 3 | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="menampilkan-data.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-amber-500 to-orange-500">
+    <div class="max-w-4xl mx-auto">
+      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 10</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 CRUD PHP</h1>
+      <p class="text-white/90">Create, Read, Update, Delete - Operasi dasar data</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Tujuan -->
+      <div class="card p-6 mb-8">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+        <ul class="space-y-2 text-slate-600">
+          <li>• Membuat fitur tambah data (Create)</li>
+          <li>• Membuat fitur edit data (Update)</li>
+          <li>• Membuat fitur hapus data (Delete)</li>
+        </ul>
+      </div>
+      
+      <!-- CRUD Explanation -->
+      <div class="grid md:grid-cols-4 gap-4 mb-8">
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">➕</div>
+          <h3 class="font-bold text-indigo-600">Create</h3>
+          <p class="text-xs text-slate-500">Tambah data</p>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">📖</div>
+          <h3 class="font-bold text-emerald-600">Read</h3>
+          <p class="text-xs text-slate-500">Tampil data</p>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">✏️</div>
+          <h3 class="font-bold text-amber-600">Update</h3>
+          <p class="text-xs text-slate-500">Edit data</p>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">🗑️</div>
+          <h3 class="font-bold text-red-600">Delete</h3>
+          <p class="text-xs text-slate-500">Hapus data</p>
+        </div>
+      </div>
+      
+      <!-- CREATE -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">➕ Create - Tambah Data</h2>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">tambah.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+include 'koneksi.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $kelas = $_POST['kelas'];
+    
+    $sql = "INSERT INTO siswa (nama, kelas) VALUES ('$nama', '$kelas')";
+    
+    if (mysqli_query($conn, $sql)) {
+        header("Location: index.php?status=sukses");
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+?&gt;
+
+&lt;form method="POST"&gt;
+    &lt;input type="text" name="nama" placeholder="Nama" required&gt;
+    &lt;input type="text" name="kelas" placeholder="Kelas" required&gt;
+    &lt;button type="submit"&gt;Simpan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- UPDATE -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">✏️ Update - Edit Data</h2>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">edit.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+include 'koneksi.php';
+
+// Ambil data berdasarkan ID
+$id = $_GET['id'];
+$sql = "SELECT * FROM siswa WHERE id = $id";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
+
+// Proses update
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $kelas = $_POST['kelas'];
+    
+    $sql = "UPDATE siswa SET nama='$nama', kelas='$kelas' WHERE id=$id";
+    mysqli_query($conn, $sql);
+    header("Location: index.php?status=updated");
+}
+?&gt;
+
+&lt;form method="POST"&gt;
+    &lt;input type="text" name="nama" value="&lt;?php echo $data['nama']; ?&gt;"&gt;
+    &lt;input type="text" name="kelas" value="&lt;?php echo $data['kelas']; ?&gt;"&gt;
+    &lt;button type="submit"&gt;Update&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </div>
+      
+      <!-- DELETE -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🗑️ Delete - Hapus Data</h2>
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">hapus.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+<pre><code class="language-php">&lt;?php
+include 'koneksi.php';
+
+$id = $_GET['id'];
+$sql = "DELETE FROM siswa WHERE id = $id";
+
+if (mysqli_query($conn, $sql)) {
+    header("Location: index.php?status=deleted");
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+      
+      <div class="alert alert-warning mb-6">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">Penting!</strong>
+          <span class="text-amber-700">Contoh di atas masih rentan SQL Injection. Di project nyata, gunakan Prepared Statements!</span>
+        </div>
+      </div>
+      
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-amber-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat CRUD lengkap untuk data buku</li>
+          <li>Tambahkan konfirmasi sebelum hapus</li>
+          <li>Tampilkan pesan sukses/error</li>
+        </ol>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t">
+        <a href="menampilkan-data.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Menampilkan Data
+        </a>
+        <a href="upload-file.html" class="btn-primary">
+          Materi Selanjutnya
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

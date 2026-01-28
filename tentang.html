@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang | PHP untuk SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+        <a href="silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+        <a href="materi/minggu-1/pengenalan-php.html" class="text-slate-600 hover:text-indigo-600">Materi</a>
+        <a href="project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+        <a href="tentang.html" class="text-indigo-600 font-medium">Tentang</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-28 pb-16 px-4 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 hero-pattern">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">ℹ️ Tentang Website Ini</h1>
+      <p class="text-xl text-white/90">Dibuat khusus untuk siswa SMK yang ingin belajar PHP</p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Tujuan -->
+      <div class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-800 mb-4">🎯 Tujuan Pembelajaran</h2>
+        <p class="text-slate-600 mb-4">Website ini dibuat untuk membantu siswa SMK jurusan RPL, TKJ, dan DKV yang ingin:</p>
+        <ul class="space-y-3 text-slate-600">
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-500 text-xl">✓</span>
+            <span>Memahami dasar-dasar pemrograman PHP dari nol</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-500 text-xl">✓</span>
+            <span>Belajar menghubungkan PHP dengan database MySQL</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-500 text-xl">✓</span>
+            <span>Membuat aplikasi web dinamis (CRUD) lengkap</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-500 text-xl">✓</span>
+            <span>Siap mengikuti PKL, LKS, atau UKK bidang web development</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Skills -->
+      <div class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-800 mb-4">💪 Skill yang Akan Kamu Dapat</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-indigo-50 rounded-xl p-4">
+            <span class="font-medium text-indigo-800">🐘 PHP Dasar</span>
+            <p class="text-sm text-indigo-600 mt-1">Variabel, fungsi, percabangan, perulangan</p>
+          </div>
+          <div class="bg-emerald-50 rounded-xl p-4">
+            <span class="font-medium text-emerald-800">🗄️ Database MySQL</span>
+            <p class="text-sm text-emerald-600 mt-1">Membuat tabel, koneksi, query SQL</p>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-4">
+            <span class="font-medium text-amber-800">📝 Form & Validasi</span>
+            <p class="text-sm text-amber-600 mt-1">Menerima input user dengan aman</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-4">
+            <span class="font-medium text-purple-800">🔄 CRUD Lengkap</span>
+            <p class="text-sm text-purple-600 mt-1">Create, Read, Update, Delete</p>
+          </div>
+          <div class="bg-pink-50 rounded-xl p-4">
+            <span class="font-medium text-pink-800">📤 Upload File</span>
+            <p class="text-sm text-pink-600 mt-1">Mengunggah gambar ke server</p>
+          </div>
+          <div class="bg-blue-50 rounded-xl p-4">
+            <span class="font-medium text-blue-800">🎨 Web Dinamis</span>
+            <p class="text-sm text-blue-600 mt-1">Halaman yang berubah sesuai data</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cocok untuk -->
+      <div class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-800 mb-4">👥 Cocok Untuk</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="text-center p-6 bg-slate-50 rounded-xl">
+            <div class="text-4xl mb-2">🏢</div>
+            <span class="font-medium text-slate-800">Persiapan PKL</span>
+          </div>
+          <div class="text-center p-6 bg-slate-50 rounded-xl">
+            <div class="text-4xl mb-2">🏆</div>
+            <span class="font-medium text-slate-800">Latihan LKS</span>
+          </div>
+          <div class="text-center p-6 bg-slate-50 rounded-xl">
+            <div class="text-4xl mb-2">📋</div>
+            <span class="font-medium text-slate-800">Ujian UKK</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <div class="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Siap Bangun Aplikasi Pertamamu? 🚀</h2>
+        <p class="text-white/90 mb-6 max-w-xl mx-auto">Mulai sekarang dan dalam 3 minggu kamu akan bisa membuat aplikasi web sendiri!</p>
+        <a href="materi/minggu-1/pengenalan-php.html" class="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-xl font-bold hover:bg-slate-100 transition-all">
+          Mulai Belajar Sekarang
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK. Dibuat dengan ❤️ untuk siswa SMK Indonesia.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

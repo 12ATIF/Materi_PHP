@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Silabus pembelajaran Web Dinamis PHP untuk SMK - 3 minggu dari dasar sampai CRUD">
+  <title>Silabus Pembelajaran | PHP untuk SMK</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50">
+  <!-- Navbar -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-lg">&lt;/&gt;</span>
+        </div>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-slate-600 hover:text-indigo-600 transition-colors">Beranda</a>
+        <a href="silabus.html" class="text-indigo-600 font-medium">Silabus</a>
+        <a href="materi/minggu-1/pengenalan-php.html" class="text-slate-600 hover:text-indigo-600 transition-colors">Materi</a>
+        <a href="project-akhir.html" class="text-slate-600 hover:text-indigo-600 transition-colors">Project Akhir</a>
+        <a href="tentang.html" class="text-slate-600 hover:text-indigo-600 transition-colors">Tentang</a>
+      </div>
+      
+      <a href="materi/minggu-1/pengenalan-php.html" class="hidden md:inline-flex btn-primary text-sm py-2.5 px-5">
+        Mulai Belajar
+      </a>
+      
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-8">
+        <span class="font-bold text-xl text-slate-800">Menu</span>
+        <button id="close-menu-btn" class="p-2 text-slate-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-col gap-4">
+        <a href="index.html" class="text-slate-600 py-2">Beranda</a>
+        <a href="silabus.html" class="text-indigo-600 font-medium py-2">Silabus</a>
+        <a href="materi/minggu-1/pengenalan-php.html" class="text-slate-600 py-2">Materi</a>
+        <a href="project-akhir.html" class="text-slate-600 py-2">Project Akhir</a>
+        <a href="tentang.html" class="text-slate-600 py-2">Tentang</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <section class="pt-28 pb-16 px-4 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 hero-pattern">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        📚 Silabus Pembelajaran
+      </h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto">
+        Materi disusun bertahap dalam <strong>3 minggu</strong> untuk memudahkan proses belajar
+      </p>
+    </div>
+  </section>
+
+  <!-- Progress Bar -->
+  <section class="py-8 px-4 bg-white border-b">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-slate-600 font-medium">Progress Belajar</span>
+        <span class="progress-text text-indigo-600 font-bold">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Content -->
+  <section class="py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- WEEK 1 -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="week-badge week-1 text-base px-5 py-2">Minggu 1</div>
+          <h2 class="text-2xl font-bold text-slate-800">Dasar-Dasar PHP</h2>
+        </div>
+        
+        <p class="text-slate-600 mb-8 pl-4 border-l-4 border-indigo-200">
+          Di minggu pertama, kamu akan mengenal PHP dari nol. Kita mulai dari cara kerja PHP, 
+          lalu belajar menyimpan data dengan variabel, membuat keputusan dengan percabangan, 
+          mengulang tugas dengan perulangan, dan membuat kode yang rapi dengan fungsi.
+        </p>
+        
+        <div class="grid gap-4">
+          <!-- Materi 1.1 -->
+          <a href="materi/minggu-1/pengenalan-php.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-indigo-50/50">
+            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              1️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Pengenalan PHP</h3>
+              <p class="text-slate-600 text-sm">Apa itu PHP, cara install, dan program pertamamu</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 1.2 -->
+          <a href="materi/minggu-1/variabel-tipe-data.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-indigo-50/50">
+            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              2️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Variabel & Tipe Data</h3>
+              <p class="text-slate-600 text-sm">Menyimpan data dengan variabel, mengenal tipe data</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 1.3 -->
+          <a href="materi/minggu-1/percabangan-perulangan.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-indigo-50/50">
+            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              3️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Percabangan & Perulangan</h3>
+              <p class="text-slate-600 text-sm">Membuat keputusan dan mengulang tugas</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 1.4 -->
+          <a href="materi/minggu-1/fungsi.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-indigo-50/50">
+            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              4️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Fungsi PHP</h3>
+              <p class="text-slate-600 text-sm">Membuat kode yang rapi dan bisa dipakai ulang</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- WEEK 2 -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="week-badge week-2 text-base px-5 py-2">Minggu 2</div>
+          <h2 class="text-2xl font-bold text-slate-800">Form & Database</h2>
+        </div>
+        
+        <p class="text-slate-600 mb-8 pl-4 border-l-4 border-emerald-200">
+          Di minggu kedua, kamu akan belajar menangani input dari pengguna melalui form, 
+          memvalidasi data agar aman, lalu mengenal database MySQL dan cara menyimpan data 
+          menggunakan perintah SQL.
+        </p>
+        
+        <div class="grid gap-4">
+          <!-- Materi 2.1 -->
+          <a href="materi/minggu-2/form-html-php.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-emerald-50/50">
+            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              5️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Form HTML & PHP</h3>
+              <p class="text-slate-600 text-sm">Menerima input dari pengguna dengan form</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 2.2 -->
+          <a href="materi/minggu-2/validasi-data.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-emerald-50/50">
+            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              6️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Validasi Data</h3>
+              <p class="text-slate-600 text-sm">Memastikan data yang masuk itu benar dan aman</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 2.3 -->
+          <a href="materi/minggu-2/database-mysql.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-emerald-50/50">
+            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              7️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Database MySQL</h3>
+              <p class="text-slate-600 text-sm">Mengenal database dan cara menyimpan data</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 2.4 -->
+          <a href="materi/minggu-2/sql-dasar.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-emerald-50/50">
+            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              8️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">SQL Dasar</h3>
+              <p class="text-slate-600 text-sm">Perintah-perintah SQL untuk mengelola data</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- WEEK 3 -->
+      <div class="mb-16">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="week-badge week-3 text-base px-5 py-2">Minggu 3</div>
+          <h2 class="text-2xl font-bold text-slate-800">Web Dinamis & CRUD</h2>
+        </div>
+        
+        <p class="text-slate-600 mb-8 pl-4 border-l-4 border-amber-200">
+          Di minggu ketiga, kamu akan menggabungkan semua yang sudah dipelajari untuk membuat 
+          aplikasi web dinamis. Kamu akan belajar menampilkan data dari database, membuat fitur 
+          CRUD lengkap, upload file, dan membuat tampilan yang dinamis.
+        </p>
+        
+        <div class="grid gap-4">
+          <!-- Materi 3.1 -->
+          <a href="materi/minggu-3/menampilkan-data.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-amber-50/50">
+            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              9️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Menampilkan Data</h3>
+              <p class="text-slate-600 text-sm">Mengambil dan menampilkan data dari database</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 3.2 -->
+          <a href="materi/minggu-3/crud-php.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-amber-50/50">
+            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              🔟
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">CRUD PHP</h3>
+              <p class="text-slate-600 text-sm">Create, Read, Update, Delete data di database</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 3.3 -->
+          <a href="materi/minggu-3/upload-file.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-amber-50/50">
+            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              1️⃣1️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Upload File</h3>
+              <p class="text-slate-600 text-sm">Mengunggah gambar dan file ke server</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          
+          <!-- Materi 3.4 -->
+          <a href="materi/minggu-3/tampilan-dinamis.html" class="card card-materi p-6 flex items-center gap-4 hover:bg-amber-50/50">
+            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-xl shrink-0">
+              1️⃣2️⃣
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-800 mb-1">Tampilan Dinamis</h3>
+              <p class="text-slate-600 text-sm">Membuat halaman yang berubah sesuai data</p>
+            </div>
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Project Akhir -->
+      <div class="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
+        <div class="absolute inset-0 hero-pattern opacity-50"></div>
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-sm mb-4">
+            🏆 Tantangan Akhir
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">Project Akhir: CRUD Perpustakaan</h2>
+          <p class="text-white/90 mb-6 max-w-2xl">
+            Setelah menyelesaikan semua materi, saatnya membuktikan kemampuanmu dengan membuat 
+            aplikasi perpustakaan lengkap! Fitur: tambah, edit, hapus buku, dan upload cover.
+          </p>
+          <a href="project-akhir.html" class="inline-flex items-center gap-2 bg-white text-indigo-600 px-6 py-3 rounded-xl font-bold hover:bg-slate-100 transition-all">
+            Lihat Detail Project
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-slate-400">© 2026 PHPuntukSMK. Dibuat dengan ❤️ untuk siswa SMK Indonesia.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
