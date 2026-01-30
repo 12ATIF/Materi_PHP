@@ -38,8 +38,8 @@
   <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-emerald-500 to-teal-600">
     <div class="max-w-4xl mx-auto">
       <div class="week-badge week-2 mb-4">Minggu 2 - Materi 8</div>
-      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 SQL Dasar</h1>
-      <p class="text-white/90">Perintah-perintah SQL untuk mengelola data</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 SQL Dasar (CRUD)</h1>
+      <p class="text-white/90">Perintah SQL untuk Create, Read, Update, Delete data</p>
     </div>
   </section>
 
@@ -51,120 +51,481 @@
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
-          <li>• Memahami perintah SELECT, INSERT, UPDATE, DELETE</li>
-          <li>• Menggunakan WHERE untuk filter data</li>
-          <li>• Menjalankan query SQL di PHP</li>
+          <li>• Memahami operasi CRUD (Create, Read, Update, Delete)</li>
+          <li>• Menggunakan SELECT dengan berbagai klausa (WHERE, ORDER BY, LIMIT)</li>
+          <li>• Menggunakan INSERT, UPDATE, DELETE dengan aman</li>
+          <li>• Menjalankan query SQL di PHP dengan mysqli</li>
+          <li>• Menampilkan data dari database ke tabel HTML</li>
         </ul>
       </div>
 
-      <!-- SELECT -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Perintah SQL Dasar</h2>
+      <!-- ======================= BAGIAN 1: KONSEP CRUD ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔄 Bagian 1: Apa itu CRUD?</h2>
 
-      <h3 class="text-xl font-bold text-slate-800 mb-3">1. SELECT - Mengambil Data</h3>
-      <div class="code-block mb-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="card p-4 text-center bg-green-50 border-2 border-green-200">
+          <div class="text-3xl mb-2">➕</div>
+          <div class="font-bold text-green-700">Create</div>
+          <div class="text-xs text-slate-500">INSERT</div>
+          <div class="text-xs text-slate-400">Tambah data</div>
+        </div>
+        <div class="card p-4 text-center bg-blue-50 border-2 border-blue-200">
+          <div class="text-3xl mb-2">📖</div>
+          <div class="font-bold text-blue-700">Read</div>
+          <div class="text-xs text-slate-500">SELECT</div>
+          <div class="text-xs text-slate-400">Baca/tampilkan data</div>
+        </div>
+        <div class="card p-4 text-center bg-amber-50 border-2 border-amber-200">
+          <div class="text-3xl mb-2">✏️</div>
+          <div class="font-bold text-amber-700">Update</div>
+          <div class="text-xs text-slate-500">UPDATE</div>
+          <div class="text-xs text-slate-400">Ubah data</div>
+        </div>
+        <div class="card p-4 text-center bg-red-50 border-2 border-red-200">
+          <div class="text-3xl mb-2">🗑️</div>
+          <div class="font-bold text-red-700">Delete</div>
+          <div class="text-xs text-slate-500">DELETE</div>
+          <div class="text-xs text-slate-400">Hapus data</div>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 2: SELECT ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Bagian 2: SELECT (Membaca Data)</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">SQL</span>
+          <span class="text-slate-400 text-sm">SQL - SELECT</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-          <pre><code class="language-sql">-- Ambil semua data
+          <pre><code class="language-sql">-- 1. Ambil SEMUA data, SEMUA kolom
 SELECT * FROM siswa;
 
--- Ambil kolom tertentu
+-- 2. Ambil kolom TERTENTU saja
 SELECT nama, kelas FROM siswa;
 
--- Dengan filter
+-- 3. Filter dengan WHERE
 SELECT * FROM siswa WHERE kelas = 'X RPL 1';
+SELECT * FROM siswa WHERE umur > 15;
+SELECT * FROM siswa WHERE nama LIKE '%Budi%';  -- Berisi "Budi"
 
--- Urutkan
-SELECT * FROM siswa ORDER BY nama ASC;</code></pre>
+-- 4. Urutkan dengan ORDER BY
+SELECT * FROM siswa ORDER BY nama ASC;   -- A-Z
+SELECT * FROM siswa ORDER BY nama DESC;  -- Z-A
+SELECT * FROM siswa ORDER BY id DESC;    -- Terbaru dulu
+
+-- 5. Batasi jumlah dengan LIMIT
+SELECT * FROM siswa LIMIT 10;           -- Ambil 10 data pertama
+SELECT * FROM siswa LIMIT 5, 10;        -- Skip 5, ambil 10 (pagination)
+
+-- 6. Kombinasi lengkap
+SELECT nama, kelas, email 
+FROM siswa 
+WHERE kelas = 'X RPL 1' 
+ORDER BY nama ASC 
+LIMIT 10;</code></pre>
         </div>
       </div>
 
-      <h3 class="text-xl font-bold text-slate-800 mb-3">2. INSERT - Menambah Data</h3>
-      <div class="code-block mb-6">
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Operator WHERE yang Sering Digunakan:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-blue-100">
+              <tr>
+                <th class="p-2 text-left">Operator</th>
+                <th class="p-2 text-left">Arti</th>
+                <th class="p-2 text-left">Contoh</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono">=</td>
+                <td class="p-2">Sama dengan</td>
+                <td class="p-2"><code>WHERE kelas = 'X RPL 1'</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">!=</td>
+                <td class="p-2">Tidak sama</td>
+                <td class="p-2"><code>WHERE kelas != 'X RPL 1'</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">> , << /td>
+                <td class="p-2">Lebih/kurang dari</td>
+                <td class="p-2"><code>WHERE umur > 15</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">LIKE</td>
+                <td class="p-2">Cocok pola</td>
+                <td class="p-2"><code>WHERE nama LIKE '%Budi%'</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">IN</td>
+                <td class="p-2">Dalam list</td>
+                <td class="p-2"><code>WHERE kelas IN ('X RPL 1', 'X RPL 2')</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">AND, OR</td>
+                <td class="p-2">Gabungan</td>
+                <td class="p-2"><code>WHERE kelas = 'X RPL 1' AND umur > 15</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: INSERT ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">➕ Bagian 3: INSERT (Menambah Data)</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">SQL</span>
+          <span class="text-slate-400 text-sm">SQL - INSERT</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-          <pre><code class="language-sql">INSERT INTO siswa (nama, kelas, email) 
-VALUES ('Budi Santoso', 'X RPL 1', 'budi@email.com');</code></pre>
+          <pre><code class="language-sql">-- Sintaks dasar
+INSERT INTO nama_tabel (kolom1, kolom2, kolom3) 
+VALUES ('nilai1', 'nilai2', 'nilai3');
+
+-- Contoh: Tambah siswa baru
+INSERT INTO siswa (nama, kelas, email) 
+VALUES ('Budi Santoso', 'X RPL 1', 'budi@email.com');
+
+-- Tambah banyak data sekaligus
+INSERT INTO siswa (nama, kelas, email) VALUES 
+('Ani Wijaya', 'X RPL 1', 'ani@email.com'),
+('Citra Dewi', 'X RPL 2', 'citra@email.com'),
+('Doni Prasetyo', 'XI RPL 1', 'doni@email.com');</code></pre>
         </div>
       </div>
 
-      <h3 class="text-xl font-bold text-slate-800 mb-3">3. UPDATE - Mengubah Data</h3>
-      <div class="code-block mb-6">
+      <div class="alert alert-info mb-8">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Tips:</strong>
+          <span class="text-indigo-700">Kolom <code>id</code> dengan AUTO_INCREMENT tidak perlu diisi.
+            MySQL akan otomatis memberikan nomor urut!</span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: UPDATE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">✏️ Bagian 4: UPDATE (Mengubah Data)</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">SQL</span>
+          <span class="text-slate-400 text-sm">SQL - UPDATE</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-          <pre><code class="language-sql">UPDATE siswa SET kelas = 'XI RPL 1' WHERE id = 1;</code></pre>
+          <pre><code class="language-sql">-- Sintaks dasar
+UPDATE nama_tabel 
+SET kolom1 = 'nilai_baru' 
+WHERE kondisi;
+
+-- Contoh: Ubah kelas siswa dengan id = 1
+UPDATE siswa 
+SET kelas = 'XI RPL 1' 
+WHERE id = 1;
+
+-- Ubah banyak kolom sekaligus
+UPDATE siswa 
+SET kelas = 'XI RPL 1', email = 'budi.baru@email.com' 
+WHERE id = 1;
+
+-- Update banyak data sekaligus
+UPDATE siswa 
+SET kelas = 'XI RPL 1' 
+WHERE kelas = 'X RPL 1';  -- Semua siswa X RPL 1 naik kelas</code></pre>
         </div>
       </div>
 
-      <h3 class="text-xl font-bold text-slate-800 mb-3">4. DELETE - Menghapus Data</h3>
-      <div class="code-block mb-6">
-        <div class="code-header">
-          <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">SQL</span>
-          <button class="copy-btn">Salin</button>
-        </div>
-        <div class="code-content">
-          <pre><code class="language-sql">DELETE FROM siswa WHERE id = 1;</code></pre>
-        </div>
-      </div>
-
-      <div class="alert alert-warning mb-6">
+      <div class="alert alert-warning mb-8">
         <span class="text-2xl">⚠️</span>
         <div>
-          <strong class="text-amber-800">Penting!</strong>
-          <span class="text-amber-700">Selalu gunakan WHERE pada UPDATE dan DELETE! Tanpa WHERE, SEMUA data akan
-            terubah/terhapus!</span>
+          <strong class="text-amber-800">BAHAYA!</strong>
+          <span class="text-amber-700">
+            SELALU gunakan <code>WHERE</code>! Tanpa WHERE, <strong>SEMUA data akan terubah</strong>!
+          </span>
+          <div class="mt-2 text-sm text-amber-600">
+            ❌ <code>UPDATE siswa SET kelas = 'X';</code> → Semua siswa jadi kelas X!
+          </div>
         </div>
       </div>
 
-      <!-- Query di PHP -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔌 Menjalankan Query di PHP</h2>
+      <!-- ======================= BAGIAN 5: DELETE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🗑️ Bagian 5: DELETE (Menghapus Data)</h2>
 
-      <div class="code-block mb-6">
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">query.php</span>
+          <span class="text-slate-400 text-sm">SQL - DELETE</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-sql">-- Sintaks dasar
+DELETE FROM nama_tabel WHERE kondisi;
+
+-- Contoh: Hapus siswa dengan id = 5
+DELETE FROM siswa WHERE id = 5;
+
+-- Hapus siswa dengan kondisi tertentu
+DELETE FROM siswa WHERE kelas = 'X RPL 1' AND status = 'nonaktif';
+
+-- ⚠️ HATI-HATI! Ini menghapus SEMUA data!
+DELETE FROM siswa;  -- JANGAN LAKUKAN INI!</code></pre>
+        </div>
+      </div>
+
+      <div class="alert alert-warning mb-8">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">SANGAT BAHAYA!</strong>
+          <span class="text-amber-700">
+            <code>DELETE FROM siswa;</code> tanpa WHERE akan menghapus <strong>SEMUA data</strong> dalam tabel!
+            Data yang dihapus <strong>TIDAK BISA dikembalikan</strong>!
+          </span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 6: SQL DI PHP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">💻 Bagian 6: Menjalankan SQL di PHP</h2>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">SELECT dengan mysqli</h3>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">tampil_data.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
           <pre><code class="language-php">&lt;?php
-include 'koneksi.php';
+require_once 'koneksi.php';
 
 // Query SELECT
-$sql = "SELECT * FROM siswa";
+$sql = "SELECT * FROM siswa ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 
 // Cek apakah ada data
 if (mysqli_num_rows($result) > 0) {
+    // Loop setiap baris data
     while ($row = mysqli_fetch_assoc($result)) {
+        echo "ID: " . $row['id'] . "&lt;br&gt;";
         echo "Nama: " . $row['nama'] . "&lt;br&gt;";
-        echo "Kelas: " . $row['kelas'] . "&lt;br&gt;&lt;hr&gt;";
+        echo "Kelas: " . $row['kelas'] . "&lt;br&gt;";
+        echo "&lt;hr&gt;";
     }
 } else {
-    echo "Tidak ada data";
+    echo "Tidak ada data siswa.";
 }
 
+// Tutup koneksi
 mysqli_close($conn);
 ?&gt;</code></pre>
         </div>
       </div>
 
-      <!-- Selanjutnya -->
-      <div class="alert alert-info mb-8">
-        <span class="text-2xl">💡</span>
-        <span class="text-blue-700">Selanjutnya, kamu akan belajar membuat sistem <strong>Login & Register</strong>
-          untuk melindungi aplikasi web!</span>
+      <h3 class="text-lg font-bold text-slate-800 mb-3">INSERT dengan mysqli</h3>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">tambah_data.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+require_once 'koneksi.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Ambil & sanitasi data dari form
+    $nama = mysqli_real_escape_string($conn, $_POST['nama']);
+    $kelas = mysqli_real_escape_string($conn, $_POST['kelas']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    
+    // Query INSERT
+    $sql = "INSERT INTO siswa (nama, kelas, email) 
+            VALUES ('$nama', '$kelas', '$email')";
+    
+    // Jalankan query
+    if (mysqli_query($conn, $sql)) {
+        echo "✅ Data berhasil ditambahkan!";
+    } else {
+        echo "❌ Error: " . mysqli_error($conn);
+    }
+}
+
+mysqli_close($conn);
+?&gt;
+
+&lt;form method="POST"&gt;
+    &lt;input type="text" name="nama" placeholder="Nama" required&gt;
+    &lt;input type="text" name="kelas" placeholder="Kelas" required&gt;
+    &lt;input type="email" name="email" placeholder="Email" required&gt;
+    &lt;button type="submit"&gt;Tambah Siswa&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Fungsi mysqli Penting:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Fungsi</th>
+                <th class="p-2 text-left">Kegunaan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono text-xs">mysqli_query($conn, $sql)</td>
+                <td class="p-2">Jalankan query SQL</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xs">mysqli_fetch_assoc($result)</td>
+                <td class="p-2">Ambil 1 baris data sebagai array assoc</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xs">mysqli_num_rows($result)</td>
+                <td class="p-2">Hitung jumlah baris hasil</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xs">mysqli_real_escape_string()</td>
+                <td class="p-2">Escape string (cegah SQL Injection)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xs">mysqli_error($conn)</td>
+                <td class="p-2">Tampilkan pesan error</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xs">mysqli_close($conn)</td>
+                <td class="p-2">Tutup koneksi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 7: CONTOH TABEL HTML ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📊 Bagian 7: Menampilkan Data ke Tabel HTML</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">daftar_siswa.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php require_once 'koneksi.php'; ?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Daftar Siswa&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background: #6366f1; color: white; }
+        tr:nth-child(even) { background: #f5f5f5; }
+        .btn { padding: 6px 12px; border-radius: 4px; text-decoration: none; color: white; }
+        .btn-edit { background: #f59e0b; }
+        .btn-hapus { background: #ef4444; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;📋 Daftar Siswa&lt;/h2&gt;
+    
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;No&lt;/th&gt;
+            &lt;th&gt;Nama&lt;/th&gt;
+            &lt;th&gt;Kelas&lt;/th&gt;
+            &lt;th&gt;Email&lt;/th&gt;
+            &lt;th&gt;Aksi&lt;/th&gt;
+        &lt;/tr&gt;
+        
+        &lt;?php
+        $sql = "SELECT * FROM siswa ORDER BY id DESC";
+        $result = mysqli_query($conn, $sql);
+        
+        $no = 1;
+        while ($row = mysqli_fetch_assoc($result)):
+        ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $no++; ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo htmlspecialchars($row['nama']); ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo htmlspecialchars($row['kelas']); ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo htmlspecialchars($row['email']); ?&gt;&lt;/td&gt;
+            &lt;td&gt;
+                &lt;a href="edit.php?id=&lt;?php echo $row['id']; ?&gt;" class="btn btn-edit"&gt;Edit&lt;/a&gt;
+                &lt;a href="hapus.php?id=&lt;?php echo $row['id']; ?&gt;" class="btn btn-hapus" 
+                   onclick="return confirm('Yakin hapus?')"&gt;Hapus&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endwhile; ?&gt;
+    &lt;/table&gt;
+    
+    &lt;?php mysqli_close($conn); ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat halaman untuk menampilkan semua data siswa dalam tabel HTML</li>
+          <li>Buat form untuk menambah siswa baru (INSERT)</li>
+          <li>Buat halaman edit siswa (UPDATE)</li>
+          <li>Buat tombol hapus dengan konfirmasi (DELETE)</li>
+          <li>Tambahkan fitur pencarian siswa berdasarkan nama</li>
+        </ol>
+      </div>
+
+      <!-- Selesai Minggu 2 -->
+      <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white text-center mb-8">
+        <span class="text-4xl mb-4 block">🎉</span>
+        <h2 class="text-2xl font-bold mb-2">Selamat!</h2>
+        <p class="text-white/90 mb-4">Kamu sudah menyelesaikan Minggu 2. Lanjut ke Minggu 3 untuk belajar CRUD lengkap!
+        </p>
+        <a href="../minggu-3/crud-php.html"
+          class="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-xl font-bold">
+          Lanjut Minggu 3
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-emerald-700 mb-2">Perintah SQL:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li><code>SELECT</code> = baca data</li>
+              <li><code>INSERT</code> = tambah data</li>
+              <li><code>UPDATE</code> = ubah data</li>
+              <li><code>DELETE</code> = hapus data</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-teal-700 mb-2">Key Points:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ Selalu pakai WHERE di UPDATE/DELETE</li>
+              <li>✅ Gunakan mysqli_real_escape_string</li>
+              <li>✅ Selalu cek result query</li>
+              <li>✅ Tutup koneksi setelah selesai</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Navigation -->

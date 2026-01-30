@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="../../index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -41,164 +45,449 @@
   <!-- Content -->
   <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-      
+
       <!-- Tujuan -->
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
           <li>• Memahami apa itu PHP dan kegunaannya</li>
           <li>• Mengetahui cara kerja PHP di web server</li>
+          <li>• Mengenal perbedaan website statis dan dinamis</li>
           <li>• Membuat dan menjalankan program PHP pertama</li>
+          <li>• Menggabungkan PHP dengan HTML</li>
         </ul>
       </div>
-      
-      <!-- Penjelasan -->
-      <div class="prose max-w-none mb-8">
-        <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu PHP?</h2>
-        
-        <p class="text-slate-600 mb-4">
-          <strong>PHP</strong> adalah bahasa pemrograman yang digunakan untuk membuat website yang <em>dinamis</em>. 
-          Dinamis artinya halaman web bisa berubah-ubah sesuai data atau kondisi tertentu.
+
+      <!-- ======================= BAGIAN 1: APA ITU PHP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Bagian 1: Apa itu PHP?</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-500">
+        <h3 class="font-bold text-indigo-800 mb-2">📝 Definisi PHP</h3>
+        <p class="text-slate-700">
+          <strong>PHP</strong> = <em>PHP: Hypertext Preprocessor</em> (ya, singkatannya rekursif 😄)
         </p>
-        
-        <div class="alert alert-info mb-6">
-          <span class="text-2xl">💡</span>
-          <div>
-            <strong class="text-indigo-800">Bayangkan begini:</strong>
-            <span class="text-indigo-700">Instagram bisa menampilkan foto yang berbeda untuk setiap user karena menggunakan bahasa seperti PHP. Kalau hanya HTML, semua orang akan melihat halaman yang sama!</span>
+        <p class="text-slate-600 mt-2">
+          PHP adalah bahasa pemrograman yang berjalan di <strong>server</strong> untuk membuat website yang
+          <strong>dinamis</strong>.
+        </p>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-800 mb-3">🤔 Website Statis vs Dinamis</h3>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4 border-2 border-red-200 bg-red-50">
+          <div class="text-2xl mb-2">📄 Website Statis (HTML saja)</div>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Isinya selalu sama untuk semua orang</li>
+            <li>• Tidak bisa berinteraksi dengan database</li>
+            <li>• Contoh: brosur online, CV online</li>
+          </ul>
+          <div class="mt-3 p-2 bg-white rounded text-xs">
+            <strong>Contoh:</strong> index.html menampilkan "Halo Dunia"
+            untuk semua pengunjung
           </div>
         </div>
-        
-        <h3 class="text-xl font-bold text-slate-800 mb-3">Bagaimana PHP Bekerja?</h3>
-        
-        <div class="bg-slate-100 rounded-xl p-6 mb-6">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-              <div class="text-3xl mb-2">🌐</div>
-              <div class="font-medium">Browser</div>
-              <div class="text-xs text-slate-500">User buka website</div>
-            </div>
-            <div class="text-2xl text-slate-400">→</div>
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-              <div class="text-3xl mb-2">🖥️</div>
-              <div class="font-medium">Web Server</div>
-              <div class="text-xs text-slate-500">Menjalankan PHP</div>
-            </div>
-            <div class="text-2xl text-slate-400">→</div>
-            <div class="bg-white p-4 rounded-lg shadow-sm">
-              <div class="text-3xl mb-2">📄</div>
-              <div class="font-medium">HTML</div>
-              <div class="text-xs text-slate-500">Dikirim ke browser</div>
-            </div>
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <div class="text-2xl mb-2">⚡ Website Dinamis (PHP)</div>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Isinya bisa berubah sesuai kondisi</li>
+            <li>• Bisa menyimpan & mengambil data dari database</li>
+            <li>• Contoh: Facebook, Tokopedia, Instagram</li>
+          </ul>
+          <div class="mt-3 p-2 bg-white rounded text-xs">
+            <strong>Contoh:</strong> index.php menampilkan "Halo <em>[nama user yang login]</em>"
+            berbeda untuk setiap user
           </div>
         </div>
-        
-        <h3 class="text-xl font-bold text-slate-800 mb-3">Install PHP dengan Laragon</h3>
-        <p class="text-slate-600 mb-4">
-          Untuk menjalankan PHP, kamu butuh web server. Cara paling mudah adalah pakai <strong>Laragon</strong> (Windows) atau XAMPP.
-        </p>
-        <ol class="list-decimal list-inside space-y-2 text-slate-600 mb-6">
-          <li>Download Laragon dari <code class="bg-slate-100 px-2 py-1 rounded">laragon.org</code></li>
-          <li>Install dan jalankan Laragon</li>
-          <li>Klik "Start All" untuk menyalakan Apache & MySQL</li>
-          <li>Buka folder <code class="bg-slate-100 px-2 py-1 rounded">C:\laragon\www</code> untuk menyimpan file PHP</li>
+      </div>
+
+      <div class="alert alert-info mb-8">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Analogi Sederhana:</strong>
+          <span class="text-indigo-700">
+            Website statis seperti <strong>poster</strong> - semua orang lihat hal yang sama.
+            Website dinamis seperti <strong>mesin ATM</strong> - tampilan berubah sesuai kartu yang dimasukkan!
+          </span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 2: CARA KERJA PHP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">⚙️ Bagian 2: Cara Kerja PHP</h2>
+
+      <p class="text-slate-600 mb-4">
+        PHP berjalan di <strong>server</strong>, bukan di browser. Ini yang membedakannya dengan JavaScript.
+      </p>
+
+      <div class="bg-slate-100 rounded-xl p-6 mb-6">
+        <h4 class="font-bold text-center mb-4 text-slate-700">🔄 Alur Kerja PHP</h4>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+          <div class="bg-white p-4 rounded-lg shadow-sm flex-1">
+            <div class="text-3xl mb-2">👤</div>
+            <div class="font-medium">1. User</div>
+            <div class="text-xs text-slate-500">Buka browser, ketik URL</div>
+          </div>
+          <div class="text-2xl text-slate-400">→</div>
+          <div class="bg-white p-4 rounded-lg shadow-sm flex-1">
+            <div class="text-3xl mb-2">🌐</div>
+            <div class="font-medium">2. Request</div>
+            <div class="text-xs text-slate-500">Browser minta halaman.php</div>
+          </div>
+          <div class="text-2xl text-slate-400">→</div>
+          <div class="bg-indigo-100 p-4 rounded-lg shadow-sm flex-1 border-2 border-indigo-300">
+            <div class="text-3xl mb-2">🖥️</div>
+            <div class="font-medium text-indigo-700">3. Server</div>
+            <div class="text-xs text-indigo-600">Jalankan kode PHP</div>
+          </div>
+          <div class="text-2xl text-slate-400">→</div>
+          <div class="bg-white p-4 rounded-lg shadow-sm flex-1">
+            <div class="text-3xl mb-2">📄</div>
+            <div class="font-medium">4. Response</div>
+            <div class="text-xs text-slate-500">Kirim HTML ke browser</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Alur:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Langkah</th>
+                <th class="p-2 text-left">Yang Terjadi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-bold">1. User buka URL</td>
+                <td class="p-2">User ketik <code>localhost/halo.php</code> di browser</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold">2. Request dikirim</td>
+                <td class="p-2">Browser mengirim permintaan ke web server (Apache)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold text-indigo-600">3. PHP dijalankan</td>
+                <td class="p-2">Server menemukan file .php lalu <strong>menjalankan kode PHP</strong></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold">4. HTML dikirim</td>
+                <td class="p-2">Hasil kode PHP (berupa HTML) dikirim ke browser</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert alert-warning mb-8">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">Penting!</strong>
+          <span class="text-amber-700">
+            User di browser <strong>tidak bisa melihat</strong> kode PHP asli. Yang terlihat hanya
+            hasil output (HTML). Ini membuat PHP aman untuk menyimpan logic rahasia seperti password database.
+          </span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: INSTALL LARAGON ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📦 Bagian 3: Install Laragon</h2>
+
+      <p class="text-slate-600 mb-4">
+        Untuk menjalankan PHP di komputer, kita butuh <strong>Web Server</strong> dan <strong>PHP Engine</strong>.
+        Cara paling mudah adalah menggunakan <strong>Laragon</strong>.
+      </p>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-emerald-500">
+        <h3 class="font-bold text-emerald-800 mb-3">🚀 Langkah Install Laragon</h3>
+        <ol class="list-decimal list-inside space-y-3 text-slate-600">
+          <li>
+            <strong>Download Laragon</strong>
+            <p class="ml-6 text-sm text-slate-500">Kunjungi <code class="bg-white px-2 py-1 rounded">laragon.org</code>
+              → pilih Laragon Full</p>
+          </li>
+          <li>
+            <strong>Install</strong>
+            <p class="ml-6 text-sm text-slate-500">Jalankan installer, ikuti petunjuk (Next → Next → Finish)</p>
+          </li>
+          <li>
+            <strong>Jalankan Laragon</strong>
+            <p class="ml-6 text-sm text-slate-500">Buka Laragon → Klik tombol <strong>"Start All"</strong></p>
+          </li>
+          <li>
+            <strong>Buat file PHP</strong>
+            <p class="ml-6 text-sm text-slate-500">Simpan file di folder <code
+                class="bg-white px-2 py-1 rounded">C:\laragon\www</code></p>
+          </li>
+          <li>
+            <strong>Buka di browser</strong>
+            <p class="ml-6 text-sm text-slate-500">Ketik <code
+                class="bg-white px-2 py-1 rounded">localhost/namafile.php</code></p>
+          </li>
         </ol>
       </div>
-      
-      <!-- Contoh Kode -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">💻 Program PHP Pertama</h2>
-      
+
+      <div class="grid md:grid-cols-3 gap-4 mb-8">
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">🌐</div>
+          <div class="font-bold">Apache</div>
+          <p class="text-xs text-slate-500">Web Server yang menangani request</p>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">🐘</div>
+          <div class="font-bold">PHP</div>
+          <p class="text-xs text-slate-500">Engine untuk menjalankan kode PHP</p>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-3xl mb-2">🗄️</div>
+          <div class="font-bold">MySQL</div>
+          <p class="text-xs text-slate-500">Database untuk menyimpan data</p>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: PROGRAM PERTAMA ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">💻 Bagian 4: Program PHP Pertama</h2>
+
       <p class="text-slate-600 mb-4">
-        Buat file baru bernama <code class="bg-slate-100 px-2 py-1 rounded">halo.php</code> di folder <code class="bg-slate-100 px-2 py-1 rounded">C:\laragon\www</code>
+        Mari buat program PHP pertama! Buat file baru bernama <code
+          class="bg-slate-100 px-2 py-1 rounded">halo.php</code>
+        di folder <code class="bg-slate-100 px-2 py-1 rounded">C:\laragon\www</code>
       </p>
-      
-      <div class="code-block mb-6">
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">halo.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Ini adalah komentar, tidak akan dijalankan
+          <pre><code class="language-php">&lt;?php
+// Ini adalah komentar - tidak akan dijalankan
+// Gunakan untuk menjelaskan kode
 
-// Menampilkan teks ke layar
+// Perintah echo untuk menampilkan teks
 echo "Halo, saya sedang belajar PHP!";
 
 // Bisa juga pakai tanda kutip tunggal
-echo 'Selamat datang di dunia PHP';
+echo 'Ini juga bisa!';
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <p class="text-slate-600 mb-4">
-        Buka browser dan ketik: <code class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded">localhost/halo.php</code>
-      </p>
-      
-      <div class="alert alert-tip mb-8">
-        <span class="text-2xl">🧠</span>
-        <div>
-          <strong class="text-emerald-800">Tips:</strong>
-          <span class="text-emerald-700">Semua kode PHP harus ditulis di dalam tag <code>&lt;?php ... ?&gt;</code>. Perintah <code>echo</code> digunakan untuk menampilkan teks.</span>
+
+      <!-- Penjelasan Kode -->
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Setiap Bagian:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-indigo-100">
+              <tr>
+                <th class="p-2 text-left">Kode</th>
+                <th class="p-2 text-left">Fungsi</th>
+                <th class="p-2 text-left">Wajib?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">&lt;?php</code></td>
+                <td class="p-2">Tag pembuka PHP - menandai awal kode PHP</td>
+                <td class="p-2 text-green-600">✅ Ya</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">// komentar</code></td>
+                <td class="p-2">Komentar satu baris - tidak dijalankan</td>
+                <td class="p-2 text-slate-400">Opsional</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">echo "teks";</code></td>
+                <td class="p-2">Menampilkan teks ke layar (output)</td>
+                <td class="p-2 text-green-600">✅ Ya</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">;</code></td>
+                <td class="p-2">Titik koma - menutup setiap statement</td>
+                <td class="p-2 text-green-600">✅ Ya</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">?&gt;</code></td>
+                <td class="p-2">Tag penutup PHP</td>
+                <td class="p-2 text-slate-400">Opsional di akhir file</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      
-      <!-- PHP + HTML -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔗 Menggabungkan PHP dengan HTML</h2>
-      
-      <div class="code-block mb-6">
+
+      <p class="text-slate-600 mb-4">
+        <strong>Cara menjalankan:</strong> Buka browser → ketik:
+        <code class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded">localhost/halo.php</code>
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <div class="font-bold text-green-700 mb-2">✅ Contoh Output Benar</div>
+          <div class="bg-white p-3 rounded text-sm">
+            Halo, saya sedang belajar PHP!Ini juga bisa!
+          </div>
+        </div>
+        <div class="card p-4 border-2 border-red-200 bg-red-50">
+          <div class="font-bold text-red-700 mb-2">❌ Error Umum</div>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Lupa titik koma <code>;</code></li>
+            <li>• Lupa tag <code>&lt;?php</code></li>
+            <li>• File extension <code>.html</code> bukan <code>.php</code></li>
+            <li>• Laragon belum di-Start</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 5: PHP + HTML ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔗 Bagian 5: Menggabungkan PHP dengan HTML</h2>
+
+      <p class="text-slate-600 mb-4">
+        Kekuatan PHP adalah bisa digabungkan dengan HTML untuk membuat halaman web dinamis!
+      </p>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">gabungan.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;!DOCTYPE html&gt;
+          <pre><code class="language-php">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;Belajar PHP&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #6366f1; }
+    &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;Selamat Datang!&lt;/h1&gt;
-    
-    &lt;?php
-    $nama = "Siswa SMK";
-    echo "&lt;p&gt;Halo, $nama!&lt;/p&gt;";
-    echo "&lt;p&gt;Sekarang tanggal: " . date("d/m/Y") . "&lt;/p&gt;";
-    ?&gt;
-    
+    &lt;div class="card"&gt;
+        &lt;h1&gt;🎉 Selamat Datang!&lt;/h1&gt;
+        
+        &lt;?php
+        // Variabel untuk menyimpan data
+        $nama = "Siswa SMK";
+        $jurusan = "RPL";
+        
+        // Tampilkan dengan echo
+        echo "&lt;p&gt;Halo, &lt;strong&gt;$nama&lt;/strong&gt;!&lt;/p&gt;";
+        echo "&lt;p&gt;Jurusan: $jurusan&lt;/p&gt;";
+        
+        // Fungsi date() untuk tanggal
+        echo "&lt;p&gt;Sekarang tanggal: " . date("d F Y") . "&lt;/p&gt;";
+        echo "&lt;p&gt;Jam: " . date("H:i:s") . "&lt;/p&gt;";
+        ?&gt;
+    &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
         </div>
       </div>
-      
+
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Kode Baru:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-indigo-100">
+              <tr>
+                <th class="p-2 text-left">Kode</th>
+                <th class="p-2 text-left">Fungsi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">$nama = "Siswa SMK"</code></td>
+                <td class="p-2">Membuat <strong>variabel</strong> bernama $nama dengan nilai "Siswa SMK"</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">"Halo, $nama"</code></td>
+                <td class="p-2">Variabel dalam tanda kutip ganda akan diganti nilainya</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">date("d F Y")</code></td>
+                <td class="p-2">Fungsi bawaan PHP untuk menampilkan tanggal saat ini</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">. (titik)</code></td>
+                <td class="p-2"><strong>Concatenation</strong> - menggabungkan string</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert alert-tip mb-8">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <strong class="text-emerald-800">Tips Penting:</strong>
+          <ul class="text-emerald-700 text-sm mt-1 space-y-1">
+            <li>• Tanda kutip ganda <code>"..."</code> → variabel $nama akan diganti nilainya</li>
+            <li>• Tanda kutip tunggal <code>'...'</code> → variabel ditampilkan apa adanya ($nama)</li>
+            <li>• Setiap statement PHP diakhiri dengan titik koma <code>;</code></li>
+          </ul>
+        </div>
+      </div>
+
       <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-indigo-200">
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
-        <p class="text-slate-600 mb-4">Coba buat file PHP yang menampilkan:</p>
+        <p class="text-slate-600 mb-4">Buat file <code>profil.php</code> yang menampilkan:</p>
         <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Nama lengkapmu</li>
-          <li>Jurusan di SMK</li>
-          <li>Tanggal hari ini (pakai <code class="bg-slate-100 px-1 rounded">date()</code>)</li>
+          <li>Nama lengkapmu (pakai variabel <code>$nama</code>)</li>
+          <li>Kelas dan jurusan (pakai variabel <code>$kelas</code> dan <code>$jurusan</code>)</li>
+          <li>Hobi (pakai variabel <code>$hobi</code>)</li>
+          <li>Tanggal hari ini (pakai fungsi <code>date()</code>)</li>
+          <li>Styling dengan CSS agar tampilannya menarik!</li>
         </ol>
       </div>
-      
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-indigo-700 mb-2">Yang Sudah Dipelajari:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ PHP untuk website dinamis</li>
+              <li>✅ PHP berjalan di server</li>
+              <li>✅ Install Laragon</li>
+              <li>✅ Tag <code>&lt;?php ?&gt;</code></li>
+              <li>✅ Perintah <code>echo</code></li>
+              <li>✅ Variabel dengan <code>$</code></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-purple-700 mb-2">Perintah Penting:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li><code>echo "teks";</code> → tampilkan teks</li>
+              <li><code>$nama = "...";</code> → buat variabel</li>
+              <li><code>date("d/m/Y");</code> → tampilkan tanggal</li>
+              <li><code>// komentar</code> → catatan di kode</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
         <a href="../../silabus.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Kembali ke Silabus
         </a>
         <a href="variabel-tipe-data.html" class="btn-primary">
           Materi Selanjutnya
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
-      
+
     </div>
   </section>
 
@@ -211,4 +500,5 @@ echo 'Selamat datang di dunia PHP';
   <script src="../../js/main.js"></script>
   <script>hljs.highlightAll();</script>
 </body>
+
 </html>

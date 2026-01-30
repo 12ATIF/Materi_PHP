@@ -27,7 +27,7 @@
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
         <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
-        <a href="menampilkan-data.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="crud-php.html" class="text-indigo-600 font-medium">Materi</a>
         <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
       </div>
     </div>
@@ -36,9 +36,9 @@
   <!-- Header -->
   <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-amber-500 to-orange-500">
     <div class="max-w-4xl mx-auto">
-      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 11</div>
-      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 CRUD PHP</h1>
-      <p class="text-white/90">Create, Read, Update, Delete - Operasi dasar data</p>
+      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 10</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 CRUD PHP Lengkap</h1>
+      <p class="text-white/90">Membuat aplikasi CRUD profesional dengan struktur file terpisah</p>
     </div>
   </section>
 
@@ -50,38 +50,165 @@
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
-          <li>• Membuat fitur tambah data (Create)</li>
-          <li>• Membuat fitur edit data (Update)</li>
-          <li>• Membuat fitur hapus data (Delete)</li>
+          <li>• Membuat aplikasi CRUD lengkap (Create, Read, Update, Delete)</li>
+          <li>• Memisahkan file koneksi, tampilan, dan proses</li>
+          <li>• Menggunakan Prepared Statements untuk keamanan</li>
+          <li>• Menampilkan pesan sukses/error dengan alert</li>
+          <li>• Styling form dan tabel dengan CSS menarik</li>
         </ul>
       </div>
 
-      <!-- CRUD Explanation -->
-      <div class="grid md:grid-cols-4 gap-4 mb-8">
-        <div class="card p-4 text-center">
-          <div class="text-3xl mb-2">➕</div>
-          <h3 class="font-bold text-indigo-600">Create</h3>
-          <p class="text-xs text-slate-500">Tambah data</p>
+      <!-- ======================= STRUKTUR FILE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📁 Struktur File CRUD</h2>
+
+      <div class="card p-4 mb-6 bg-slate-900 text-slate-100 font-mono text-sm">
+        <pre>📂 crud_siswa/
+├── 📄 koneksi.php        # File koneksi database
+├── 📄 index.php          # Halaman utama (Read - Tampil data)
+├── 📄 tambah.php         # Form + proses tambah (Create)
+├── 📄 edit.php           # Form + proses edit (Update)
+├── 📄 hapus.php          # Proses hapus (Delete)
+└── 📄 style.css          # Styling halaman (opsional)</pre>
+      </div>
+
+      <!-- ======================= BAGIAN 1: KONEKSI ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔌 Bagian 1: File Koneksi (koneksi.php)</h2>
+
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">koneksi.php</span>
+          <button class="copy-btn">Salin</button>
         </div>
-        <div class="card p-4 text-center">
-          <div class="text-3xl mb-2">📖</div>
-          <h3 class="font-bold text-emerald-600">Read</h3>
-          <p class="text-xs text-slate-500">Tampil data</p>
-        </div>
-        <div class="card p-4 text-center">
-          <div class="text-3xl mb-2">✏️</div>
-          <h3 class="font-bold text-amber-600">Update</h3>
-          <p class="text-xs text-slate-500">Edit data</p>
-        </div>
-        <div class="card p-4 text-center">
-          <div class="text-3xl mb-2">🗑️</div>
-          <h3 class="font-bold text-red-600">Delete</h3>
-          <p class="text-xs text-slate-500">Hapus data</p>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+// ===== KONFIGURASI DATABASE =====
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "belajar_php";
+
+// ===== KONEKSI DENGAN MYSQLI =====
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Cek apakah koneksi berhasil
+if (!$conn) {
+    die("❌ Koneksi gagal: " . mysqli_connect_error());
+}
+
+// Set charset ke utf8mb4 (support emoji)
+mysqli_set_charset($conn, "utf8mb4");
+?&gt;</code></pre>
         </div>
       </div>
 
-      <!-- CREATE -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">➕ Create - Tambah Data</h2>
+      <!-- ======================= BAGIAN 2: READ ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Bagian 2: Read - Tampilkan Data (index.php)</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">index.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php require_once 'koneksi.php'; ?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Daftar Siswa - CRUD&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #333; }
+        .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; color: white; font-size: 14px; }
+        .btn-primary { background: #6366f1; }
+        .btn-warning { background: #f59e0b; }
+        .btn-danger { background: #ef4444; }
+        .btn:hover { opacity: 0.9; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        th, td { padding: 12px 15px; text-align: left; }
+        th { background: #6366f1; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        tr:hover { background: #e8f4ff; }
+        .alert { padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .actions { display: flex; gap: 8px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;📋 Daftar Siswa&lt;/h1&gt;
+        
+        &lt;!-- Tombol Tambah --&gt;
+        &lt;a href="tambah.php" class="btn btn-primary" style="margin-bottom: 20px; display: inline-block;"&gt;
+            ➕ Tambah Siswa
+        &lt;/a&gt;
+        
+        &lt;!-- Tampilkan Alert jika ada --&gt;
+        &lt;?php if (isset($_GET['status'])): ?&gt;
+            &lt;?php if ($_GET['status'] == 'sukses'): ?&gt;
+                &lt;div class="alert alert-success"&gt;✅ Data berhasil ditambahkan!&lt;/div&gt;
+            &lt;?php elseif ($_GET['status'] == 'updated'): ?&gt;
+                &lt;div class="alert alert-success"&gt;✅ Data berhasil diupdate!&lt;/div&gt;
+            &lt;?php elseif ($_GET['status'] == 'deleted'): ?&gt;
+                &lt;div class="alert alert-danger"&gt;🗑️ Data berhasil dihapus!&lt;/div&gt;
+            &lt;?php endif; ?&gt;
+        &lt;?php endif; ?&gt;
+        
+        &lt;!-- Tabel Data --&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th&gt;No&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Kelas&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+            &lt;/tr&gt;
+            
+            &lt;?php
+            // Query SELECT
+            $sql = "SELECT * FROM siswa ORDER BY id DESC";
+            $result = mysqli_query($conn, $sql);
+            
+            $no = 1;
+            if (mysqli_num_rows($result) > 0):
+                while ($row = mysqli_fetch_assoc($result)):
+            ?&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;?php echo $no++; ?&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;?php echo htmlspecialchars($row['nama']); ?&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;?php echo htmlspecialchars($row['kelas']); ?&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;?php echo htmlspecialchars($row['email']); ?&gt;&lt;/td&gt;
+                &lt;td class="actions"&gt;
+                    &lt;a href="edit.php?id=&lt;?php echo $row['id']; ?&gt;" class="btn btn-warning"&gt;✏️ Edit&lt;/a&gt;
+                    &lt;a href="hapus.php?id=&lt;?php echo $row['id']; ?&gt;" class="btn btn-danger" 
+                       onclick="return confirm('Yakin ingin menghapus data ini?')"&gt;🗑️ Hapus&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;?php 
+                endwhile;
+            else:
+            ?&gt;
+            &lt;tr&gt;
+                &lt;td colspan="5" style="text-align: center; color: #666;"&gt;Belum ada data siswa&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;?php endif; ?&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    
+    &lt;?php mysqli_close($conn); ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: CREATE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">➕ Bagian 3: Create - Tambah Data (tambah.php)</h2>
+
       <div class="code-block mb-6">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
@@ -90,32 +217,105 @@
         </div>
         <div class="code-content">
           <pre><code class="language-php">&lt;?php
-include 'koneksi.php';
+require_once 'koneksi.php';
 
+$error = "";
+
+// Proses jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $_POST['nama'];
-    $kelas = $_POST['kelas'];
+    // Ambil data dari form
+    $nama = trim($_POST['nama']);
+    $kelas = trim($_POST['kelas']);
+    $email = trim($_POST['email']);
     
-    $sql = "INSERT INTO siswa (nama, kelas) VALUES ('$nama', '$kelas')";
-    
-    if (mysqli_query($conn, $sql)) {
-        header("Location: index.php?status=sukses");
+    // Validasi sederhana
+    if (empty($nama) || empty($kelas)) {
+        $error = "Nama dan Kelas wajib diisi!";
     } else {
-        echo "Error: " . mysqli_error($conn);
+        // ===== MENGGUNAKAN PREPARED STATEMENT (AMAN!) =====
+        $stmt = mysqli_prepare($conn, "INSERT INTO siswa (nama, kelas, email) VALUES (?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "sss", $nama, $kelas, $email);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect ke index dengan pesan sukses
+            header("Location: index.php?status=sukses");
+            exit;
+        } else {
+            $error = "Error: " . mysqli_error($conn);
+        }
+        mysqli_stmt_close($stmt);
     }
 }
 ?&gt;
 
-&lt;form method="POST"&gt;
-    &lt;input type="text" name="nama" placeholder="Nama" required&gt;
-    &lt;input type="text" name="kelas" placeholder="Kelas" required&gt;
-    &lt;button type="submit"&gt;Simpan&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tambah Siswa&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 40px 20px; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; }
+        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+        input:focus { border-color: #6366f1; outline: none; }
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn-primary { background: #6366f1; color: white; }
+        .btn-secondary { background: #6b7280; color: white; margin-top: 10px; text-decoration: none; display: block; text-align: center; }
+        .btn:hover { opacity: 0.9; }
+        .error { background: #fef2f2; color: #dc2626; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;➕ Tambah Siswa Baru&lt;/h1&gt;
+        
+        &lt;?php if ($error): ?&gt;
+            &lt;div class="error"&gt;❌ &lt;?php echo $error; ?&gt;&lt;/div&gt;
+        &lt;?php endif; ?&gt;
+        
+        &lt;form method="POST"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Nama Lengkap *&lt;/label&gt;
+                &lt;input type="text" name="nama" placeholder="Masukkan nama lengkap" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Kelas *&lt;/label&gt;
+                &lt;input type="text" name="kelas" placeholder="Contoh: X RPL 1" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Email&lt;/label&gt;
+                &lt;input type="email" name="email" placeholder="contoh@email.com"&gt;
+            &lt;/div&gt;
+            
+            &lt;button type="submit" class="btn btn-primary"&gt;💾 Simpan Data&lt;/button&gt;
+        &lt;/form&gt;
+        
+        &lt;a href="index.php" class="btn btn-secondary"&gt;← Kembali&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
         </div>
       </div>
 
-      <!-- UPDATE -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">✏️ Update - Edit Data</h2>
+      <div class="alert alert-tip mb-6">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-emerald-800">Prepared Statement</strong>
+          <span class="text-emerald-700">
+            Menggunakan <code>mysqli_prepare()</code> dan <code>mysqli_stmt_bind_param()</code>
+            mencegah SQL Injection! Parameter <code>"sss"</code> artinya 3 string.
+          </span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: UPDATE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">✏️ Bagian 4: Update - Edit Data (edit.php)</h2>
+
       <div class="code-block mb-6">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
@@ -124,36 +324,111 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="code-content">
           <pre><code class="language-php">&lt;?php
-include 'koneksi.php';
+require_once 'koneksi.php';
 
-// Ambil data berdasarkan ID
-$id = $_GET['id'];
-$sql = "SELECT * FROM siswa WHERE id = $id";
-$result = mysqli_query($conn, $sql);
+$error = "";
+
+// Cek apakah ada parameter id
+if (!isset($_GET['id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+$id = (int) $_GET['id'];  // Cast ke integer untuk keamanan
+
+// Ambil data siswa
+$stmt = mysqli_prepare($conn, "SELECT * FROM siswa WHERE id = ?");
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 $data = mysqli_fetch_assoc($result);
 
-// Proses update
+// Jika data tidak ditemukan
+if (!$data) {
+    header("Location: index.php");
+    exit;
+}
+
+// Proses update jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $_POST['nama'];
-    $kelas = $_POST['kelas'];
+    $nama = trim($_POST['nama']);
+    $kelas = trim($_POST['kelas']);
+    $email = trim($_POST['email']);
     
-    $sql = "UPDATE siswa SET nama='$nama', kelas='$kelas' WHERE id=$id";
-    mysqli_query($conn, $sql);
-    header("Location: index.php?status=updated");
+    if (empty($nama) || empty($kelas)) {
+        $error = "Nama dan Kelas wajib diisi!";
+    } else {
+        // Update dengan prepared statement
+        $stmt = mysqli_prepare($conn, "UPDATE siswa SET nama = ?, kelas = ?, email = ? WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "sssi", $nama, $kelas, $email, $id);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            header("Location: index.php?status=updated");
+            exit;
+        } else {
+            $error = "Error: " . mysqli_error($conn);
+        }
+    }
 }
 ?&gt;
 
-&lt;form method="POST"&gt;
-    &lt;input type="text" name="nama" value="&lt;?php echo $data['nama']; ?&gt;"&gt;
-    &lt;input type="text" name="kelas" value="&lt;?php echo $data['kelas']; ?&gt;"&gt;
-    &lt;button type="submit"&gt;Update&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Edit Siswa&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 40px 20px; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; }
+        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+        input:focus { border-color: #f59e0b; outline: none; }
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn-warning { background: #f59e0b; color: white; }
+        .btn-secondary { background: #6b7280; color: white; margin-top: 10px; text-decoration: none; display: block; text-align: center; }
+        .error { background: #fef2f2; color: #dc2626; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;✏️ Edit Data Siswa&lt;/h1&gt;
+        
+        &lt;?php if ($error): ?&gt;
+            &lt;div class="error"&gt;❌ &lt;?php echo $error; ?&gt;&lt;/div&gt;
+        &lt;?php endif; ?&gt;
+        
+        &lt;form method="POST"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Nama Lengkap *&lt;/label&gt;
+                &lt;input type="text" name="nama" value="&lt;?php echo htmlspecialchars($data['nama']); ?&gt;" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Kelas *&lt;/label&gt;
+                &lt;input type="text" name="kelas" value="&lt;?php echo htmlspecialchars($data['kelas']); ?&gt;" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Email&lt;/label&gt;
+                &lt;input type="email" name="email" value="&lt;?php echo htmlspecialchars($data['email']); ?&gt;"&gt;
+            &lt;/div&gt;
+            
+            &lt;button type="submit" class="btn btn-warning"&gt;💾 Update Data&lt;/button&gt;
+        &lt;/form&gt;
+        
+        &lt;a href="index.php" class="btn btn-secondary"&gt;← Kembali&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
         </div>
       </div>
 
-      <!-- DELETE -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🗑️ Delete - Hapus Data</h2>
-      <div class="code-block mb-6">
+      <!-- ======================= BAGIAN 5: DELETE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🗑️ Bagian 5: Delete - Hapus Data (hapus.php)</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">hapus.php</span>
@@ -161,48 +436,152 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="code-content">
           <pre><code class="language-php">&lt;?php
-include 'koneksi.php';
+require_once 'koneksi.php';
 
-$id = $_GET['id'];
-$sql = "DELETE FROM siswa WHERE id = $id";
+// Cek apakah ada parameter id
+if (!isset($_GET['id'])) {
+    header("Location: index.php");
+    exit;
+}
 
-if (mysqli_query($conn, $sql)) {
+$id = (int) $_GET['id'];  // Cast ke integer untuk keamanan
+
+// Delete dengan prepared statement
+$stmt = mysqli_prepare($conn, "DELETE FROM siswa WHERE id = ?");
+mysqli_stmt_bind_param($stmt, "i", $id);
+
+if (mysqli_stmt_execute($stmt)) {
+    // Redirect dengan pesan sukses
     header("Location: index.php?status=deleted");
 } else {
     echo "Error: " . mysqli_error($conn);
 }
+
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
 ?&gt;</code></pre>
         </div>
       </div>
 
-      <div class="alert alert-warning mb-6">
+      <div class="alert alert-warning mb-8">
         <span class="text-2xl">⚠️</span>
         <div>
-          <strong class="text-amber-800">Penting!</strong>
-          <span class="text-amber-700">Contoh di atas masih rentan SQL Injection. Di project nyata, gunakan Prepared
-            Statements!</span>
+          <strong class="text-amber-800">Konfirmasi Hapus</strong>
+          <span class="text-amber-700">
+            Di <code>index.php</code>, link hapus sudah punya <code>onclick="return confirm(...)"</code>
+            yang akan menampilkan dialog konfirmasi sebelum menghapus!
+          </span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 6: PREPARED STATEMENT ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🛡️ Bagian 6: Penjelasan Prepared Statement</h2>
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Tipe Parameter bind_param:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Kode</th>
+                <th class="p-2 text-left">Tipe Data</th>
+                <th class="p-2 text-left">Contoh</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono font-bold">s</td>
+                <td class="p-2">String (teks)</td>
+                <td class="p-2">nama, email, alamat</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono font-bold">i</td>
+                <td class="p-2">Integer (angka bulat)</td>
+                <td class="p-2">id, umur, jumlah</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono font-bold">d</td>
+                <td class="p-2">Double (desimal)</td>
+                <td class="p-2">harga, nilai</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono font-bold">b</td>
+                <td class="p-2">Blob (binary)</td>
+                <td class="p-2">file, gambar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-4 p-3 bg-slate-50 rounded text-sm">
+          <strong>Contoh:</strong> <code>mysqli_stmt_bind_param($stmt, "ssi", $nama, $email, $id);</code><br>
+          Artinya: 2 string + 1 integer
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4 border-2 border-red-200 bg-red-50">
+          <h4 class="font-bold text-red-700 mb-2">❌ Query Biasa (RENTAN!)</h4>
+          <div class="text-xs font-mono bg-white p-2 rounded">
+            $sql = "DELETE FROM siswa WHERE id = $id";
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Bisa dibobol jika $id berisi: <code>1 OR 1=1</code></p>
+        </div>
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <h4 class="font-bold text-green-700 mb-2">✅ Prepared Statement (AMAN!)</h4>
+          <div class="text-xs font-mono bg-white p-2 rounded">
+            $stmt = mysqli_prepare($conn, "DELETE FROM siswa WHERE id = ?");
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Input apapun akan di-escape otomatis</p>
         </div>
       </div>
 
       <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-amber-200">
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
         <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Buat CRUD lengkap untuk data buku</li>
-          <li>Tambahkan konfirmasi sebelum hapus</li>
-          <li>Tampilkan pesan sukses/error</li>
+          <li>Buat CRUD lengkap untuk tabel <code>buku</code> (id, judul, penulis, tahun, stok)</li>
+          <li>Tambahkan fitur pencarian berdasarkan judul buku</li>
+          <li>Tambahkan pagination (10 data per halaman)</li>
+          <li>Buat CRUD untuk tabel <code>guru</code> (id, nama, mapel, no_hp)</li>
         </ol>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-amber-700 mb-2">File-File CRUD:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>• <code>koneksi.php</code> - Koneksi database</li>
+              <li>• <code>index.php</code> - Read (tampil data)</li>
+              <li>• <code>tambah.php</code> - Create (tambah data)</li>
+              <li>• <code>edit.php</code> - Update (ubah data)</li>
+              <li>• <code>hapus.php</code> - Delete (hapus data)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-orange-700 mb-2">Best Practices:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ Selalu pakai Prepared Statement</li>
+              <li>✅ Cast ID ke integer: <code>(int) $_GET['id']</code></li>
+              <li>✅ Tampilkan dengan htmlspecialchars()</li>
+              <li>✅ Tambahkan konfirmasi sebelum hapus</li>
+              <li>✅ Redirect setelah proses berhasil</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
-        <a href="menampilkan-data.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+        <a href="../minggu-2/session-auth.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
-          Menampilkan Data
+          Session & Auth
         </a>
-        <a href="upload-file.html" class="btn-primary">
+        <a href="file-upload.html" class="btn-primary">
           Materi Selanjutnya
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

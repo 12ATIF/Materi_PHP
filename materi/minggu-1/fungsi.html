@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="../../index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -34,188 +38,597 @@
     <div class="max-w-4xl mx-auto">
       <div class="week-badge week-1 mb-4">Minggu 1 - Materi 4</div>
       <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Fungsi PHP</h1>
-      <p class="text-white/90">Membuat kode yang rapi dan bisa dipakai ulang</p>
+      <p class="text-white/90">Membuat kode yang rapi, modular, dan bisa dipakai ulang</p>
     </div>
   </section>
 
   <!-- Content -->
   <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-      
+
       <!-- Tujuan -->
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
-          <li>• Memahami apa itu fungsi dan kegunaannya</li>
+          <li>• Memahami apa itu fungsi dan manfaatnya</li>
           <li>• Membuat fungsi sendiri (user-defined function)</li>
-          <li>• Menggunakan parameter dan return value</li>
+          <li>• Menggunakan parameter dan default value</li>
+          <li>• Memahami perbedaan echo dan return</li>
+          <li>• Mengenal fungsi bawaan PHP yang sering dipakai</li>
         </ul>
       </div>
-      
-      <!-- Penjelasan -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu Fungsi?</h2>
-      
-      <div class="alert alert-info mb-6">
-        <span class="text-2xl">💡</span>
-        <div>
-          <strong class="text-indigo-800">Bayangkan begini:</strong>
-          <span class="text-indigo-700">Fungsi seperti <em>mesin khusus</em>. Kamu masukkan bahan (parameter), mesin akan memproses, lalu keluar hasil (return).</span>
+
+      <!-- ======================= BAGIAN 1: KONSEP FUNGSI ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📦 Bagian 1: Apa itu Fungsi?</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-500">
+        <h3 class="font-bold text-indigo-800 mb-2">🤔 Analogi Sederhana</h3>
+        <p class="text-slate-700 mb-4">
+          Fungsi itu seperti <strong>mesin khusus</strong>. Kamu masukkan bahan (parameter),
+          mesin memproses, lalu keluar hasil (return value).
+        </p>
+        <div class="flex items-center justify-center gap-4 text-center">
+          <div class="bg-blue-100 p-3 rounded">
+            <div class="text-2xl">📥</div>
+            <div class="text-xs">Input</div>
+            <div class="font-bold text-blue-600">5, 3</div>
+          </div>
+          <div class="text-2xl">→</div>
+          <div class="bg-purple-100 p-4 rounded">
+            <div class="text-2xl">⚙️</div>
+            <div class="text-xs">Fungsi</div>
+            <div class="font-bold text-purple-600">tambah()</div>
+          </div>
+          <div class="text-2xl">→</div>
+          <div class="bg-green-100 p-3 rounded">
+            <div class="text-2xl">📤</div>
+            <div class="text-xs">Output</div>
+            <div class="font-bold text-green-600">8</div>
+          </div>
         </div>
       </div>
-      
-      <p class="text-slate-600 mb-6">Fungsi adalah blok kode yang bisa dipanggil berkali-kali. Dengan fungsi, kode jadi lebih rapi dan tidak perlu ditulis ulang.</p>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi Sederhana</h3>
-      <div class="code-block mb-6">
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">🎯 Mengapa Pakai Fungsi?</h3>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4 border-2 border-red-200 bg-red-50">
+          <div class="font-bold text-red-700 mb-2">❌ Tanpa Fungsi (Kode Berulang)</div>
+          <div class="code-block">
+            <div class="code-content text-xs">
+              <pre><code class="language-php">// Menghitung luas berkali-kali
+$sisi1 = 5;
+$luas1 = $sisi1 * $sisi1;
+echo $luas1;
+
+$sisi2 = 10;
+$luas2 = $sisi2 * $sisi2;
+echo $luas2;
+
+// Kode sama ditulis ulang! 😩</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <div class="font-bold text-green-700 mb-2">✅ Dengan Fungsi (Efisien)</div>
+          <div class="code-block">
+            <div class="code-content text-xs">
+              <pre><code class="language-php">function luas($sisi) {
+    return $sisi * $sisi;
+}
+
+echo luas(5);   // 25
+echo luas(10);  // 100
+echo luas(15);  // 225
+
+// Tulis sekali, pakai berkali-kali! 😊</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 2: MEMBUAT FUNGSI ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">💻 Bagian 2: Membuat Fungsi</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">fungsi.php</span>
+          <span class="text-slate-400 text-sm">fungsi-dasar.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Membuat fungsi
+          <pre><code class="language-php">&lt;?php
+// Fungsi TANPA parameter
 function sapa() {
     echo "Halo, selamat datang!";
 }
 
 // Memanggil fungsi
 sapa();  // Output: Halo, selamat datang!
-sapa();  // Bisa dipanggil berkali-kali
+sapa();  // Bisa dipanggil berulang kali
+
+// Fungsi DENGAN parameter
+function sapaUser($nama) {
+    echo "Halo, $nama! Selamat belajar PHP.";
+}
+
+sapaUser("Budi");  // Output: Halo, Budi! Selamat belajar PHP.
+sapaUser("Ani");   // Output: Halo, Ani! Selamat belajar PHP.
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi dengan Parameter</h3>
-      <div class="code-block mb-6">
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Struktur Fungsi:</h4>
+        <div class="bg-slate-100 p-3 rounded text-center font-mono mb-4">
+          <span class="text-blue-600">function</span> <span class="text-purple-600">namaFungsi</span>(<span
+            class="text-green-600">$parameter</span>) { <span class="text-amber-600">// kode</span> }
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-indigo-100">
+              <tr>
+                <th class="p-2 text-left">Bagian</th>
+                <th class="p-2 text-left">Penjelasan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2"><code class="text-blue-600">function</code></td>
+                <td class="p-2">Kata kunci untuk membuat fungsi</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="text-purple-600">namaFungsi</code></td>
+                <td class="p-2">Nama yang kamu pilih (huruf, angka, underscore)</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code class="text-green-600">$parameter</code></td>
+                <td class="p-2">Data yang dikirim ke fungsi (opsional)</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code>{ ... }</code></td>
+                <td class="p-2">Blok kode yang akan dijalankan</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: PARAMETER ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📥 Bagian 3: Parameter & Argument</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">parameter.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Fungsi dengan 1 parameter
-function sapa($nama) {
-    echo "Halo, $nama!";
+          <pre><code class="language-php">&lt;?php
+// BANYAK PARAMETER
+function perkenalan($nama, $kelas, $jurusan) {
+    echo "Nama: $nama &lt;br&gt;";
+    echo "Kelas: $kelas &lt;br&gt;";
+    echo "Jurusan: $jurusan &lt;br&gt;";
 }
 
-sapa("Budi");   // Output: Halo, Budi!
-sapa("Ani");    // Output: Halo, Ani!
+perkenalan("Budi", "XI", "RPL");
+perkenalan("Ani", "XII", "TKJ");
 
-// Fungsi dengan banyak parameter
-function perkenalan($nama, $umur, $kelas) {
-    echo "Nama: $nama, Umur: $umur, Kelas: $kelas";
+// PARAMETER DEFAULT VALUE
+function hitungDiskon($harga, $diskon = 10) {
+    // Jika diskon tidak diisi, nilainya 10
+    $potongan = $harga * ($diskon / 100);
+    return $harga - $potongan;
 }
 
-perkenalan("Budi", 16, "X RPL 1");
+echo hitungDiskon(100000);      // 90000 (diskon 10%)
+echo hitungDiskon(100000, 25);  // 75000 (diskon 25%)
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi dengan Return</h3>
-      <div class="code-block mb-6">
+
+      <div class="alert alert-info mb-8">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Parameter vs Argument:</strong>
+          <ul class="text-indigo-700 text-sm mt-1">
+            <li>• <strong>Parameter</strong> = variabel di definisi fungsi ($nama, $kelas)</li>
+            <li>• <strong>Argument</strong> = nilai yang dikirim saat memanggil ("Budi", "XI")</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: RETURN VALUE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📤 Bagian 4: Return Value</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-emerald-500">
+        <h3 class="font-bold text-emerald-800 mb-2">🔄 Echo vs Return</h3>
+        <div class="grid md:grid-cols-2 gap-4 mt-3">
+          <div class="bg-white p-3 rounded">
+            <strong class="text-amber-600">echo</strong>
+            <p class="text-sm text-slate-600">Langsung tampilkan ke layar</p>
+            <p class="text-xs text-slate-500">Tidak bisa disimpan ke variabel</p>
+          </div>
+          <div class="bg-white p-3 rounded">
+            <strong class="text-green-600">return</strong>
+            <p class="text-sm text-slate-600">Kembalikan nilai ke pemanggil</p>
+            <p class="text-xs text-slate-500">Bisa disimpan ke variabel</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">return.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Fungsi yang mengembalikan nilai
+          <pre><code class="language-php">&lt;?php
+// Fungsi dengan RETURN
 function tambah($a, $b) {
-    return $a + $b;
+    return $a + $b;  // Kembalikan hasil
 }
 
-$hasil = tambah(5, 3);
-echo "Hasil: $hasil";  // Output: Hasil: 8
+$hasil = tambah(5, 3);   // $hasil = 8
+echo "Hasil: $hasil";     // Output: Hasil: 8
 
-// Fungsi hitung luas persegi
+// Contoh praktis: Hitung luas berbagai bangun
 function luasPersegi($sisi) {
     return $sisi * $sisi;
 }
 
-$luas = luasPersegi(4);
-echo "Luas: $luas";  // Output: Luas: 16
+function luasSegitiga($alas, $tinggi) {
+    return 0.5 * $alas * $tinggi;
+}
+
+function luasLingkaran($jariJari) {
+    return 3.14 * $jariJari * $jariJari;
+}
+
+// Pakai hasilnya
+$lPersegi = luasPersegi(5);        // 25
+$lSegitiga = luasSegitiga(10, 8);   // 40
+$lLingkaran = luasLingkaran(7);     // 153.86
+
+echo "Persegi: $lPersegi &lt;br&gt;";
+echo "Segitiga: $lSegitiga &lt;br&gt;";
+echo "Lingkaran: $lLingkaran &lt;br&gt;";
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <div class="alert alert-tip mb-6">
-        <span class="text-2xl">🧠</span>
+
+      <div class="alert alert-warning mb-8">
+        <span class="text-2xl">⚠️</span>
         <div>
-          <strong class="text-emerald-800">Tips:</strong>
-          <span class="text-emerald-700"><code>echo</code> langsung menampilkan ke layar. <code>return</code> mengembalikan nilai yang bisa disimpan ke variabel.</span>
+          <strong class="text-amber-800">Penting!</strong>
+          <span class="text-amber-700">Setelah <code>return</code>, kode di bawahnya <strong>tidak akan
+              dijalankan</strong>.
+            Return langsung menghentikan fungsi.</span>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Fungsi Bawaan PHP</h3>
-      <p class="text-slate-600 mb-4">PHP punya banyak fungsi bawaan yang bisa langsung dipakai:</p>
-      
+
+      <!-- ======================= BAGIAN 5: FUNGSI BAWAAN PHP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🛠️ Bagian 5: Fungsi Bawaan PHP</h2>
+
+      <p class="text-slate-600 mb-4">
+        PHP punya ratusan fungsi bawaan yang siap pakai. Berikut yang paling sering digunakan:
+      </p>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">📝 Fungsi String</h3>
+
+      <div class="card p-4 mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-blue-100">
+              <tr>
+                <th class="p-2 text-left">Fungsi</th>
+                <th class="p-2 text-left">Kegunaan</th>
+                <th class="p-2 text-left">Contoh</th>
+                <th class="p-2 text-left">Hasil</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono">strlen()</td>
+                <td class="p-2">Panjang string</td>
+                <td class="p-2"><code>strlen("Halo")</code></td>
+                <td class="p-2 font-bold">4</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">strtoupper()</td>
+                <td class="p-2">Huruf besar semua</td>
+                <td class="p-2"><code>strtoupper("halo")</code></td>
+                <td class="p-2 font-bold">HALO</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">strtolower()</td>
+                <td class="p-2">Huruf kecil semua</td>
+                <td class="p-2"><code>strtolower("HALO")</code></td>
+                <td class="p-2 font-bold">halo</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">ucfirst()</td>
+                <td class="p-2">Kapital huruf pertama</td>
+                <td class="p-2"><code>ucfirst("budi")</code></td>
+                <td class="p-2 font-bold">Budi</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">ucwords()</td>
+                <td class="p-2">Kapital setiap kata</td>
+                <td class="p-2"><code>ucwords("budi santoso")</code></td>
+                <td class="p-2 font-bold">Budi Santoso</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">trim()</td>
+                <td class="p-2">Hapus spasi di ujung</td>
+                <td class="p-2"><code>trim(" halo ")</code></td>
+                <td class="p-2 font-bold">halo</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">str_replace()</td>
+                <td class="p-2">Ganti teks</td>
+                <td class="p-2"><code>str_replace("a","o","baca")</code></td>
+                <td class="p-2 font-bold">boco</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">🔢 Fungsi Matematika</h3>
+
+      <div class="card p-4 mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-green-100">
+              <tr>
+                <th class="p-2 text-left">Fungsi</th>
+                <th class="p-2 text-left">Kegunaan</th>
+                <th class="p-2 text-left">Contoh</th>
+                <th class="p-2 text-left">Hasil</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono">abs()</td>
+                <td class="p-2">Nilai absolut</td>
+                <td class="p-2"><code>abs(-5)</code></td>
+                <td class="p-2 font-bold">5</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">round()</td>
+                <td class="p-2">Pembulatan</td>
+                <td class="p-2"><code>round(3.7)</code></td>
+                <td class="p-2 font-bold">4</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">ceil()</td>
+                <td class="p-2">Pembulatan ke atas</td>
+                <td class="p-2"><code>ceil(3.1)</code></td>
+                <td class="p-2 font-bold">4</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">floor()</td>
+                <td class="p-2">Pembulatan ke bawah</td>
+                <td class="p-2"><code>floor(3.9)</code></td>
+                <td class="p-2 font-bold">3</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">rand()</td>
+                <td class="p-2">Angka acak</td>
+                <td class="p-2"><code>rand(1, 100)</code></td>
+                <td class="p-2 font-bold">1-100</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">max()</td>
+                <td class="p-2">Nilai terbesar</td>
+                <td class="p-2"><code>max(5, 10, 3)</code></td>
+                <td class="p-2 font-bold">10</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">min()</td>
+                <td class="p-2">Nilai terkecil</td>
+                <td class="p-2"><code>min(5, 10, 3)</code></td>
+                <td class="p-2 font-bold">3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">📅 Fungsi Tanggal</h3>
+
       <div class="code-block mb-6">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">built-in.php</span>
+          <span class="text-slate-400 text-sm">tanggal.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// String functions
-echo strlen("Hello");        // 5 (panjang string)
-echo strtoupper("hello");    // HELLO
-echo strtolower("HELLO");    // hello
+          <pre><code class="language-php">&lt;?php
+// Fungsi date() dengan format
+echo date("d/m/Y");         // 30/01/2026
+echo date("d F Y");         // 30 January 2026
+echo date("l, d F Y");      // Friday, 30 January 2026
+echo date("H:i:s");         // 18:30:45
 
-// Math functions
-echo abs(-5);     // 5 (nilai absolut)
-echo round(3.7);  // 4 (pembulatan)
-echo rand(1, 10); // Angka random 1-10
-
-// Date functions
-echo date("d/m/Y");  // Tanggal hari ini
-echo date("H:i:s");  // Jam sekarang
+// Format yang sering dipakai
+// d = tanggal (01-31)
+// m = bulan (01-12)
+// Y = tahun 4 digit
+// H = jam 24-jam
+// i = menit
+// s = detik
+// l = nama hari (Monday, Tuesday, ...)
+// F = nama bulan (January, February, ...)
 ?&gt;</code></pre>
         </div>
       </div>
-      
+
+      <!-- ======================= BAGIAN 6: CONTOH PRAKTIS ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🧮 Bagian 6: Contoh Praktis</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">kalkulator_bangun.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Kalkulator Bangun Datar&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 600px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        h2 { color: #6366f1; text-align: center; }
+        .hasil { background: #e0e7ff; padding: 15px; border-radius: 10px; text-align: center; font-size: 1.2em; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1 style="color: white; text-align: center;"&gt;📐 Kalkulator Bangun Datar&lt;/h1&gt;
+        
+        &lt;?php
+        // === DEFINISI FUNGSI ===
+        function luasPersegi($sisi) {
+            return $sisi * $sisi;
+        }
+        
+        function kelilingPersegi($sisi) {
+            return 4 * $sisi;
+        }
+        
+        function luasPersegiPanjang($panjang, $lebar) {
+            return $panjang * $lebar;
+        }
+        
+        function kelilingPersegiPanjang($panjang, $lebar) {
+            return 2 * ($panjang + $lebar);
+        }
+        
+        function luasSegitiga($alas, $tinggi) {
+            return 0.5 * $alas * $tinggi;
+        }
+        
+        function luasLingkaran($jariJari) {
+            return 3.14159 * $jariJari * $jariJari;
+        }
+        
+        function kelilingLingkaran($jariJari) {
+            return 2 * 3.14159 * $jariJari;
+        }
+        
+        // === HITUNG DAN TAMPILKAN ===
+        ?&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h2&gt;⬛ Persegi (sisi = 5)&lt;/h2&gt;
+            &lt;div class="hasil"&gt;
+                Luas: &lt;strong&gt;&lt;?php echo luasPersegi(5); ?&gt;&lt;/strong&gt; &lt;br&gt;
+                Keliling: &lt;strong&gt;&lt;?php echo kelilingPersegi(5); ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h2&gt;▭ Persegi Panjang (p=10, l=5)&lt;/h2&gt;
+            &lt;div class="hasil"&gt;
+                Luas: &lt;strong&gt;&lt;?php echo luasPersegiPanjang(10, 5); ?&gt;&lt;/strong&gt; &lt;br&gt;
+                Keliling: &lt;strong&gt;&lt;?php echo kelilingPersegiPanjang(10, 5); ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h2&gt;🔺 Segitiga (alas=8, tinggi=6)&lt;/h2&gt;
+            &lt;div class="hasil"&gt;
+                Luas: &lt;strong&gt;&lt;?php echo luasSegitiga(8, 6); ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h2&gt;⭕ Lingkaran (r=7)&lt;/h2&gt;
+            &lt;div class="hasil"&gt;
+                Luas: &lt;strong&gt;&lt;?php echo round(luasLingkaran(7), 2); ?&gt;&lt;/strong&gt; &lt;br&gt;
+                Keliling: &lt;strong&gt;&lt;?php echo round(kelilingLingkaran(7), 2); ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+
       <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-indigo-200">
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
         <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Buat fungsi <code>hitungLuasSegitiga($alas, $tinggi)</code></li>
-          <li>Buat fungsi <code>cekGenap($angka)</code> yang return true/false</li>
-          <li>Buat fungsi <code>hitungUmur($tahunLahir)</code></li>
+          <li>Buat fungsi <code>hitungUmur($tahunLahir)</code> yang mengembalikan umur</li>
+          <li>Buat fungsi <code>cekGenap($angka)</code> yang return true jika genap</li>
+          <li>Buat fungsi <code>formatRupiah($angka)</code> yang menambah "Rp" dan pemisah ribuan</li>
+          <li>Buat fungsi <code>hitungBMI($berat, $tinggi)</code> dan tentukan kategorinya</li>
         </ol>
       </div>
-      
+
       <!-- Selesai Minggu 1 -->
       <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white text-center mb-8">
         <span class="text-4xl mb-4 block">🎉</span>
         <h2 class="text-2xl font-bold mb-2">Selamat!</h2>
-        <p class="text-white/90 mb-4">Kamu sudah menyelesaikan semua materi Minggu 1. Lanjut ke Minggu 2 untuk belajar Form & Database!</p>
-        <a href="../minggu-2/form-html-php.html" class="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-xl font-bold">
+        <p class="text-white/90 mb-4">Kamu sudah menyelesaikan semua materi Minggu 1. Lanjut ke Minggu 2 untuk belajar
+          Form & Database!</p>
+        <a href="../minggu-2/form-html-php.html"
+          class="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-xl font-bold">
           Lanjut Minggu 2
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
       </div>
-      
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan Minggu 1</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-indigo-700 mb-2">Materi yang Dipelajari:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ Pengenalan PHP & cara kerja</li>
+              <li>✅ Variabel & tipe data</li>
+              <li>✅ Percabangan (if, switch)</li>
+              <li>✅ Perulangan (for, while, foreach)</li>
+              <li>✅ Fungsi (parameter, return)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-purple-700 mb-2">Siap untuk:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>🎯 Membuat form HTML + PHP</li>
+              <li>🎯 Validasi data input</li>
+              <li>🎯 Koneksi ke database MySQL</li>
+              <li>🎯 Query SQL dasar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
         <a href="percabangan-perulangan.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Percabangan & Perulangan
         </a>
         <a href="../minggu-2/form-html-php.html" class="btn-primary">
           Minggu 2: Form & PHP
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
-      
+
     </div>
   </section>
 
@@ -228,4 +641,5 @@ echo date("H:i:s");  // Jam sekarang
   <script src="../../js/main.js"></script>
   <script>hljs.highlightAll();</script>
 </body>
+
 </html>

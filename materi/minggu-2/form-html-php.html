@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="../../index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -34,171 +38,595 @@
     <div class="max-w-4xl mx-auto">
       <div class="week-badge week-2 mb-4">Minggu 2 - Materi 5</div>
       <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Form HTML & PHP</h1>
-      <p class="text-white/90">Menerima input dari pengguna dengan form</p>
+      <p class="text-white/90">Menerima input dari pengguna dengan form interaktif</p>
     </div>
   </section>
 
   <!-- Content -->
   <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-      
+
       <!-- Tujuan -->
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
-          <li>• Membuat form HTML untuk input data</li>
+          <li>• Membuat berbagai jenis form HTML (text, email, password, select, radio, checkbox)</li>
           <li>• Memahami perbedaan method GET dan POST</li>
-          <li>• Mengakses data form dengan PHP</li>
+          <li>• Mengakses dan memproses data form dengan PHP</li>
+          <li>• Membuat form yang menarik dengan CSS styling</li>
+          <li>• Menampilkan form dan hasil di halaman yang sama</li>
         </ul>
       </div>
-      
-      <!-- Penjelasan -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu Form?</h2>
-      
-      <div class="alert alert-info mb-6">
-        <span class="text-2xl">💡</span>
-        <div>
-          <strong class="text-indigo-800">Bayangkan begini:</strong>
-          <span class="text-indigo-700">Form seperti <em>formulir pendaftaran</em>. User mengisi data, klik tombol submit, lalu data dikirim ke server untuk diproses.</span>
+
+      <!-- ======================= BAGIAN 1: KONSEP FORM ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📋 Bagian 1: Apa itu Form?</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-emerald-50 to-teal-50 border-l-4 border-emerald-500">
+        <h3 class="font-bold text-emerald-800 mb-2">🤔 Analogi Sederhana</h3>
+        <p class="text-slate-700 mb-4">
+          Form seperti <strong>formulir pendaftaran</strong> di kehidupan nyata. User mengisi data
+          (nama, email, dll), klik tombol submit, lalu data dikirim ke server untuk diproses.
+        </p>
+        <div class="flex items-center justify-center gap-4 text-center">
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">📝</div>
+            <div class="text-xs">User isi form</div>
+          </div>
+          <div class="text-2xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">📤</div>
+            <div class="text-xs">Klik Submit</div>
+          </div>
+          <div class="text-2xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">🖥️</div>
+            <div class="text-xs">Server proses</div>
+          </div>
+          <div class="text-2xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">💾</div>
+            <div class="text-xs">Data disimpan</div>
+          </div>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Form HTML Dasar</h3>
-      <div class="code-block mb-6">
+
+      <!-- ======================= BAGIAN 2: STRUKTUR FORM ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🏗️ Bagian 2: Struktur Form HTML</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">form.html</span>
+          <span class="text-slate-400 text-sm">form-dasar.html</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;form action="proses.php" method="POST"&gt;
-    &lt;label&gt;Nama:&lt;/label&gt;
-    &lt;input type="text" name="nama"&gt;
+          <pre><code class="language-html">&lt;form action="proses.php" method="POST"&gt;
     
-    &lt;label&gt;Email:&lt;/label&gt;
-    &lt;input type="email" name="email"&gt;
+    &lt;!-- Input Text Biasa --&gt;
+    &lt;label for="nama"&gt;Nama:&lt;/label&gt;
+    &lt;input type="text" id="nama" name="nama" placeholder="Masukkan nama..."&gt;
     
-    &lt;label&gt;Pesan:&lt;/label&gt;
-    &lt;textarea name="pesan"&gt;&lt;/textarea&gt;
+    &lt;!-- Input Email --&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="contoh@email.com"&gt;
     
+    &lt;!-- Input Password --&gt;
+    &lt;label for="password"&gt;Password:&lt;/label&gt;
+    &lt;input type="password" id="password" name="password"&gt;
+    
+    &lt;!-- Tombol Submit --&gt;
     &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+    
 &lt;/form&gt;</code></pre>
         </div>
       </div>
-      
-      <!-- GET vs POST -->
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Perbedaan GET dan POST</h3>
-      <div class="grid md:grid-cols-2 gap-4 mb-8">
-        <div class="card p-4">
-          <h4 class="font-bold text-indigo-600 mb-2">GET</h4>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Data muncul di URL</li>
-            <li>• Cocok untuk pencarian</li>
-            <li>• Ada batasan panjang data</li>
-            <li>• Tidak aman untuk password</li>
-          </ul>
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Atribut Form:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-emerald-100">
+              <tr>
+                <th class="p-2 text-left">Atribut</th>
+                <th class="p-2 text-left">Penjelasan</th>
+                <th class="p-2 text-left">Contoh</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono text-emerald-600">action</td>
+                <td class="p-2">File PHP yang akan memproses data</td>
+                <td class="p-2"><code>action="proses.php"</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-emerald-600">method</td>
+                <td class="p-2">Cara mengirim data (GET/POST)</td>
+                <td class="p-2"><code>method="POST"</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-emerald-600">name</td>
+                <td class="p-2">Nama untuk akses di PHP</td>
+                <td class="p-2"><code>name="email"</code> → <code>$_POST['email']</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-emerald-600">id</td>
+                <td class="p-2">Untuk dikaitkan dengan label</td>
+                <td class="p-2"><code>id="email"</code> + <code>for="email"</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-emerald-600">placeholder</td>
+                <td class="p-2">Teks petunjuk di dalam input</td>
+                <td class="p-2"><code>placeholder="Ketik di sini..."</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-emerald-600">required</td>
+                <td class="p-2">Wajib diisi sebelum submit</td>
+                <td class="p-2"><code>required</code></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card p-4">
-          <h4 class="font-bold text-emerald-600 mb-2">POST</h4>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Data tersembunyi di body</li>
-            <li>• Cocok untuk form login</li>
-            <li>• Tidak ada batasan data</li>
-            <li>• Lebih aman untuk password</li>
+      </div>
+
+      <!-- ======================= BAGIAN 3: GET vs POST ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔄 Bagian 3: Perbedaan GET dan POST</h2>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="card p-4 border-2 border-blue-200 bg-blue-50">
+          <h4 class="font-bold text-blue-700 mb-3">📤 GET</h4>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>✅ Data muncul di URL<br><code class="text-xs">?nama=Budi&email=budi@mail.com</code></li>
+            <li>✅ Cocok untuk: pencarian, filter, bookmark</li>
+            <li>⚠️ Ada batasan panjang (~2000 karakter)</li>
+            <li>❌ Tidak aman untuk password/data sensitif</li>
+          </ul>
+          <div class="mt-3 bg-white p-2 rounded text-xs">
+            <strong>Contoh:</strong> Form pencarian Google
+          </div>
+        </div>
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <h4 class="font-bold text-green-700 mb-3">📥 POST</h4>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>✅ Data tersembunyi di HTTP body</li>
+            <li>✅ Cocok untuk: login, register, upload</li>
+            <li>✅ Tidak ada batasan ukuran data</li>
+            <li>✅ Lebih aman untuk data sensitif</li>
+          </ul>
+          <div class="mt-3 bg-white p-2 rounded text-xs">
+            <strong>Contoh:</strong> Form login, pendaftaran
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-tip mb-8">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <strong class="text-emerald-800">Kapan pakai apa?</strong>
+          <ul class="text-emerald-700 text-sm mt-1">
+            <li>• <strong>GET</strong> = untuk mengambil/menampilkan data (aman di-bookmark)</li>
+            <li>• <strong>POST</strong> = untuk mengirim/menyimpan data (seperti mengisi formulir)</li>
           </ul>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Mengakses Data Form di PHP</h3>
-      <div class="code-block mb-6">
+
+      <!-- ======================= BAGIAN 4: JENIS INPUT ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔤 Bagian 4: Jenis-Jenis Input</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">jenis-input.html</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-html">&lt;!-- TEXT - Input teks satu baris --&gt;
+&lt;input type="text" name="nama"&gt;
+
+&lt;!-- EMAIL - Validasi format email otomatis --&gt;
+&lt;input type="email" name="email"&gt;
+
+&lt;!-- PASSWORD - Teks tersembunyi (titik-titik) --&gt;
+&lt;input type="password" name="password"&gt;
+
+&lt;!-- NUMBER - Hanya angka --&gt;
+&lt;input type="number" name="umur" min="1" max="100"&gt;
+
+&lt;!-- DATE - Pilih tanggal dengan calendar --&gt;
+&lt;input type="date" name="tanggal_lahir"&gt;
+
+&lt;!-- TEXTAREA - Teks banyak baris --&gt;
+&lt;textarea name="alamat" rows="4"&gt;&lt;/textarea&gt;
+
+&lt;!-- SELECT - Dropdown pilihan --&gt;
+&lt;select name="kelas"&gt;
+    &lt;option value=""&gt;-- Pilih Kelas --&lt;/option&gt;
+    &lt;option value="X RPL 1"&gt;X RPL 1&lt;/option&gt;
+    &lt;option value="X RPL 2"&gt;X RPL 2&lt;/option&gt;
+    &lt;option value="XI RPL 1"&gt;XI RPL 1&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- RADIO - Pilih satu dari banyak --&gt;
+&lt;input type="radio" name="jenis_kelamin" value="L" id="laki"&gt;
+&lt;label for="laki"&gt;Laki-laki&lt;/label&gt;
+&lt;input type="radio" name="jenis_kelamin" value="P" id="perempuan"&gt;
+&lt;label for="perempuan"&gt;Perempuan&lt;/label&gt;
+
+&lt;!-- CHECKBOX - Pilih banyak --&gt;
+&lt;input type="checkbox" name="hobi[]" value="Membaca" id="h1"&gt;
+&lt;label for="h1"&gt;Membaca&lt;/label&gt;
+&lt;input type="checkbox" name="hobi[]" value="Coding" id="h2"&gt;
+&lt;label for="h2"&gt;Coding&lt;/label&gt;
+
+&lt;!-- FILE - Upload file --&gt;
+&lt;input type="file" name="foto"&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Tipe Input Populer:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Type</th>
+                <th class="p-2 text-left">Tampilan</th>
+                <th class="p-2 text-left">Kegunaan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono">text</td>
+                <td class="p-2">Kotak teks</td>
+                <td class="p-2">Nama, alamat, dll</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">email</td>
+                <td class="p-2">Kotak + validasi @</td>
+                <td class="p-2">Email</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">password</td>
+                <td class="p-2">Titik-titik</td>
+                <td class="p-2">Password</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">number</td>
+                <td class="p-2">Angka + panah</td>
+                <td class="p-2">Umur, jumlah</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">date</td>
+                <td class="p-2">Kalender popup</td>
+                <td class="p-2">Tanggal lahir</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">textarea</td>
+                <td class="p-2">Kotak besar</td>
+                <td class="p-2">Alamat, bio</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">select</td>
+                <td class="p-2">Dropdown</td>
+                <td class="p-2">Kelas, kategori</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">radio</td>
+                <td class="p-2">Bulatan (1 pilihan)</td>
+                <td class="p-2">Jenis kelamin</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">checkbox</td>
+                <td class="p-2">Kotak centang</td>
+                <td class="p-2">Hobi, minat</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">file</td>
+                <td class="p-2">Tombol pilih file</td>
+                <td class="p-2">Upload foto</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 5: AKSES DATA DI PHP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">💻 Bagian 5: Mengakses Data Form di PHP</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">proses.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Mengakses data dari form POST
+          <pre><code class="language-php">&lt;?php
+// ===== MENGAKSES DATA FORM =====
+
+// Untuk method POST:
 $nama = $_POST['nama'];
 $email = $_POST['email'];
-$pesan = $_POST['pesan'];
 
-echo "Halo, $nama!";
-echo "Email kamu: $email";
-echo "Pesan: $pesan";
+// Untuk method GET:
+$keyword = $_GET['keyword'];
 
-// Untuk method GET, gunakan $_GET
-// $cari = $_GET['keyword'];
+// ===== CEK APAKAH FORM SUDAH DISUBMIT =====
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Kode ini hanya jalan jika form disubmit
+    echo "Form sudah disubmit!";
+}
+
+// ===== MENGAKSES BERBAGAI JENIS INPUT =====
+
+// Text, Email, Password - langsung akses
+$nama = $_POST['nama'];
+
+// Select (dropdown)
+$kelas = $_POST['kelas'];  // Nilai dari option yang dipilih
+
+// Radio button
+$jenis_kelamin = $_POST['jenis_kelamin'];  // "L" atau "P"
+
+// Checkbox (bisa banyak) - hasilnya array
+$hobi = $_POST['hobi'];  // ["Membaca", "Coding"]
+foreach ($hobi as $h) {
+    echo "Hobi: $h &lt;br&gt;";
+}
+
+// ===== MENAMPILKAN DENGAN AMAN =====
+// Gunakan htmlspecialchars untuk mencegah XSS
+$nama_aman = htmlspecialchars($_POST['nama']);
+echo "Halo, $nama_aman!";
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <div class="alert alert-warning mb-6">
+
+      <div class="alert alert-warning mb-8">
         <span class="text-2xl">⚠️</span>
         <div>
-          <strong class="text-amber-800">Penting:</strong>
-          <span class="text-amber-700">Atribut <code>name</code> pada input HTML harus sama dengan key di <code>$_POST</code> atau <code>$_GET</code>.</span>
+          <strong class="text-amber-800">Keamanan!</strong>
+          <span class="text-amber-700">
+            Selalu gunakan <code>htmlspecialchars()</code> saat menampilkan data dari form
+            untuk mencegah serangan XSS (Cross-Site Scripting).
+          </span>
         </div>
       </div>
-      
-      <!-- Contoh Lengkap -->
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Contoh Form Lengkap</h3>
-      <div class="code-block mb-6">
+
+      <!-- ======================= BAGIAN 6: CONTOH LENGKAP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📝 Bagian 6: Contoh Form Pendaftaran Lengkap</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">daftar.php</span>
+          <span class="text-slate-400 text-sm">pendaftaran.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Cek apakah form sudah disubmit
+          <pre><code class="language-php">&lt;?php
+$pesan = "";
+
+// Proses jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $_POST['nama'];
+    // Ambil data dari form
+    $nama = htmlspecialchars($_POST['nama']);
+    $email = htmlspecialchars($_POST['email']);
     $kelas = $_POST['kelas'];
+    $jk = $_POST['jenis_kelamin'];
     
-    echo "&lt;h2&gt;Data Berhasil Diterima!&lt;/h2&gt;";
-    echo "&lt;p&gt;Nama: $nama&lt;/p&gt;";
-    echo "&lt;p&gt;Kelas: $kelas&lt;/p&gt;";
+    // Buat pesan sukses
+    $pesan = "
+        &lt;div class='sukses'&gt;
+            &lt;h3&gt;✅ Pendaftaran Berhasil!&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Nama:&lt;/strong&gt; $nama&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; $email&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;Kelas:&lt;/strong&gt; $kelas&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;Jenis Kelamin:&lt;/strong&gt; $jk&lt;/p&gt;
+        &lt;/div&gt;
+    ";
 }
 ?&gt;
 
-&lt;form method="POST"&gt;
-    &lt;input type="text" name="nama" placeholder="Nama" required&gt;
-    &lt;select name="kelas"&gt;
-        &lt;option value="X RPL 1"&gt;X RPL 1&lt;/option&gt;
-        &lt;option value="X RPL 2"&gt;X RPL 2&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;button type="submit"&gt;Daftar&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Form Pendaftaran Siswa&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .sukses {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .sukses h3 { color: #155724; margin-top: 0; }
+        .sukses p { margin: 5px 0; color: #155724; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h2&gt;📝 Pendaftaran Siswa Baru&lt;/h2&gt;
+        
+        &lt;!-- Tampilkan pesan sukses jika ada --&gt;
+        &lt;?php echo $pesan; ?&gt;
+        
+        &lt;form method="POST"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label for="nama"&gt;Nama Lengkap&lt;/label&gt;
+                &lt;input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="email"&gt;Email&lt;/label&gt;
+                &lt;input type="email" id="email" name="email" placeholder="contoh@email.com" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="kelas"&gt;Kelas&lt;/label&gt;
+                &lt;select id="kelas" name="kelas" required&gt;
+                    &lt;option value=""&gt;-- Pilih Kelas --&lt;/option&gt;
+                    &lt;option value="X RPL 1"&gt;X RPL 1&lt;/option&gt;
+                    &lt;option value="X RPL 2"&gt;X RPL 2&lt;/option&gt;
+                    &lt;option value="XI RPL 1"&gt;XI RPL 1&lt;/option&gt;
+                    &lt;option value="XI RPL 2"&gt;XI RPL 2&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Jenis Kelamin&lt;/label&gt;
+                &lt;div class="radio-group"&gt;
+                    &lt;label&gt;
+                        &lt;input type="radio" name="jenis_kelamin" value="Laki-laki" required&gt;
+                        Laki-laki
+                    &lt;/label&gt;
+                    &lt;label&gt;
+                        &lt;input type="radio" name="jenis_kelamin" value="Perempuan"&gt;
+                        Perempuan
+                    &lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;button type="submit"&gt;🚀 Daftar Sekarang&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
         </div>
       </div>
-      
-      <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-emerald-200">
-        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
-        <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Buat form pendaftaran dengan nama, email, dan jurusan</li>
-          <li>Tampilkan semua data yang diinput</li>
-          <li>Tambahkan radio button untuk jenis kelamin</li>
+
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Alur Kode:</h4>
+        <ol class="list-decimal list-inside text-slate-600 space-y-2">
+          <li><strong>Line 1-18:</strong> Bagian PHP - proses data jika form disubmit</li>
+          <li><strong>$_SERVER['REQUEST_METHOD']</strong> - cek apakah method adalah POST</li>
+          <li><strong>htmlspecialchars()</strong> - mengamankan input dari kode berbahaya</li>
+          <li><strong>&lt;?php echo $pesan; ?&gt;</strong> - menampilkan hasil di halaman yang sama</li>
+          <li><strong>required</strong> - validasi browser agar field tidak kosong</li>
         </ol>
       </div>
-      
+
+      <!-- Latihan -->
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
+        <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+          <li>Buat form kalkulator dengan 2 input angka dan pilihan operasi (+, -, ×, ÷)</li>
+          <li>Buat form biodata dengan nama, alamat, tanggal lahir, dan hobi (checkbox)</li>
+          <li>Buat form pencarian dengan method GET yang menampilkan keyword di hasilnya</li>
+          <li>Styling semua form dengan CSS agar tampilannya menarik!</li>
+        </ol>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-emerald-700 mb-2">Yang Sudah Dipelajari:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ Struktur form HTML</li>
+              <li>✅ Perbedaan GET vs POST</li>
+              <li>✅ Jenis-jenis input</li>
+              <li>✅ Akses data dengan $_POST/$_GET</li>
+              <li>✅ htmlspecialchars() untuk keamanan</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-teal-700 mb-2">Key Points:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li><code>name=""</code> wajib untuk akses di PHP</li>
+              <li><code>$_POST['name']</code> untuk method POST</li>
+              <li><code>$_GET['name']</code> untuk method GET</li>
+              <li>Selalu validasi dan sanitasi input!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
         <a href="../minggu-1/fungsi.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Fungsi PHP
         </a>
         <a href="validasi-data.html" class="btn-primary">
           Materi Selanjutnya
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
-      
+
     </div>
   </section>
 
@@ -211,4 +639,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <script src="../../js/main.js"></script>
   <script>hljs.highlightAll();</script>
 </body>
+
 </html>

@@ -27,7 +27,7 @@
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
         <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
-        <a href="menampilkan-data.html" class="text-indigo-600 font-medium">Materi</a>
+        <a href="crud-php.html" class="text-indigo-600 font-medium">Materi</a>
         <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
       </div>
     </div>
@@ -36,9 +36,9 @@
   <!-- Header -->
   <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-amber-500 to-orange-500">
     <div class="max-w-4xl mx-auto">
-      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 12</div>
-      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Upload File</h1>
-      <p class="text-white/90">Mengunggah gambar dan file ke server</p>
+      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 11</div>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📤 Upload File & Gambar</h1>
+      <p class="text-white/90">Mengunggah gambar dan file ke server dengan validasi keamanan</p>
     </div>
   </section>
 
@@ -50,130 +50,460 @@
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
-          <li>• Membuat form upload file</li>
-          <li>• Memproses file yang diupload dengan PHP</li>
-          <li>• Validasi tipe dan ukuran file</li>
+          <li>• Memahami cara kerja upload file di PHP</li>
+          <li>• Membuat form upload dengan enctype yang benar</li>
+          <li>• Menggunakan variabel $_FILES untuk mengakses file</li>
+          <li>• Validasi tipe dan ukuran file (keamanan)</li>
+          <li>• Menyimpan file dengan nama unik ke server</li>
+          <li>• Menyimpan nama file ke database</li>
         </ul>
       </div>
 
-      <!-- Form Upload -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">📤 Form Upload</h2>
+      <!-- ======================= BAGIAN 1: KONSEP UPLOAD ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📤 Bagian 1: Cara Kerja Upload File</h2>
 
-      <div class="alert alert-info mb-6">
-        <span class="text-2xl">💡</span>
-        <div>
-          <strong class="text-indigo-800">Penting:</strong>
-          <span class="text-indigo-700">Form upload harus punya atribut
-            <code>enctype="multipart/form-data"</code></span>
+      <div class="card p-6 mb-6 bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-500">
+        <h3 class="font-bold text-amber-800 mb-2">🔄 Alur Upload File</h3>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-center">
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">📁</div>
+            <div class="text-xs">User pilih file</div>
+          </div>
+          <div class="text-xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">📤</div>
+            <div class="text-xs">Form submit</div>
+          </div>
+          <div class="text-xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">📂</div>
+            <div class="text-xs">File di temp</div>
+          </div>
+          <div class="text-xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">✅</div>
+            <div class="text-xs">Validasi</div>
+          </div>
+          <div class="text-xl">→</div>
+          <div class="bg-white p-3 rounded shadow">
+            <div class="text-2xl">💾</div>
+            <div class="text-xs">Simpan ke folder</div>
+          </div>
         </div>
       </div>
 
-      <div class="code-block mb-6">
+      <!-- ======================= BAGIAN 2: FORM UPLOAD ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📝 Bagian 2: Form Upload HTML</h2>
+
+      <div class="alert alert-info mb-4">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Wajib!</strong>
+          <span class="text-indigo-700">
+            Form upload HARUS punya atribut <code>enctype="multipart/form-data"</code>.
+            Tanpa ini, file tidak akan terkirim!
+          </span>
+        </div>
+      </div>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">form_upload.html</span>
+          <span class="text-slate-400 text-sm">form_upload.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-          <pre><code class="language-php">&lt;form action="upload.php" method="POST" enctype="multipart/form-data"&gt;
-    &lt;label&gt;Pilih Gambar:&lt;/label&gt;
-    &lt;input type="file" name="gambar" accept="image/*" required&gt;
-    &lt;button type="submit"&gt;Upload&lt;/button&gt;
+          <pre><code class="language-html">&lt;!-- Form upload dasar --&gt;
+&lt;form action="proses_upload.php" method="POST" enctype="multipart/form-data"&gt;
+    
+    &lt;label for="gambar"&gt;Pilih Gambar:&lt;/label&gt;
+    &lt;input type="file" id="gambar" name="gambar" accept="image/*" required&gt;
+    
+    &lt;button type="submit"&gt;📤 Upload&lt;/button&gt;
+    
+&lt;/form&gt;
+
+&lt;!-- Form dengan multiple files --&gt;
+&lt;form action="proses.php" method="POST" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="files[]" multiple accept=".jpg,.png,.pdf"&gt;
+    &lt;button type="submit"&gt;Upload Banyak&lt;/button&gt;
 &lt;/form&gt;</code></pre>
         </div>
       </div>
 
-      <!-- Proses Upload -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">⚙️ Proses Upload di PHP</h2>
-      <div class="code-block mb-6">
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Atribut Penting Form Upload:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-amber-100">
+              <tr>
+                <th class="p-2 text-left">Atribut</th>
+                <th class="p-2 text-left">Kegunaan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono text-amber-600">enctype="multipart/form-data"</td>
+                <td class="p-2">WAJIB! Memungkinkan upload file</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-amber-600">accept="image/*"</td>
+                <td class="p-2">Filter file di file picker (tidak untuk keamanan!)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-amber-600">multiple</td>
+                <td class="p-2">Izinkan pilih banyak file</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-amber-600">name="files[]"</td>
+                <td class="p-2">Nama dengan [] untuk multiple files</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: $_FILES ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📂 Bagian 3: Mengakses File dengan $_FILES</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">upload.php</span>
+          <span class="text-slate-400 text-sm">cek_files.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
           <pre><code class="language-php">&lt;?php
-$folder = "uploads/";
+// Struktur $_FILES
+print_r($_FILES);
 
-// Buat folder jika belum ada
-if (!file_exists($folder)) {
-    mkdir($folder, 0777, true);
+/*
+Output:
+Array (
+    [gambar] => Array (
+        [name] => foto_saya.jpg       // Nama asli file
+        [type] => image/jpeg          // MIME type
+        [tmp_name] => /tmp/php123abc  // Lokasi temporary
+        [error] => 0                  // Kode error (0 = sukses)
+        [size] => 245678              // Ukuran dalam bytes
+    )
+)
+*/
+
+// Mengakses informasi file
+$nama_file  = $_FILES['gambar']['name'];      // foto_saya.jpg
+$tipe_file  = $_FILES['gambar']['type'];      // image/jpeg
+$tmp_file   = $_FILES['gambar']['tmp_name'];  // /tmp/php123abc
+$error      = $_FILES['gambar']['error'];     // 0
+$ukuran     = $_FILES['gambar']['size'];      // 245678 bytes
+?&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Kode Error Upload:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Kode</th>
+                <th class="p-2 text-left">Artinya</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono">0</td>
+                <td class="p-2 text-green-600">✅ Sukses, tidak ada error</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">1</td>
+                <td class="p-2">File terlalu besar (dari php.ini)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">2</td>
+                <td class="p-2">File terlalu besar (dari MAX_FILE_SIZE)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">3</td>
+                <td class="p-2">File hanya terupload sebagian</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono">4</td>
+                <td class="p-2">Tidak ada file yang diupload</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: PROSES UPLOAD ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">⚙️ Bagian 4: Proses Upload Lengkap dengan Validasi</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">proses_upload.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+// ===== KONFIGURASI =====
+$folder_upload = "uploads/";               // Folder tujuan
+$max_size = 2 * 1024 * 1024;               // Max 2MB
+$allowed_types = ['jpg', 'jpeg', 'png', 'gif'];  // Tipe yang diizinkan
+
+// ===== BUAT FOLDER JIKA BELUM ADA =====
+if (!file_exists($folder_upload)) {
+    mkdir($folder_upload, 0777, true);
 }
 
-// Ambil info file
+// ===== CEK APAKAH ADA FILE YANG DIUPLOAD =====
+if (!isset($_FILES['gambar']) || $_FILES['gambar']['error'] == 4) {
+    die("❌ Error: Tidak ada file yang dipilih!");
+}
+
+// ===== AMBIL INFORMASI FILE =====
 $nama_file = $_FILES['gambar']['name'];
 $tmp_file  = $_FILES['gambar']['tmp_name'];
 $ukuran    = $_FILES['gambar']['size'];
 $error     = $_FILES['gambar']['error'];
 
-// Validasi error
-if ($error === 0) {
-    // Buat nama unik
-    $nama_baru = time() . "_" . $nama_file;
-    $path = $folder . $nama_baru;
+// ===== CEK ERROR UPLOAD =====
+if ($error !== 0) {
+    die("❌ Error upload dengan kode: $error");
+}
+
+// ===== VALIDASI UKURAN FILE =====
+if ($ukuran > $max_size) {
+    die("❌ Error: Ukuran file terlalu besar! Maksimal 2MB");
+}
+
+// ===== VALIDASI TIPE FILE =====
+$ext = strtolower(pathinfo($nama_file, PATHINFO_EXTENSION));
+if (!in_array($ext, $allowed_types)) {
+    die("❌ Error: Tipe file tidak diizinkan! Hanya: " . implode(', ', $allowed_types));
+}
+
+// ===== BUAT NAMA FILE UNIK =====
+// Menghindari nama file duplikat dan karakter berbahaya
+$nama_baru = uniqid() . "_" . time() . "." . $ext;
+
+// ===== PINDAHKAN FILE KE FOLDER TUJUAN =====
+$path_tujuan = $folder_upload . $nama_baru;
+
+if (move_uploaded_file($tmp_file, $path_tujuan)) {
+    echo "✅ Upload berhasil!&lt;br&gt;";
+    echo "Nama file: $nama_baru&lt;br&gt;";
+    echo "Lokasi: $path_tujuan&lt;br&gt;";
+    echo "&lt;img src='$path_tujuan' width='200'&gt;";
     
-    // Pindahkan file
-    if (move_uploaded_file($tmp_file, $path)) {
-        echo "Upload berhasil! File: $nama_baru";
-    } else {
-        echo "Gagal memindahkan file!";
-    }
+    // Simpan ke database jika perlu
+    // $sql = "INSERT INTO gambar (nama_file) VALUES ('$nama_baru')";
+    
 } else {
-    echo "Error upload: $error";
+    echo "❌ Gagal memindahkan file!";
 }
 ?&gt;</code></pre>
         </div>
       </div>
 
-      <!-- Validasi -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔒 Validasi File</h2>
-      <div class="code-block mb-6">
+      <div class="alert alert-warning mb-8">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">Keamanan Upload!</strong>
+          <ul class="text-amber-700 text-sm mt-1">
+            <li>• Jangan percaya atribut <code>accept</code> di HTML - mudah dibypass</li>
+            <li>• SELALU validasi ekstensi dan MIME type di server</li>
+            <li>• Gunakan nama file baru (jangan pakai nama asli user)</li>
+            <li>• JANGAN izinkan upload file .php, .exe, .js!</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 5: UPLOAD DENGAN DATABASE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">💾 Bagian 5: Upload dengan Simpan ke Database</h2>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">validasi_upload.php</span>
+          <span class="text-slate-400 text-sm">upload_foto_siswa.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
           <pre><code class="language-php">&lt;?php
-$allowed = ['jpg', 'jpeg', 'png', 'gif'];
-$max_size = 2 * 1024 * 1024; // 2MB
+require_once 'koneksi.php';
 
-$nama_file = $_FILES['gambar']['name'];
-$ukuran = $_FILES['gambar']['size'];
-$ext = strtolower(pathinfo($nama_file, PATHINFO_EXTENSION));
+$pesan = "";
 
-// Cek ekstensi
-if (!in_array($ext, $allowed)) {
-    die("Error: Tipe file tidak diizinkan!");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Ambil data form
+    $nama = htmlspecialchars(trim($_POST['nama']));
+    
+    // Konfigurasi upload
+    $folder = "uploads/siswa/";
+    $allowed = ['jpg', 'jpeg', 'png'];
+    $max_size = 1 * 1024 * 1024;  // 1MB
+    
+    // Buat folder jika belum ada
+    if (!file_exists($folder)) mkdir($folder, 0777, true);
+    
+    // Proses file
+    $nama_file = $_FILES['foto']['name'];
+    $tmp_file = $_FILES['foto']['tmp_name'];
+    $ukuran = $_FILES['foto']['size'];
+    $error = $_FILES['foto']['error'];
+    
+    // Validasi
+    $ext = strtolower(pathinfo($nama_file, PATHINFO_EXTENSION));
+    
+    if ($error !== 0) {
+        $pesan = "❌ Error upload!";
+    } elseif ($ukuran > $max_size) {
+        $pesan = "❌ Ukuran foto maksimal 1MB!";
+    } elseif (!in_array($ext, $allowed)) {
+        $pesan = "❌ Hanya file JPG dan PNG yang diizinkan!";
+    } else {
+        // Buat nama unik
+        $nama_baru = uniqid() . "." . $ext;
+        $path = $folder . $nama_baru;
+        
+        // Pindahkan file
+        if (move_uploaded_file($tmp_file, $path)) {
+            // Simpan ke database dengan prepared statement
+            $stmt = mysqli_prepare($conn, "INSERT INTO siswa (nama, foto) VALUES (?, ?)");
+            mysqli_stmt_bind_param($stmt, "ss", $nama, $nama_baru);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                $pesan = "✅ Data siswa berhasil ditambahkan!";
+            } else {
+                $pesan = "❌ Gagal simpan ke database!";
+                unlink($path);  // Hapus file jika gagal simpan
+            }
+        } else {
+            $pesan = "❌ Gagal upload file!";
+        }
+    }
 }
+?&gt;
 
-// Cek ukuran
-if ($ukuran > $max_size) {
-    die("Error: Ukuran file terlalu besar! Max 2MB");
-}
-
-// Lanjut proses upload...
-?&gt;</code></pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Upload Foto Siswa&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 40px 20px; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h2 { color: #333; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; }
+        input[type="text"], input[type="file"] { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; }
+        input:focus { border-color: #6366f1; outline: none; }
+        button { width: 100%; padding: 14px; background: #6366f1; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .alert { padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .alert-success { background: #d4edda; color: #155724; }
+        .alert-error { background: #f8d7da; color: #721c24; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h2&gt;📤 Upload Foto Siswa&lt;/h2&gt;
+        
+        &lt;?php if ($pesan): ?&gt;
+            &lt;div class="alert &lt;?php echo strpos($pesan, '✅') !== false ? 'alert-success' : 'alert-error'; ?&gt;"&gt;
+                &lt;?php echo $pesan; ?&gt;
+            &lt;/div&gt;
+        &lt;?php endif; ?&gt;
+        
+        &lt;form method="POST" enctype="multipart/form-data"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Nama Siswa&lt;/label&gt;
+                &lt;input type="text" name="nama" placeholder="Masukkan nama lengkap" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;Foto (JPG/PNG, max 1MB)&lt;/label&gt;
+                &lt;input type="file" name="foto" accept=".jpg,.jpeg,.png" required&gt;
+            &lt;/div&gt;
+            
+            &lt;button type="submit"&gt;💾 Simpan Data&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
         </div>
       </div>
 
-      <div class="alert alert-warning mb-6">
-        <span class="text-2xl">⚠️</span>
-        <div>
-          <strong class="text-amber-800">Keamanan:</strong>
-          <span class="text-amber-700">Selalu validasi file! Jangan izinkan file berbahaya seperti .php masuk ke
-            server.</span>
+      <!-- ======================= BAGIAN 6: MENAMPILKAN GAMBAR ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🖼️ Bagian 6: Menampilkan Gambar dari Database</h2>
+
+      <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">tampil_foto.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+require_once 'koneksi.php';
+
+$sql = "SELECT * FROM siswa ORDER BY id DESC";
+$result = mysqli_query($conn, $sql);
+?&gt;
+
+&lt;div class="galeri"&gt;
+    &lt;?php while ($row = mysqli_fetch_assoc($result)): ?&gt;
+        &lt;div class="card"&gt;
+            &lt;!-- Tampilkan gambar --&gt;
+            &lt;?php if ($row['foto']): ?&gt;
+                &lt;img src="uploads/siswa/&lt;?php echo htmlspecialchars($row['foto']); ?&gt;" 
+                     alt="Foto &lt;?php echo htmlspecialchars($row['nama']); ?&gt;"&gt;
+            &lt;?php else: ?&gt;
+                &lt;img src="assets/no-photo.png" alt="No Photo"&gt;
+            &lt;?php endif; ?&gt;
+            
+            &lt;h3&gt;&lt;?php echo htmlspecialchars($row['nama']); ?&gt;&lt;/h3&gt;
+        &lt;/div&gt;
+    &lt;?php endwhile; ?&gt;
+&lt;/div&gt;</code></pre>
         </div>
       </div>
 
       <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-amber-200">
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
         <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Buat form upload untuk cover buku</li>
-          <li>Validasi hanya gambar (jpg, png) yang diizinkan</li>
-          <li>Simpan nama file ke database</li>
+          <li>Buat form upload untuk cover buku dengan validasi hanya JPG dan PNG</li>
+          <li>Simpan nama file cover ke tabel buku</li>
+          <li>Tampilkan daftar buku dengan cover dalam grid/card layout</li>
+          <li>Tambahkan fitur hapus buku yang juga menghapus file cover</li>
         </ol>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-amber-700 mb-2">Yang Sudah Dipelajari:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ Form dengan enctype multipart</li>
+              <li>✅ Mengakses file dengan $_FILES</li>
+              <li>✅ Validasi ukuran dan tipe file</li>
+              <li>✅ move_uploaded_file()</li>
+              <li>✅ Simpan nama file ke database</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-orange-700 mb-2">Best Practices:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>⚠️ Selalu validasi di server!</li>
+              <li>⚠️ Gunakan nama file unik</li>
+              <li>⚠️ Jangan izinkan file berbahaya</li>
+              <li>⚠️ Set max size yang wajar</li>
+              <li>⚠️ Hapus file jika simpan DB gagal</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Navigation -->
@@ -184,8 +514,8 @@ if ($ukuran > $max_size) {
           </svg>
           CRUD PHP
         </a>
-        <a href="tampilan-dinamis.html" class="btn-primary">
-          Materi Selanjutnya
+        <a href="../../project-akhir.html" class="btn-primary">
+          Project Akhir
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>

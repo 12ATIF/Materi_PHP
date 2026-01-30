@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="../../index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -41,141 +45,533 @@
   <!-- Content -->
   <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-      
+
       <!-- Tujuan -->
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
           <li>• Memahami apa itu variabel dan cara membuatnya</li>
+          <li>• Mengenal aturan penamaan variabel</li>
           <li>• Mengenal berbagai tipe data di PHP</li>
-          <li>• Menggunakan operator untuk mengolah data</li>
+          <li>• Menggunakan operator aritmatika dan concatenation</li>
+          <li>• Membuat kalkulator sederhana</li>
         </ul>
       </div>
-      
-      <!-- Penjelasan Variabel -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Apa itu Variabel?</h2>
-      
-      <div class="alert alert-info mb-6">
-        <span class="text-2xl">💡</span>
-        <div>
-          <strong class="text-indigo-800">Bayangkan begini:</strong>
-          <span class="text-indigo-700">Variabel itu seperti <strong>kotak penyimpanan</strong> yang punya nama. Kamu bisa menyimpan data apapun ke dalam kotak itu.</span>
+
+      <!-- ======================= BAGIAN 1: VARIABEL ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📦 Bagian 1: Apa itu Variabel?</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-500">
+        <h3 class="font-bold text-indigo-800 mb-2">🤔 Analogi Sederhana</h3>
+        <p class="text-slate-700">
+          <strong>Variabel</strong> itu seperti <strong>kotak penyimpanan</strong> yang punya nama.
+          Kamu bisa menyimpan berbagai data ke dalam kotak itu, dan mengambilnya kapan saja dengan menyebut namanya.
+        </p>
+        <div class="mt-4 flex items-center gap-4">
+          <div class="bg-white p-3 rounded border-2 border-dashed border-indigo-300 text-center">
+            <div class="text-2xl">📦</div>
+            <div class="text-xs text-slate-500">$nama</div>
+            <div class="font-bold text-indigo-600">"Budi"</div>
+          </div>
+          <div class="bg-white p-3 rounded border-2 border-dashed border-green-300 text-center">
+            <div class="text-2xl">📦</div>
+            <div class="text-xs text-slate-500">$umur</div>
+            <div class="font-bold text-green-600">17</div>
+          </div>
+          <div class="bg-white p-3 rounded border-2 border-dashed border-amber-300 text-center">
+            <div class="text-2xl">📦</div>
+            <div class="text-xs text-slate-500">$nilai</div>
+            <div class="font-bold text-amber-600">85.5</div>
+          </div>
         </div>
       </div>
-      
-      <p class="text-slate-600 mb-4">Di PHP, variabel diawali dengan tanda <strong>$</strong> (dollar).</p>
-      
-      <div class="code-block mb-6">
+
+      <h3 class="text-xl font-bold text-slate-800 mb-3">💻 Cara Membuat Variabel</h3>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">variabel.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Membuat variabel
-$nama = "Budi";           // Menyimpan teks
-$umur = 17;               // Menyimpan angka
-$tinggi = 165.5;          // Menyimpan angka desimal
-$sudahLulus = false;      // Menyimpan true/false
+          <pre><code class="language-php">&lt;?php
+// Membuat variabel dengan tanda $ (dollar)
+$nama = "Budi Santoso";     // Variabel untuk teks
+$umur = 17;                  // Variabel untuk angka
+$tinggi = 165.5;             // Variabel untuk desimal
+$sudahLulus = false;         // Variabel untuk true/false
 
-// Menampilkan variabel
-echo "Nama: " . $nama;    // Output: Nama: Budi
-echo "Umur: " . $umur;    // Output: Umur: 17
+// Menampilkan isi variabel
+echo "Nama: " . $nama;       // Output: Nama: Budi Santoso
+echo "&lt;br&gt;";                 // Pindah baris di HTML
+echo "Umur: " . $umur;       // Output: Umur: 17
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <!-- Tipe Data -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">📊 Tipe Data di PHP</h2>
-      
-      <div class="grid md:grid-cols-2 gap-4 mb-8">
-        <div class="card p-4">
-          <h3 class="font-bold text-indigo-600 mb-2">String (Teks)</h3>
-          <code class="text-sm bg-slate-100 px-2 py-1 rounded">$nama = "Budi";</code>
-          <p class="text-sm text-slate-500 mt-2">Teks diapit tanda kutip</p>
-        </div>
-        <div class="card p-4">
-          <h3 class="font-bold text-emerald-600 mb-2">Integer (Bilangan Bulat)</h3>
-          <code class="text-sm bg-slate-100 px-2 py-1 rounded">$umur = 17;</code>
-          <p class="text-sm text-slate-500 mt-2">Angka tanpa desimal</p>
-        </div>
-        <div class="card p-4">
-          <h3 class="font-bold text-amber-600 mb-2">Float (Bilangan Desimal)</h3>
-          <code class="text-sm bg-slate-100 px-2 py-1 rounded">$nilai = 85.5;</code>
-          <p class="text-sm text-slate-500 mt-2">Angka dengan desimal</p>
-        </div>
-        <div class="card p-4">
-          <h3 class="font-bold text-purple-600 mb-2">Boolean (True/False)</h3>
-          <code class="text-sm bg-slate-100 px-2 py-1 rounded">$lulus = true;</code>
-          <p class="text-sm text-slate-500 mt-2">Hanya bernilai true atau false</p>
+
+      <!-- Penjelasan Sintaks -->
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Sintaks:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-indigo-100">
+              <tr>
+                <th class="p-2 text-left">Bagian</th>
+                <th class="p-2 text-left">Contoh</th>
+                <th class="p-2 text-left">Penjelasan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-bold">Tanda $</td>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">$nama</code></td>
+                <td class="p-2">Semua variabel PHP diawali dengan tanda dollar</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold">Nama variabel</td>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">nama</code></td>
+                <td class="p-2">Nama yang kamu pilih untuk variabel</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold">Tanda =</td>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">=</code></td>
+                <td class="p-2">Operator assignment (mengisi nilai ke variabel)</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold">Nilai</td>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">"Budi"</code></td>
+                <td class="p-2">Data yang disimpan dalam variabel</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-bold">Titik koma</td>
+                <td class="p-2"><code class="bg-slate-100 px-1 rounded">;</code></td>
+                <td class="p-2">Mengakhiri setiap statement (WAJIB!)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      
-      <!-- Operator -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔢 Operator Aritmatika</h2>
-      
-      <div class="code-block mb-6">
+
+      <!-- Aturan Penamaan -->
+      <h3 class="text-xl font-bold text-slate-800 mb-3">📝 Aturan Penamaan Variabel</h3>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <div class="font-bold text-green-700 mb-2">✅ Nama yang BOLEH</div>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li><code>$nama</code> → huruf kecil</li>
+            <li><code>$nama_lengkap</code> → underscore</li>
+            <li><code>$namaLengkap</code> → camelCase</li>
+            <li><code>$_private</code> → awalan underscore</li>
+            <li><code>$nama2</code> → mengandung angka (tidak di awal)</li>
+          </ul>
+        </div>
+        <div class="card p-4 border-2 border-red-200 bg-red-50">
+          <div class="font-bold text-red-700 mb-2">❌ Nama yang TIDAK BOLEH</div>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li><code class="line-through">$2nama</code> → diawali angka</li>
+            <li><code class="line-through">$nama-lengkap</code> → menggunakan strip</li>
+            <li><code class="line-through">$nama lengkap</code> → mengandung spasi</li>
+            <li><code class="line-through">nama</code> → tanpa tanda $</li>
+            <li><code class="line-through">$echo</code> → nama kata kunci PHP</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 2: TIPE DATA ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📊 Bagian 2: Tipe Data di PHP</h2>
+
+      <p class="text-slate-600 mb-4">
+        PHP mengenal berbagai jenis data. Setiap variabel memiliki tipe data sesuai nilai yang disimpan.
+      </p>
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Tipe Data Dasar:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Tipe</th>
+                <th class="p-2 text-left">Nama</th>
+                <th class="p-2 text-left">Contoh</th>
+                <th class="p-2 text-left">Kegunaan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr class="bg-blue-50">
+                <td class="p-2 font-bold text-blue-600">String</td>
+                <td class="p-2">Teks</td>
+                <td class="p-2"><code>"Halo"</code> atau <code>'Halo'</code></td>
+                <td class="p-2">Nama, alamat, pesan</td>
+              </tr>
+              <tr class="bg-green-50">
+                <td class="p-2 font-bold text-green-600">Integer</td>
+                <td class="p-2">Bilangan bulat</td>
+                <td class="p-2"><code>17</code>, <code>-5</code>, <code>1000</code></td>
+                <td class="p-2">Umur, jumlah, ID</td>
+              </tr>
+              <tr class="bg-amber-50">
+                <td class="p-2 font-bold text-amber-600">Float</td>
+                <td class="p-2">Bilangan desimal</td>
+                <td class="p-2"><code>3.14</code>, <code>85.5</code></td>
+                <td class="p-2">Nilai, harga, ukuran</td>
+              </tr>
+              <tr class="bg-purple-50">
+                <td class="p-2 font-bold text-purple-600">Boolean</td>
+                <td class="p-2">True/False</td>
+                <td class="p-2"><code>true</code>, <code>false</code></td>
+                <td class="p-2">Status login, lulus/tidak</td>
+              </tr>
+              <tr class="bg-pink-50">
+                <td class="p-2 font-bold text-pink-600">Array</td>
+                <td class="p-2">Kumpulan data</td>
+                <td class="p-2"><code>["a", "b", "c"]</code></td>
+                <td class="p-2">List nama, daftar nilai</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-2 font-bold text-slate-600">NULL</td>
+                <td class="p-2">Kosong</td>
+                <td class="p-2"><code>null</code></td>
+                <td class="p-2">Variabel tanpa nilai</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
-          <span class="text-slate-400 text-sm">operator.php</span>
+          <span class="text-slate-400 text-sm">tipe_data.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-$a = 10;
-$b = 3;
+          <pre><code class="language-php">&lt;?php
+// STRING - Teks dalam tanda kutip
+$nama = "Budi Santoso";
+$alamat = 'Jl. Merdeka No. 10';
 
-echo $a + $b;   // Penjumlahan: 13
-echo $a - $b;   // Pengurangan: 7
-echo $a * $b;   // Perkalian: 30
-echo $a / $b;   // Pembagian: 3.33...
-echo $a % $b;   // Sisa bagi (modulus): 1
+// INTEGER - Angka bulat (tanpa titik desimal)
+$umur = 17;
+$jumlahSiswa = 30;
 
-// Menggabungkan string
-$depan = "Budi";
-$belakang = "Santoso";
-$lengkap = $depan . " " . $belakang;
-echo $lengkap;  // Output: Budi Santoso
+// FLOAT - Angka desimal (dengan titik)
+$tinggi = 165.5;
+$nilai = 85.75;
+
+// BOOLEAN - Hanya true atau false
+$sudahLogin = true;
+$sudahLulus = false;
+
+// ARRAY - Kumpulan data dalam satu variabel
+$hobi = ["Membaca", "Coding", "Gaming"];
+$nilaiUTS = [80, 85, 90];
+
+// NULL - Tidak ada nilai
+$pacar = null;  // 😅
+
+// Cek tipe data dengan gettype()
+echo gettype($nama);   // Output: string
+echo gettype($umur);   // Output: integer
 ?&gt;</code></pre>
         </div>
       </div>
-      
+
+      <div class="alert alert-info mb-8">
+        <span class="text-2xl">💡</span>
+        <div>
+          <strong class="text-indigo-800">Perbedaan Kutip Ganda vs Tunggal:</strong>
+          <div class="text-indigo-700 text-sm mt-1">
+            <p>• <code>"Halo $nama"</code> → variabel akan diganti nilainya (interpolation)</p>
+            <p>• <code>'Halo $nama'</code> → ditampilkan apa adanya: Halo $nama</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: ARRAY ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">📚 Bagian 3: Array (Kumpulan Data)</h2>
+
+      <p class="text-slate-600 mb-4">
+        Array adalah variabel yang bisa menyimpan <strong>banyak nilai sekaligus</strong>.
+        Bayangkan seperti lemari dengan banyak laci bernomor.
+      </p>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">array.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+// ARRAY INDEXED - index dimulai dari 0
+$buah = ["Apel", "Jeruk", "Mangga"];
+//         [0]      [1]      [2]
+
+echo $buah[0];  // Output: Apel
+echo $buah[1];  // Output: Jeruk
+echo $buah[2];  // Output: Mangga
+
+// ARRAY ASSOCIATIVE - index berupa nama (key)
+$siswa = [
+    "nama" => "Budi",
+    "kelas" => "XI RPL",
+    "umur" => 17
+];
+
+echo $siswa["nama"];   // Output: Budi
+echo $siswa["kelas"];  // Output: XI RPL
+
+// Menambah data ke array
+$buah[] = "Durian";        // Tambah di akhir
+$siswa["hobi"] = "Coding"; // Tambah dengan key
+
+// Menghitung jumlah elemen
+echo count($buah);  // Output: 4
+?&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="card p-4 mb-8">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Perbedaan Array Indexed vs Associative:</h4>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-blue-50 p-3 rounded">
+            <strong class="text-blue-700">Indexed Array</strong>
+            <p class="text-sm text-slate-600 mt-1">Index otomatis berupa angka (0, 1, 2, ...)</p>
+            <code class="text-xs">$buah[0], $buah[1]</code>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <strong class="text-green-700">Associative Array</strong>
+            <p class="text-sm text-slate-600 mt-1">Index berupa nama/key yang kamu tentukan</p>
+            <code class="text-xs">$siswa["nama"], $siswa["kelas"]</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: OPERATOR ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔢 Bagian 4: Operator</h2>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">Operator Aritmatika</h3>
+
+      <div class="card p-4 mb-4">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="p-2 text-left">Operator</th>
+                <th class="p-2 text-left">Nama</th>
+                <th class="p-2 text-left">Contoh</th>
+                <th class="p-2 text-left">Hasil</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono text-xl text-center">+</td>
+                <td class="p-2">Penjumlahan</td>
+                <td class="p-2"><code>10 + 3</code></td>
+                <td class="p-2 font-bold">13</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xl text-center">-</td>
+                <td class="p-2">Pengurangan</td>
+                <td class="p-2"><code>10 - 3</code></td>
+                <td class="p-2 font-bold">7</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xl text-center">*</td>
+                <td class="p-2">Perkalian</td>
+                <td class="p-2"><code>10 * 3</code></td>
+                <td class="p-2 font-bold">30</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xl text-center">/</td>
+                <td class="p-2">Pembagian</td>
+                <td class="p-2"><code>10 / 3</code></td>
+                <td class="p-2 font-bold">3.33...</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xl text-center">%</td>
+                <td class="p-2">Modulus (sisa bagi)</td>
+                <td class="p-2"><code>10 % 3</code></td>
+                <td class="p-2 font-bold">1</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-xl text-center">**</td>
+                <td class="p-2">Pangkat</td>
+                <td class="p-2"><code>2 ** 3</code></td>
+                <td class="p-2 font-bold">8</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">Concatenation (Menggabung String)</h3>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">concatenation.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+$depan = "Budi";
+$belakang = "Santoso";
+
+// Cara 1: Pakai titik (.)
+$lengkap = $depan . " " . $belakang;
+echo $lengkap;  // Output: Budi Santoso
+
+// Cara 2: Pakai kutip ganda
+$salam = "Halo, nama saya $depan $belakang";
+echo $salam;    // Output: Halo, nama saya Budi Santoso
+
+// Gabung angka dan teks
+$umur = 17;
+echo "Umur saya " . $umur . " tahun";
+?&gt;</code></pre>
+        </div>
+      </div>
+
       <div class="alert alert-tip mb-8">
         <span class="text-2xl">🧠</span>
         <div>
-          <strong class="text-emerald-800">Tips:</strong>
-          <span class="text-emerald-700">Tanda titik <code>.</code> digunakan untuk menggabungkan string. Ini disebut <em>concatenation</em>.</span>
+          <strong class="text-emerald-800">Ingat!</strong>
+          <ul class="text-emerald-700 text-sm mt-1">
+            <li>• Titik <code>.</code> = menggabungkan string (concatenation)</li>
+            <li>• Plus <code>+</code> = menghitung angka (aritmatika)</li>
+          </ul>
         </div>
       </div>
-      
+
+      <!-- ======================= BAGIAN 5: CONTOH KALKULATOR ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🧮 Bagian 5: Contoh - Kalkulator Sederhana</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">kalkulator.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Kalkulator Sederhana&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        .kalkulator { background: white; padding: 30px; border-radius: 15px; max-width: 400px; margin: auto; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #6366f1; }
+        .hasil { background: #e0e7ff; padding: 15px; border-radius: 10px; margin-top: 20px; }
+        .operasi { display: flex; justify-content: space-between; margin: 10px 0; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="kalkulator"&gt;
+        &lt;h2&gt;🧮 Kalkulator PHP&lt;/h2&gt;
+        
+        &lt;?php
+        // Definisikan angka
+        $angka1 = 25;
+        $angka2 = 7;
+        
+        // Hitung semua operasi
+        $tambah = $angka1 + $angka2;
+        $kurang = $angka1 - $angka2;
+        $kali = $angka1 * $angka2;
+        $bagi = $angka1 / $angka2;
+        $modulus = $angka1 % $angka2;
+        ?&gt;
+        
+        &lt;div class="hasil"&gt;
+            &lt;p&gt;&lt;strong&gt;Angka 1:&lt;/strong&gt; &lt;?php echo $angka1; ?&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;Angka 2:&lt;/strong&gt; &lt;?php echo $angka2; ?&gt;&lt;/p&gt;
+            
+            &lt;hr&gt;
+            
+            &lt;div class="operasi"&gt;
+                &lt;span&gt;➕ Penjumlahan:&lt;/span&gt;
+                &lt;strong&gt;&lt;?php echo $tambah; ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class="operasi"&gt;
+                &lt;span&gt;➖ Pengurangan:&lt;/span&gt;
+                &lt;strong&gt;&lt;?php echo $kurang; ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class="operasi"&gt;
+                &lt;span&gt;✖️ Perkalian:&lt;/span&gt;
+                &lt;strong&gt;&lt;?php echo $kali; ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class="operasi"&gt;
+                &lt;span&gt;➗ Pembagian:&lt;/span&gt;
+                &lt;strong&gt;&lt;?php echo round($bagi, 2); ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class="operasi"&gt;
+                &lt;span&gt;🔢 Sisa Bagi:&lt;/span&gt;
+                &lt;strong&gt;&lt;?php echo $modulus; ?&gt;&lt;/strong&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+
       <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-indigo-200">
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
-        <p class="text-slate-600 mb-4">Buat program yang:</p>
         <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Menyimpan nama, kelas, dan nilai UTS-mu dalam variabel</li>
-          <li>Hitung rata-rata dari 3 nilai UTS (Matematika, Bahasa, Pemrograman)</li>
-          <li>Tampilkan semua data tersebut dengan rapi</li>
+          <li>Buat variabel untuk menyimpan: nama, kelas, dan 3 nilai UTS (MTK, BIndo, Pemrograman)</li>
+          <li>Hitung rata-rata dari 3 nilai UTS tersebut</li>
+          <li>Buat array untuk menyimpan 5 hobi yang kamu suka</li>
+          <li>Tampilkan semua data dengan styling yang menarik!</li>
         </ol>
       </div>
-      
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-indigo-700 mb-2">Yang Sudah Dipelajari:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li>✅ Variabel diawali dengan <code>$</code></li>
+              <li>✅ Tipe data: String, Integer, Float, Boolean</li>
+              <li>✅ Array Indexed dan Associative</li>
+              <li>✅ Operator aritmatika (+, -, *, /, %)</li>
+              <li>✅ Concatenation dengan titik (.)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-purple-700 mb-2">Perintah Penting:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li><code>$var = "nilai";</code> → buat variabel</li>
+              <li><code>$arr = [];</code> → buat array</li>
+              <li><code>$arr[0]</code> → akses array indexed</li>
+              <li><code>$arr["key"]</code> → akses array associative</li>
+              <li><code>count($arr)</code> → hitung jumlah elemen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
         <a href="pengenalan-php.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Pengenalan PHP
         </a>
         <a href="percabangan-perulangan.html" class="btn-primary">
           Materi Selanjutnya
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
-      
+
     </div>
   </section>
 
@@ -188,4 +584,5 @@ echo $lengkap;  // Output: Budi Santoso
   <script src="../../js/main.js"></script>
   <script>hljs.highlightAll();</script>
 </body>
+
 </html>

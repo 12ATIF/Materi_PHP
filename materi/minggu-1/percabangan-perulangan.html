@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="../../index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -34,199 +38,625 @@
     <div class="max-w-4xl mx-auto">
       <div class="week-badge week-1 mb-4">Minggu 1 - Materi 3</div>
       <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Percabangan & Perulangan</h1>
-      <p class="text-white/90">Membuat keputusan dan mengulang tugas</p>
+      <p class="text-white/90">Membuat keputusan dan mengulang tugas secara efisien</p>
     </div>
   </section>
 
   <!-- Content -->
   <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-      
+
       <!-- Tujuan -->
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
         <ul class="space-y-2 text-slate-600">
-          <li>• Menggunakan if-else untuk membuat keputusan</li>
-          <li>• Menggunakan switch untuk pilihan ganda</li>
-          <li>• Menggunakan for, while, foreach untuk perulangan</li>
+          <li>• Memahami operator perbandingan dan logika</li>
+          <li>• Menggunakan if-else, elseif, dan switch untuk percabangan</li>
+          <li>• Menggunakan for, while, do-while untuk perulangan</li>
+          <li>• Menggunakan foreach untuk looping array</li>
+          <li>• Membuat program dengan logika kompleks</li>
         </ul>
       </div>
-      
-      <!-- PERCABANGAN -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔀 Percabangan (If-Else)</h2>
-      
-      <div class="alert alert-info mb-6">
-        <span class="text-2xl">💡</span>
-        <div>
-          <strong class="text-indigo-800">Bayangkan begini:</strong>
-          <span class="text-indigo-700">Percabangan seperti <em>persimpangan jalan</em>. Kalau nilaimu >= 75, kamu lulus. Kalau tidak, kamu remedial.</span>
+
+      <!-- ======================= BAGIAN 1: OPERATOR PERBANDINGAN ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">⚖️ Bagian 1: Operator Perbandingan</h2>
+
+      <p class="text-slate-600 mb-4">
+        Sebelum belajar percabangan, kita perlu tahu cara membandingkan nilai. Operator perbandingan
+        menghasilkan nilai <code>true</code> (benar) atau <code>false</code> (salah).
+      </p>
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Operator Perbandingan:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-indigo-100">
+              <tr>
+                <th class="p-2 text-left">Operator</th>
+                <th class="p-2 text-left">Nama</th>
+                <th class="p-2 text-left">Contoh</th>
+                <th class="p-2 text-left">Hasil</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">==</td>
+                <td class="p-2">Sama dengan (nilai)</td>
+                <td class="p-2"><code>5 == "5"</code></td>
+                <td class="p-2 text-green-600">true</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">===</td>
+                <td class="p-2">Identik (nilai & tipe)</td>
+                <td class="p-2"><code>5 === "5"</code></td>
+                <td class="p-2 text-red-600">false</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">!=</td>
+                <td class="p-2">Tidak sama dengan</td>
+                <td class="p-2"><code>5 != 3</code></td>
+                <td class="p-2 text-green-600">true</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">></td>
+                <td class="p-2">Lebih besar dari</td>
+                <td class="p-2"><code>10 > 5</code></td>
+                <td class="p-2 text-green-600">true</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">
+                  << /td>
+                <td class="p-2">Lebih kecil dari</td>
+                <td class="p-2"><code>3 < 5</code></td>
+                <td class="p-2 text-green-600">true</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">>=</td>
+                <td class="p-2">Lebih besar atau sama</td>
+                <td class="p-2"><code>5 >= 5</code></td>
+                <td class="p-2 text-green-600">true</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-lg text-center">
+                  <=< /td>
+                <td class="p-2">Lebih kecil atau sama</td>
+                <td class="p-2"><code>3 <= 5</code></td>
+                <td class="p-2 text-green-600">true</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      
-      <div class="code-block mb-6">
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">🔗 Operator Logika</h3>
+
+      <div class="card p-4 mb-8">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-purple-100">
+              <tr>
+                <th class="p-2 text-left">Operator</th>
+                <th class="p-2 text-left">Nama</th>
+                <th class="p-2 text-left">Penjelasan</th>
+                <th class="p-2 text-left">Contoh</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2 font-mono text-center">&&</td>
+                <td class="p-2">AND</td>
+                <td class="p-2">True jika <strong>semua</strong> kondisi true</td>
+                <td class="p-2"><code>$a > 0 && $b > 0</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-center">||</td>
+                <td class="p-2">OR</td>
+                <td class="p-2">True jika <strong>salah satu</strong> kondisi true</td>
+                <td class="p-2"><code>$a > 0 || $b > 0</code></td>
+              </tr>
+              <tr>
+                <td class="p-2 font-mono text-center">!</td>
+                <td class="p-2">NOT</td>
+                <td class="p-2">Membalik nilai boolean</td>
+                <td class="p-2"><code>!$sudahLogin</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 2: PERCABANGAN IF-ELSE ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔀 Bagian 2: Percabangan If-Else</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-500">
+        <h3 class="font-bold text-indigo-800 mb-2">🤔 Analogi Sederhana</h3>
+        <p class="text-slate-700">
+          Percabangan seperti <strong>persimpangan jalan</strong>. Jika nilaimu ≥ 75,
+          kamu belok ke jalan "Lulus". Jika tidak, belok ke jalan "Remedial".
+        </p>
+        <div class="mt-4 flex items-center justify-center gap-4 text-center">
+          <div class="bg-amber-100 p-3 rounded">
+            <div class="text-2xl">🤔</div>
+            <div class="text-xs">Nilai ≥ 75?</div>
+          </div>
+          <div class="text-2xl">→</div>
+          <div class="flex flex-col gap-2">
+            <div class="bg-green-100 p-2 rounded text-sm">✅ Ya → "Lulus!"</div>
+            <div class="bg-red-100 p-2 rounded text-sm">❌ Tidak → "Remedial"</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">💻 Struktur If-Else Dasar</h3>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">if-else.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
+          <pre><code class="language-php">&lt;?php
 $nilai = 80;
 
+// IF sederhana
 if ($nilai >= 75) {
     echo "Selamat, kamu LULUS! 🎉";
-} else {
-    echo "Maaf, kamu harus REMEDIAL 😢";
 }
 
-// Dengan elseif untuk banyak kondisi
-$nilai = 85;
-
-if ($nilai >= 90) {
-    echo "Grade: A";
-} elseif ($nilai >= 80) {
-    echo "Grade: B";
-} elseif ($nilai >= 70) {
-    echo "Grade: C";
+// IF-ELSE
+if ($nilai >= 75) {
+    echo "LULUS";
 } else {
-    echo "Grade: D";
+    echo "REMEDIAL";
+}
+
+// IF-ELSEIF-ELSE (banyak kondisi)
+if ($nilai >= 90) {
+    echo "Grade: A - Sangat Baik";
+} elseif ($nilai >= 80) {
+    echo "Grade: B - Baik";
+} elseif ($nilai >= 70) {
+    echo "Grade: C - Cukup";
+} elseif ($nilai >= 60) {
+    echo "Grade: D - Kurang";
+} else {
+    echo "Grade: E - Sangat Kurang";
 }
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <!-- Operator Perbandingan -->
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Operator Perbandingan</h3>
-      <div class="overflow-x-auto mb-8">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-slate-100">
-            <tr>
-              <th class="px-4 py-2">Operator</th>
-              <th class="px-4 py-2">Arti</th>
-              <th class="px-4 py-2">Contoh</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y">
-            <tr><td class="px-4 py-2 font-mono">==</td><td class="px-4 py-2">Sama dengan</td><td class="px-4 py-2">$a == $b</td></tr>
-            <tr><td class="px-4 py-2 font-mono">!=</td><td class="px-4 py-2">Tidak sama</td><td class="px-4 py-2">$a != $b</td></tr>
-            <tr><td class="px-4 py-2 font-mono">&gt;</td><td class="px-4 py-2">Lebih besar</td><td class="px-4 py-2">$a > $b</td></tr>
-            <tr><td class="px-4 py-2 font-mono">&lt;</td><td class="px-4 py-2">Lebih kecil</td><td class="px-4 py-2">$a < $b</td></tr>
-            <tr><td class="px-4 py-2 font-mono">&gt;=</td><td class="px-4 py-2">Lebih besar sama dengan</td><td class="px-4 py-2">$a >= $b</td></tr>
-            <tr><td class="px-4 py-2 font-mono">&lt;=</td><td class="px-4 py-2">Lebih kecil sama dengan</td><td class="px-4 py-2">$a <= $b</td></tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <!-- PERULANGAN -->
-      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔄 Perulangan (Loop)</h2>
-      
-      <div class="alert alert-info mb-6">
-        <span class="text-2xl">💡</span>
-        <div>
-          <strong class="text-indigo-800">Bayangkan begini:</strong>
-          <span class="text-indigo-700">Perulangan seperti <em>mesin fotokopi</em>. Kamu tentukan berapa kali mau difotokopi, mesin akan mengulang tugas itu.</span>
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Sintaks:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-indigo-100">
+              <tr>
+                <th class="p-2 text-left">Bagian</th>
+                <th class="p-2 text-left">Fungsi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-2"><code>if (kondisi)</code></td>
+                <td class="p-2">Periksa kondisi pertama</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code>{ ... }</code></td>
+                <td class="p-2">Blok kode yang dijalankan jika kondisi true</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code>elseif (kondisi)</code></td>
+                <td class="p-2">Periksa kondisi berikutnya jika sebelumnya false</td>
+              </tr>
+              <tr>
+                <td class="p-2"><code>else</code></td>
+                <td class="p-2">Dijalankan jika SEMUA kondisi sebelumnya false</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">For Loop</h3>
+
+      <h3 class="text-lg font-bold text-slate-800 mb-3">🔗 Kondisi Gabungan (AND/OR)</h3>
+
       <div class="code-block mb-6">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">kondisi-gabungan.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+$umur = 17;
+$punyaKTP = true;
+
+// AND (&&) - Semua kondisi harus true
+if ($umur >= 17 && $punyaKTP) {
+    echo "Boleh buat SIM! 🚗";
+} else {
+    echo "Belum boleh buat SIM";
+}
+
+// OR (||) - Salah satu kondisi true saja cukup
+$hari = "Sabtu";
+if ($hari == "Sabtu" || $hari == "Minggu") {
+    echo "Hari libur! 🎉";
+} else {
+    echo "Hari kerja 💼";
+}
+
+// NOT (!) - Membalik kondisi
+$sudahLogin = false;
+if (!$sudahLogin) {
+    echo "Silakan login dulu!";
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 3: SWITCH ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔄 Bagian 3: Switch Case</h2>
+
+      <p class="text-slate-600 mb-4">
+        Switch cocok digunakan ketika kamu punya <strong>banyak nilai pasti</strong> untuk dibandingkan
+        (bukan range seperti >= 75).
+      </p>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">switch.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;?php
+$hari = "Senin";
+
+switch ($hari) {
+    case "Senin":
+        echo "Semangat awal pekan! 💪";
+        break;
+    case "Selasa":
+    case "Rabu":
+    case "Kamis":
+        echo "Tetap produktif! 📚";
+        break;
+    case "Jumat":
+        echo "Sedikit lagi weekend! 🎯";
+        break;
+    case "Sabtu":
+    case "Minggu":
+        echo "Hari libur! 🎉";
+        break;
+    default:
+        echo "Hari tidak valid";
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="alert alert-warning mb-8">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <strong class="text-amber-800">Jangan lupa <code>break;</code>!</strong>
+          <span class="text-amber-700">Tanpa break, PHP akan menjalankan semua case di bawahnya (fall-through).</span>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 4: FOR LOOP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔁 Bagian 4: Perulangan For</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-emerald-500">
+        <h3 class="font-bold text-emerald-800 mb-2">🤔 Kapan Pakai For?</h3>
+        <p class="text-slate-700">
+          Gunakan <code>for</code> ketika kamu <strong>tahu pasti berapa kali</strong> perulangan akan dilakukan.
+          Contoh: tampilkan angka 1-10, ulangi 5 kali, dll.
+        </p>
+      </div>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">for-loop.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-// Menampilkan angka 1 sampai 5
+          <pre><code class="language-php">&lt;?php
+// Struktur: for (awal; kondisi; increment)
 for ($i = 1; $i <= 5; $i++) {
-    echo "Angka ke-$i &lt;br&gt;";
+    echo "Perulangan ke-$i &lt;br&gt;";
+}
+// Output: 1, 2, 3, 4, 5
+
+// Contoh: Tabel perkalian
+echo "&lt;h3&gt;Tabel Perkalian 5&lt;/h3&gt;";
+for ($i = 1; $i <= 10; $i++) {
+    $hasil = 5 * $i;
+    echo "5 x $i = $hasil &lt;br&gt;";
 }
 
-// Output:
-// Angka ke-1
-// Angka ke-2
-// Angka ke-3
-// Angka ke-4
-// Angka ke-5
+// Loop mundur
+for ($i = 10; $i >= 1; $i--) {
+    echo "$i... ";
+}
+echo "Lepas landas! 🚀";
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">While Loop</h3>
-      <div class="code-block mb-6">
+
+      <div class="card p-4 mb-6">
+        <h4 class="font-bold text-slate-800 mb-3">📖 Penjelasan Struktur For:</h4>
+        <div class="bg-slate-100 p-3 rounded text-center font-mono mb-4">
+          for (<span class="text-blue-600">$i = 1</span>; <span class="text-green-600">$i <= 5</span>; <span
+                class="text-purple-600">$i++</span>)
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <strong class="text-blue-700">1. Inisialisasi</strong>
+            <p class="text-slate-600">$i = 1</p>
+            <p class="text-xs text-slate-500">Nilai awal counter</p>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <strong class="text-green-700">2. Kondisi</strong>
+            <p class="text-slate-600">$i <= 5</p>
+                <p class="text-xs text-slate-500">Loop berjalan selama ini true</p>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <strong class="text-purple-700">3. Increment</strong>
+            <p class="text-slate-600">$i++</p>
+            <p class="text-xs text-slate-500">Dijalankan setiap akhir loop</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 5: WHILE LOOP ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔁 Bagian 5: Perulangan While</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-amber-50 to-yellow-50 border-l-4 border-amber-500">
+        <h3 class="font-bold text-amber-800 mb-2">🤔 Kapan Pakai While?</h3>
+        <p class="text-slate-700">
+          Gunakan <code>while</code> ketika perulangan <strong>bergantung pada kondisi</strong>
+          dan kamu tidak tahu pasti berapa kali akan diulang.
+        </p>
+      </div>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">while-loop.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
+          <pre><code class="language-php">&lt;?php
+// While - cek kondisi dulu, baru jalankan
 $i = 1;
-while ($i <= 3) {
+while ($i <= 5) {
     echo "Hitungan: $i &lt;br&gt;";
-    $i++;  // Jangan lupa tambah nilai!
+    $i++;  // WAJIB! Tanpa ini = infinite loop
 }
+
+// Contoh nyata: hitung mundur
+$detik = 10;
+while ($detik > 0) {
+    echo "$detik... ";
+    $detik--;
+}
+echo "Waktu habis! ⏰";
+
+// Do-While - jalankan dulu, baru cek kondisi
+$angka = 10;
+do {
+    echo "Angka: $angka &lt;br&gt;";  // Akan dijalankan minimal 1x
+    $angka++;
+} while ($angka < 5);  // Kondisi false, tapi sudah jalan 1x
 ?&gt;</code></pre>
         </div>
       </div>
-      
-      <h3 class="text-xl font-bold text-slate-800 mb-3">Foreach (untuk Array)</h3>
-      <div class="code-block mb-6">
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="card p-4 border-2 border-green-200 bg-green-50">
+          <div class="font-bold text-green-700 mb-2">while</div>
+          <p class="text-sm text-slate-600">Cek kondisi <strong>sebelum</strong> menjalankan</p>
+          <p class="text-xs text-slate-500 mt-1">Bisa 0 kali jika kondisi awal false</p>
+        </div>
+        <div class="card p-4 border-2 border-blue-200 bg-blue-50">
+          <div class="font-bold text-blue-700 mb-2">do-while</div>
+          <p class="text-sm text-slate-600">Cek kondisi <strong>setelah</strong> menjalankan</p>
+          <p class="text-xs text-slate-500 mt-1">Minimal 1 kali pasti dijalankan</p>
+        </div>
+      </div>
+
+      <!-- ======================= BAGIAN 6: FOREACH ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🔁 Bagian 6: Foreach (Untuk Array)</h2>
+
+      <div class="card p-6 mb-6 bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-purple-500">
+        <h3 class="font-bold text-purple-800 mb-2">🤔 Kapan Pakai Foreach?</h3>
+        <p class="text-slate-700">
+          Gunakan <code>foreach</code> untuk mengulang setiap elemen dalam <strong>array</strong>.
+          Ini cara paling mudah untuk loop array!
+        </p>
+      </div>
+
+      <div class="code-block mb-4">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <span class="text-slate-400 text-sm">foreach.php</span>
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php
-$buah = ["Apel", "Mangga", "Jeruk"];
+          <pre><code class="language-php">&lt;?php
+// Foreach untuk Array Indexed
+$buah = ["Apel", "Mangga", "Jeruk", "Durian"];
 
+echo "&lt;h3&gt;Daftar Buah:&lt;/h3&gt;";
 foreach ($buah as $item) {
-    echo "Buah: $item &lt;br&gt;";
+    echo "🍎 $item &lt;br&gt;";
 }
 
-// Output:
-// Buah: Apel
-// Buah: Mangga
-// Buah: Jeruk
+// Dengan index
+foreach ($buah as $index => $item) {
+    echo "$index. $item &lt;br&gt;";
+}
+// Output: 0. Apel, 1. Mangga, dst
+
+// Foreach untuk Array Associative
+$siswa = [
+    "nama" => "Budi Santoso",
+    "kelas" => "XI RPL 1",
+    "umur" => 17
+];
+
+echo "&lt;h3&gt;Data Siswa:&lt;/h3&gt;";
+foreach ($siswa as $key => $value) {
+    echo "&lt;strong&gt;$key:&lt;/strong&gt; $value &lt;br&gt;";
+}
+// Output: nama: Budi, kelas: XI RPL 1, umur: 17
 ?&gt;</code></pre>
         </div>
       </div>
-      
+
+      <!-- ======================= BAGIAN 7: CONTOH PRAKTIS ======================= -->
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">🧮 Bagian 7: Contoh Praktis</h2>
+
+      <div class="code-block mb-4">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="text-slate-400 text-sm">nilai_siswa.php</span>
+          <button class="copy-btn">Salin</button>
+        </div>
+        <div class="code-content">
+          <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Nilai Siswa&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background: #6366f1; color: white; }
+        .lulus { color: green; font-weight: bold; }
+        .remedial { color: red; font-weight: bold; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;📊 Daftar Nilai Siswa&lt;/h2&gt;
+    
+    &lt;?php
+    $siswa = [
+        ["nama" => "Budi", "nilai" => 85],
+        ["nama" => "Ani", "nilai" => 70],
+        ["nama" => "Citra", "nilai" => 92],
+        ["nama" => "Doni", "nilai" => 65],
+        ["nama" => "Eva", "nilai" => 78],
+    ];
+    ?&gt;
+    
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;No&lt;/th&gt;
+            &lt;th&gt;Nama&lt;/th&gt;
+            &lt;th&gt;Nilai&lt;/th&gt;
+            &lt;th&gt;Grade&lt;/th&gt;
+            &lt;th&gt;Status&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;?php
+        $no = 1;
+        foreach ($siswa as $s) {
+            // Tentukan grade
+            if ($s["nilai"] >= 90) {
+                $grade = "A";
+            } elseif ($s["nilai"] >= 80) {
+                $grade = "B";
+            } elseif ($s["nilai"] >= 70) {
+                $grade = "C";
+            } else {
+                $grade = "D";
+            }
+            
+            // Tentukan status
+            $status = $s["nilai"] >= 75 ? "LULUS" : "REMEDIAL";
+            $class = $s["nilai"] >= 75 ? "lulus" : "remedial";
+            
+            echo "&lt;tr&gt;";
+            echo "&lt;td&gt;$no&lt;/td&gt;";
+            echo "&lt;td&gt;{$s['nama']}&lt;/td&gt;";
+            echo "&lt;td&gt;{$s['nilai']}&lt;/td&gt;";
+            echo "&lt;td&gt;$grade&lt;/td&gt;";
+            echo "&lt;td class='$class'&gt;$status&lt;/td&gt;";
+            echo "&lt;/tr&gt;";
+            $no++;
+        }
+        ?&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+
       <div class="alert alert-tip mb-8">
         <span class="text-2xl">🧠</span>
         <div>
-          <strong class="text-emerald-800">Tips:</strong>
-          <span class="text-emerald-700">Gunakan <code>for</code> kalau tahu jumlah perulangan. Gunakan <code>while</code> kalau perulangan bergantung kondisi. Gunakan <code>foreach</code> untuk array.</span>
+          <strong class="text-emerald-800">Ternary Operator:</strong>
+          <code class="text-emerald-700">$status = $nilai >= 75 ? "LULUS" : "REMEDIAL";</code>
+          <p class="text-sm text-emerald-600 mt-1">Ini adalah if-else dalam 1 baris! Sangat berguna untuk kondisi
+            sederhana.</p>
         </div>
       </div>
-      
+
       <!-- Latihan -->
-      <div class="card p-6 mb-8 border-2 border-indigo-200">
+      <div class="card p-6 mb-8 border-2 border-amber-200 bg-amber-50">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
         <ol class="list-decimal list-inside space-y-2 text-slate-600">
-          <li>Buat program yang menentukan grade nilai (A, B, C, D, E)</li>
-          <li>Tampilkan tabel perkalian 1-10 menggunakan for loop</li>
-          <li>Buat array nama teman sekelas, tampilkan dengan foreach</li>
+          <li>Buat program untuk menentukan bilangan genap atau ganjil</li>
+          <li>Buat tabel perkalian 1-10 menggunakan for loop</li>
+          <li>Buat program untuk menampilkan hari dalam seminggu menggunakan switch</li>
+          <li>Buat daftar siswa dengan foreach dan tampilkan dengan styling HTML yang menarik</li>
         </ol>
       </div>
-      
+
+      <!-- Ringkasan -->
+      <div class="card p-6 mb-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+        <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 class="font-bold text-indigo-700 mb-2">Percabangan:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li><code>if</code> → 1 kondisi</li>
+              <li><code>if-else</code> → 2 pilihan</li>
+              <li><code>if-elseif-else</code> → banyak kondisi</li>
+              <li><code>switch</code> → banyak nilai pasti</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-purple-700 mb-2">Perulangan:</h4>
+            <ul class="text-slate-600 space-y-1">
+              <li><code>for</code> → jumlah pasti</li>
+              <li><code>while</code> → bergantung kondisi</li>
+              <li><code>do-while</code> → minimal 1x</li>
+              <li><code>foreach</code> → untuk array</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
         <a href="variabel-tipe-data.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
           Variabel & Tipe Data
         </a>
         <a href="fungsi.html" class="btn-primary">
           Materi Selanjutnya
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
-      
+
     </div>
   </section>
 
@@ -239,4 +669,5 @@ foreach ($buah as $item) {
   <script src="../../js/main.js"></script>
   <script>hljs.highlightAll();</script>
 </body>
+
 </html>
