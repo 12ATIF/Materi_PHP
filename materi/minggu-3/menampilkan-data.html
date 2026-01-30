@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="../../index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -32,7 +36,7 @@
   <!-- Header -->
   <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-amber-500 to-orange-500">
     <div class="max-w-4xl mx-auto">
-      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 9</div>
+      <div class="week-badge week-3 mb-4">Minggu 3 - Materi 10</div>
       <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">📘 Menampilkan Data</h1>
       <p class="text-white/90">Mengambil dan menampilkan data dari database ke halaman web</p>
     </div>
@@ -41,7 +45,7 @@
   <!-- Content -->
   <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-      
+
       <!-- Tujuan -->
       <div class="card p-6 mb-8">
         <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
@@ -51,10 +55,10 @@
           <li>• Menggunakan loop untuk menampilkan banyak data</li>
         </ul>
       </div>
-      
+
       <!-- Contoh Data -->
       <h2 class="text-2xl font-bold text-slate-800 mb-4">📖 Menampilkan Data ke Tabel</h2>
-      
+
       <div class="code-block mb-6">
         <div class="code-header">
           <div class="code-dots"><span></span><span></span><span></span></div>
@@ -62,7 +66,7 @@
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;?php include 'koneksi.php'; ?&gt;
+          <pre><code class="language-php">&lt;?php include 'koneksi.php'; ?&gt;
 
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -99,15 +103,16 @@
 &lt;/html&gt;</code></pre>
         </div>
       </div>
-      
+
       <div class="alert alert-tip mb-6">
         <span class="text-2xl">🧠</span>
         <div>
           <strong class="text-emerald-800">Tips:</strong>
-          <span class="text-emerald-700"><code>mysqli_fetch_assoc()</code> mengambil satu baris data sebagai array. Loop <code>while</code> akan terus berjalan sampai semua data habis.</span>
+          <span class="text-emerald-700"><code>mysqli_fetch_assoc()</code> mengambil satu baris data sebagai array. Loop
+            <code>while</code> akan terus berjalan sampai semua data habis.</span>
         </div>
       </div>
-      
+
       <!-- Dengan Styling -->
       <h3 class="text-xl font-bold text-slate-800 mb-3">Tabel dengan Styling</h3>
       <div class="code-block mb-6">
@@ -117,7 +122,7 @@
           <button class="copy-btn">Salin</button>
         </div>
         <div class="code-content">
-<pre><code class="language-php">&lt;style&gt;
+          <pre><code class="language-php">&lt;style&gt;
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
     th { background: #4F46E5; color: white; }
@@ -154,7 +159,7 @@
 &lt;/table&gt;</code></pre>
         </div>
       </div>
-      
+
       <!-- Latihan -->
       <div class="card p-6 mb-8 border-2 border-amber-200">
         <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
@@ -164,23 +169,23 @@
           <li>Tambahkan kolom "Aksi" dengan link Edit dan Hapus</li>
         </ol>
       </div>
-      
+
       <!-- Navigation -->
       <div class="flex justify-between items-center pt-8 border-t">
-        <a href="../minggu-2/sql-dasar.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+        <a href="../minggu-2/session-auth.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
-          SQL Dasar
+          Session & Auth
         </a>
         <a href="crud-php.html" class="btn-primary">
           Materi Selanjutnya
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
-      
+
     </div>
   </section>
 
@@ -193,4 +198,5 @@
   <script src="../../js/main.js"></script>
   <script>hljs.highlightAll();</script>
 </body>
+
 </html>

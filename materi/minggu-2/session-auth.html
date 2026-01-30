@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session & Autentikasi | Minggu 3 | PHP untuk SMK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+</head>
+
+<body class="bg-slate-50">
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="../../index.html" class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold">&lt;/&gt;</span>
+                </div>
+                <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+                        class="text-indigo-600">SMK</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="../../index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
+                <a href="../../silabus.html" class="text-slate-600 hover:text-indigo-600">Silabus</a>
+                <a href="menampilkan-data.html" class="text-indigo-600 font-medium">Materi</a>
+                <a href="../../project-akhir.html" class="text-slate-600 hover:text-indigo-600">Project Akhir</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-28 pb-8 px-4 bg-gradient-to-br from-emerald-500 to-teal-600">
+        <div class="max-w-4xl mx-auto">
+            <div class="week-badge week-2 mb-4">Minggu 2 - Materi 9</div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">🔐 Session & Autentikasi</h1>
+            <p class="text-white/90">Membuat sistem login dan register dengan PHP</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Tujuan -->
+            <div class="card p-6 mb-8">
+                <h2 class="text-xl font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h2>
+                <ul class="space-y-2 text-slate-600">
+                    <li>• Memahami konsep session di PHP</li>
+                    <li>• Membuat form register dengan password aman</li>
+                    <li>• Membuat form login dengan verifikasi</li>
+                    <li>• Membuat halaman yang hanya bisa diakses setelah login</li>
+                </ul>
+            </div>
+
+            <!-- Apa itu Session? -->
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">📦 Apa itu Session?</h2>
+            <p class="text-slate-600 mb-4">
+                <strong>Session</strong> adalah cara PHP menyimpan data sementara untuk setiap pengunjung.
+                Bayangkan seperti kartu identitas yang diberikan saat masuk ke gedung - server bisa "mengingat" siapa
+                kamu.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-8">
+                <div class="card p-4">
+                    <div class="text-2xl mb-2">🚫 Tanpa Session</div>
+                    <p class="text-sm text-slate-600">Setiap halaman tidak tahu siapa pengunjungnya</p>
+                </div>
+                <div class="card p-4">
+                    <div class="text-2xl mb-2">✅ Dengan Session</div>
+                    <p class="text-sm text-slate-600">Data tersimpan & bisa diakses di semua halaman</p>
+                </div>
+            </div>
+
+            <div class="code-block mb-8">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="text-slate-400 text-sm">session_dasar.php</span>
+                    <button class="copy-btn">Salin</button>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-php">&lt;?php
+// Wajib dipanggil di awal setiap file yang pakai session
+session_start();
+
+// Menyimpan data ke session
+$_SESSION['nama'] = "Budi";
+$_SESSION['role'] = "admin";
+
+// Mengambil data dari session
+echo "Halo, " . $_SESSION['nama']; // Output: Halo, Budi
+
+// Menghapus satu session
+unset($_SESSION['nama']);
+
+// Menghapus semua session (logout)
+session_destroy();
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="alert alert-info mb-8">
+                <span class="text-2xl">💡</span>
+                <span class="text-blue-700"><strong>Ingat!</strong> Selalu panggil <code>session_start()</code> di baris
+                    pertama sebelum output HTML apapun!</span>
+            </div>
+
+            <!-- Register -->
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">📝 Membuat Form Register</h2>
+            <p class="text-slate-600 mb-4">
+                Saat user mendaftar, kita <strong>wajib</strong> menyimpan password dalam bentuk terenkripsi menggunakan
+                <code>password_hash()</code>.
+            </p>
+
+            <div class="code-block mb-6">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="text-slate-400 text-sm">register.php</span>
+                    <button class="copy-btn">Salin</button>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-php">&lt;?php
+include 'koneksi.php';
+$pesan = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    // 🔐 PENTING: Hash password sebelum disimpan!
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    
+    // Cek apakah email sudah terdaftar
+    $cek = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
+    
+    if (mysqli_num_rows($cek) > 0) {
+        $pesan = "Email sudah terdaftar!";
+    } else {
+        $sql = "INSERT INTO users (nama, email, password) 
+                VALUES ('$nama', '$email', '$password_hash')";
+        
+        if (mysqli_query($conn, $sql)) {
+            header("Location: login.php?status=sukses");
+            exit;
+        } else {
+            $pesan = "Gagal mendaftar!";
+        }
+    }
+}
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Daftar Akun&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;📝 Daftar Akun Baru&lt;/h2&gt;
+    
+    &lt;?php if ($pesan): ?&gt;
+        &lt;p style="color: red;"&gt;&lt;?php echo $pesan; ?&gt;&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+    
+    &lt;form method="POST"&gt;
+        &lt;p&gt;
+            &lt;label&gt;Nama:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="text" name="nama" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;Email:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="email" name="email" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;Password:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="password" name="password" required&gt;
+        &lt;/p&gt;
+        &lt;button type="submit"&gt;Daftar&lt;/button&gt;
+    &lt;/form&gt;
+    
+    &lt;p&gt;Sudah punya akun? &lt;a href="login.php"&gt;Login di sini&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="alert alert-warning mb-8">
+                <span class="text-2xl">⚠️</span>
+                <div>
+                    <strong class="text-amber-800">Jangan Pernah!</strong>
+                    <span class="text-amber-700">Menyimpan password dalam bentuk plain text. Selalu gunakan
+                        <code>password_hash()</code>!</span>
+                </div>
+            </div>
+
+            <!-- Login -->
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">🔑 Membuat Form Login</h2>
+            <p class="text-slate-600 mb-4">
+                Untuk memverifikasi password, gunakan <code>password_verify()</code> untuk membandingkan password yang
+                diinput dengan hash yang tersimpan di database.
+            </p>
+
+            <div class="code-block mb-6">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="text-slate-400 text-sm">login.php</span>
+                    <button class="copy-btn">Salin</button>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-php">&lt;?php
+session_start();
+include 'koneksi.php';
+$pesan = "";
+
+// Jika sudah login, redirect ke dashboard
+if (isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    // Cari user berdasarkan email
+    $sql = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) == 1) {
+        $user = mysqli_fetch_assoc($result);
+        
+        // 🔐 Verifikasi password dengan hash di database
+        if (password_verify($password, $user['password'])) {
+            // Password benar! Simpan data ke session
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_nama'] = $user['nama'];
+            $_SESSION['user_email'] = $user['email'];
+            
+            header("Location: index.php");
+            exit;
+        } else {
+            $pesan = "Password salah!";
+        }
+    } else {
+        $pesan = "Email tidak ditemukan!";
+    }
+}
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Login&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;🔑 Login&lt;/h2&gt;
+    
+    &lt;?php if (isset($_GET['status']) && $_GET['status'] == 'sukses'): ?&gt;
+        &lt;p style="color: green;"&gt;Registrasi berhasil! Silakan login.&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+    
+    &lt;?php if ($pesan): ?&gt;
+        &lt;p style="color: red;"&gt;&lt;?php echo $pesan; ?&gt;&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+    
+    &lt;form method="POST"&gt;
+        &lt;p&gt;
+            &lt;label&gt;Email:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="email" name="email" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;Password:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="password" name="password" required&gt;
+        &lt;/p&gt;
+        &lt;button type="submit"&gt;Login&lt;/button&gt;
+    &lt;/form&gt;
+    
+    &lt;p&gt;Belum punya akun? &lt;a href="register.php"&gt;Daftar di sini&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Protected Page -->
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">🛡️ Membuat Halaman Terproteksi</h2>
+            <p class="text-slate-600 mb-4">
+                Buat file pengecekan login yang bisa di-include di setiap halaman yang butuh login.
+            </p>
+
+            <div class="code-block mb-6">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="text-slate-400 text-sm">cek_login.php</span>
+                    <button class="copy-btn">Salin</button>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-php">&lt;?php
+session_start();
+
+// Jika belum login, redirect ke halaman login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <p class="text-slate-600 mb-4">
+                Kemudian include file ini di halaman yang ingin diproteksi:
+            </p>
+
+            <div class="code-block mb-6">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="text-slate-400 text-sm">index.php (halaman terproteksi)</span>
+                    <button class="copy-btn">Salin</button>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-php">&lt;?php
+// Include pengecekan login di baris pertama!
+include 'cek_login.php';
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Dashboard Perpustakaan&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;📚 Selamat Datang, &lt;?php echo $_SESSION['user_nama']; ?&gt;!&lt;/h2&gt;
+    
+    &lt;p&gt;Ini adalah halaman yang hanya bisa diakses setelah login.&lt;/p&gt;
+    
+    &lt;a href="logout.php"&gt;🚪 Logout&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Logout -->
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">🚪 Logout</h2>
+            <div class="code-block mb-6">
+                <div class="code-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                    <span class="text-slate-400 text-sm">logout.php</span>
+                    <button class="copy-btn">Salin</button>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-php">&lt;?php
+session_start();
+
+// Hapus semua session
+session_destroy();
+
+// Redirect ke halaman login
+header("Location: login.php");
+exit;
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Ringkasan -->
+            <div class="card p-6 mb-8 bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-4">📋 Ringkasan Alur Autentikasi</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-bold text-purple-700 mb-2">Register:</h4>
+                        <ol class="list-decimal list-inside text-slate-600 text-sm space-y-1">
+                            <li>User isi form nama, email, password</li>
+                            <li>Cek apakah email sudah ada</li>
+                            <li>Hash password dengan <code>password_hash()</code></li>
+                            <li>Simpan ke database</li>
+                            <li>Redirect ke login</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-pink-700 mb-2">Login:</h4>
+                        <ol class="list-decimal list-inside text-slate-600 text-sm space-y-1">
+                            <li>User isi email & password</li>
+                            <li>Ambil data user dari database</li>
+                            <li>Verifikasi dengan <code>password_verify()</code></li>
+                            <li>Simpan info user ke session</li>
+                            <li>Redirect ke dashboard</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latihan -->
+            <div class="card p-6 mb-8 border-2 border-amber-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-3">📝 Latihan</h2>
+                <ol class="list-decimal list-inside space-y-2 text-slate-600">
+                    <li>Buat tabel <code>users</code> di database perpustakaan</li>
+                    <li>Buat halaman register dengan validasi email unik</li>
+                    <li>Buat halaman login dengan session</li>
+                    <li>Proteksi halaman CRUD buku agar hanya bisa diakses setelah login</li>
+                    <li>Tambahkan tombol logout di setiap halaman</li>
+                </ol>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center pt-8 border-t">
+                <a href="sql-dasar.html" class="text-slate-500 hover:text-indigo-600 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    SQL Dasar
+                </a>
+                <a href="../minggu-3/menampilkan-data.html" class="btn-primary">
+                    Minggu 3: Menampilkan Data
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-8 px-4 mt-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-slate-400">© 2026 PHPuntukSMK</p>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>

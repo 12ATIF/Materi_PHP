@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
 </head>
+
 <body class="bg-slate-50">
   <!-- Navbar -->
   <nav class="navbar fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold">&lt;/&gt;</span>
         </div>
-        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span class="text-indigo-600">SMK</span></span>
+        <span class="font-bold text-xl text-slate-800 hidden sm:block">PHP<span
+            class="text-indigo-600">SMK</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="index.html" class="text-slate-600 hover:text-indigo-600">Beranda</a>
@@ -29,7 +33,7 @@
       </div>
       <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
@@ -38,7 +42,8 @@
   <!-- Header -->
   <section class="pt-28 pb-16 px-4 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 hero-pattern">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-white text-sm mb-4">🏆 Tantangan Akhir</div>
+      <div class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-white text-sm mb-4">🏆
+        Tantangan Akhir</div>
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Project: CRUD Perpustakaan</h1>
       <p class="text-xl text-white/90">Saatnya membuktikan kemampuanmu dengan membuat aplikasi web dinamis lengkap!</p>
     </div>
@@ -49,13 +54,14 @@
       <!-- Description -->
       <div class="card p-8 mb-12">
         <h2 class="text-2xl font-bold text-slate-800 mb-4">📋 Deskripsi Project</h2>
-        <p class="text-slate-600 mb-6">Kamu akan membuat <strong>Aplikasi Perpustakaan</strong> untuk mengelola data buku menggunakan PHP dan MySQL.</p>
+        <p class="text-slate-600 mb-6">Kamu akan membuat <strong>Aplikasi Perpustakaan</strong> untuk mengelola data
+          buku menggunakan PHP dan MySQL.</p>
         <div class="alert alert-tip">
           <span class="text-2xl">💡</span>
           <span class="text-emerald-700">Project ini sangat cocok untuk portofolio PKL, LKS, atau UKK!</span>
         </div>
       </div>
-      
+
       <!-- Features -->
       <h2 class="text-2xl font-bold text-slate-800 mb-6">⚡ Fitur yang Akan Dibuat</h2>
       <div class="grid md:grid-cols-2 gap-6 mb-12">
@@ -79,8 +85,18 @@
           <h3 class="font-bold text-slate-800 mb-2">Hapus Buku</h3>
           <p class="text-slate-600 text-sm">Menghapus data buku dari database</p>
         </div>
+        <div class="card p-6 border-2 border-purple-200">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-xl mb-4">🔐</div>
+          <h3 class="font-bold text-slate-800 mb-2">Login</h3>
+          <p class="text-slate-600 text-sm">Masuk ke aplikasi dengan akun</p>
+        </div>
+        <div class="card p-6 border-2 border-pink-200">
+          <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-xl mb-4">📝</div>
+          <h3 class="font-bold text-slate-800 mb-2">Register</h3>
+          <p class="text-slate-600 text-sm">Daftar akun baru</p>
+        </div>
       </div>
-      
+
       <!-- Database -->
       <div class="card p-8 mb-12">
         <h2 class="text-2xl font-bold text-slate-800 mb-4">🗄️ Struktur Database</h2>
@@ -91,9 +107,18 @@
             <button class="copy-btn">Salin</button>
           </div>
           <div class="code-content">
-<pre><code class="language-sql">CREATE DATABASE perpustakaan;
+            <pre><code class="language-sql">CREATE DATABASE perpustakaan;
 USE perpustakaan;
 
+-- Tabel Users untuk login/register
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Tabel Buku
 CREATE TABLE buku (
     id INT AUTO_INCREMENT PRIMARY KEY,
     judul VARCHAR(255) NOT NULL,
@@ -105,7 +130,7 @@ CREATE TABLE buku (
           </div>
         </div>
       </div>
-      
+
       <!-- File Structure -->
       <div class="card p-8 mb-12">
         <h2 class="text-2xl font-bold text-slate-800 mb-4">📁 Struktur File</h2>
@@ -113,28 +138,46 @@ CREATE TABLE buku (
           <div>📁 perpustakaan/</div>
           <div class="ml-4">├── 📄 index.php</div>
           <div class="ml-4">├── 📄 koneksi.php</div>
+          <div class="ml-4 text-purple-400">├── 📄 login.php</div>
+          <div class="ml-4 text-pink-400">├── 📄 register.php</div>
+          <div class="ml-4 text-orange-400">├── 📄 logout.php</div>
+          <div class="ml-4 text-cyan-400">├── 📄 cek_login.php</div>
           <div class="ml-4">├── 📄 tambah.php</div>
           <div class="ml-4">├── 📄 edit.php</div>
           <div class="ml-4">├── 📄 hapus.php</div>
           <div class="ml-4">└── 📁 uploads/</div>
         </div>
       </div>
-      
+
       <!-- Checklist -->
       <div class="card p-8 mb-12">
         <h2 class="text-2xl font-bold text-slate-800 mb-6">✅ Checklist Pengerjaan</h2>
         <div class="space-y-1">
-          <div class="checklist-item"><input type="checkbox" id="c1"><label for="c1" class="text-slate-700">Buat database dan tabel</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c2"><label for="c2" class="text-slate-700">Buat koneksi.php</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3" class="text-slate-700">Buat halaman daftar buku</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4" class="text-slate-700">Buat form tambah buku</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5" class="text-slate-700">Tambahkan upload cover</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6" class="text-slate-700">Buat fitur edit buku</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c7"><label for="c7" class="text-slate-700">Buat fitur hapus buku</label></div>
-          <div class="checklist-item"><input type="checkbox" id="c8"><label for="c8" class="text-slate-700">Styling & testing</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c1"><label for="c1" class="text-slate-700">Buat
+              database dan tabel (users + buku)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c2"><label for="c2" class="text-slate-700">Buat
+              koneksi.php</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3" class="text-slate-700">Buat halaman
+              register</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4" class="text-slate-700">Buat halaman
+              login</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5" class="text-slate-700">Buat
+              proteksi halaman (cek_login.php)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6" class="text-slate-700">Buat halaman
+              daftar buku</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c7"><label for="c7" class="text-slate-700">Buat form
+              tambah buku</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c8"><label for="c8" class="text-slate-700">Tambahkan
+              upload cover</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c9"><label for="c9" class="text-slate-700">Buat fitur
+              edit buku</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c10"><label for="c10" class="text-slate-700">Buat fitur
+              hapus buku</label></div>
+          <div class="checklist-item"><input type="checkbox" id="c11"><label for="c11" class="text-slate-700">Styling &
+              testing</label></div>
         </div>
       </div>
-      
+
       <!-- CTA -->
       <div class="text-center">
         <h2 class="text-2xl font-bold text-slate-800 mb-4">Siap Mulai? 🚀</h2>
@@ -155,4 +198,5 @@ CREATE TABLE buku (
   <script src="js/main.js"></script>
   <script>hljs.highlightAll(); PHPLearning.initChecklist();</script>
 </body>
+
 </html>
